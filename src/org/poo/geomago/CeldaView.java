@@ -17,17 +17,27 @@ public class CeldaView {
 	private Stroke stroke;
 	private int x;
 	private int y;
+	private boolean isEnabled;
 
 	public CeldaView(int i, int j) {
+		this(i,j,true);
+	}
+	
+	public CeldaView(int i, int j, boolean isEnabled) {
 		setX(i);
 		setY(j);
+		this.isEnabled = isEnabled;
 		shape = new Rectangle2D.Double(0,0,CELDA_WIDTH,CELDA_HEIGHT);
 		stroke = new BasicStroke(2f);
 	}
 	
 	protected void paintComponent(Graphics2D g) {
  		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
- 		g.setColor(CELDA_COLOR);
+ 		if (isEnabled) {
+ 	 		g.setColor(CELDA_COLOR);
+		} else {
+			g.setColor(CELDA_STROKE);
+		}
  		g.fill(shape);
  		g.setColor(CELDA_STROKE);
  		g.setStroke(stroke);

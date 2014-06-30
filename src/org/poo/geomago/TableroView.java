@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.TextArea;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,9 +26,10 @@ public class TableroView extends JPanel {
 	
 	private void createGrid() {
 		celdaContainer = new CeldaContainer();
+		Random rnd = new Random();
 		for (int i = 0; i < 40; i++) {
 			for (int j = 0; j < 40; j++) {
-				celdaContainer.addCelda(new CeldaView(i,j));
+				celdaContainer.addCelda(new CeldaView(i,j,rnd.nextBoolean()));
 			}
 		}
 		celdaContainer.setPreferredSize(new Dimension((int) (40*CeldaView.CELDA_WIDTH), (int)(40*CeldaView.CELDA_HEIGHT)));
