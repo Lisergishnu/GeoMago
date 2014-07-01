@@ -33,7 +33,7 @@ public class GameFrame extends JFrame {
 		setLayout(new GridLayout());
 		getContentPane().add(tablero);
 	
-		GameFrameMenuListener gListener = new GameFrameMenuListener();
+		GameFrameMenuListener gListener = new GameFrameMenuListener(gameModel);
 		setJMenuBar(createGameFrameMenuBar(gListener));
 	}
 	
