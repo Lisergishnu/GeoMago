@@ -1,4 +1,4 @@
-package org.poo.geomago;
+package org.poo.geomago.celda;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -12,31 +12,35 @@ public class CeldaView {
 	private static final Color CELDA_STROKE = Color.black;
 	public static final double CELDA_HEIGHT = 32;
 	public static final double CELDA_WIDTH = 32;
-	private static final Color CELDA_COLOR = Color.white;
+	private static final Color CELDA_COLOR_ENABLED = Color.white;
+	private static final Color CELDA_COLOR_DISABLED = Color.gray;
 	private Rectangle2D.Double shape;
 	private Stroke stroke;
 	private int x;
 	private int y;
 	private boolean isEnabled;
+	private Celda mCell;
 
-	public CeldaView(int i, int j) {
-		this(i,j,true);
-	}
-	
-	public CeldaView(int i, int j, boolean isEnabled) {
-		setX(i);
-		setY(j);
-		this.isEnabled = isEnabled;
+	public CeldaView(Celda cell) {
+		setX(cell.getX());
+		setY(cell.getY());
+		mCell = cell;
 		shape = new Rectangle2D.Double(0,0,CELDA_WIDTH,CELDA_HEIGHT);
 		stroke = new BasicStroke(2f);
 	}
 	
 	protected void paintComponent(Graphics2D g) {
  		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
- 		if (isEnabled) {
- 	 		g.setColor(CELDA_COLOR);
-		} else {
-			g.setColor(CELDA_STROKE);
+ 		switch (mCell.getmState()) {
+		case NORMAL:
+			g.setColor(CELDA_COLOR_ENABLED);
+			break;
+		case DISABLED:
+			g.setColor(CELDA_COLOR_DISABLED);
+			break;
+		default:
+			g.setColor(CELDA_COLOR_ENABLED);
+			break;
 		}
  		g.fill(shape);
  		g.setColor(CELDA_STROKE);

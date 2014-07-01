@@ -1,4 +1,4 @@
-package org.poo.geomago;
+package org.poo.geomago.celda;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

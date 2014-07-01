@@ -12,12 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.poo.geomago.celda.CeldaContainer;
+import org.poo.geomago.celda.CeldaView;
+
 public class TableroView extends JPanel {
 	
 	private JScrollPane scrollPane;
 	private CeldaContainer celdaContainer;
+	private GameModel parent;
 
-	public TableroView() {
+	public TableroView(GameModel gameModel) {
+		parent = gameModel;
 		setLayout(new BorderLayout());
 		createGrid();
 		scrollPane = new JScrollPane(celdaContainer);
@@ -26,10 +31,9 @@ public class TableroView extends JPanel {
 	
 	private void createGrid() {
 		celdaContainer = new CeldaContainer();
-		Random rnd = new Random();
-		for (int i = 0; i < 40; i++) {
-			for (int j = 0; j < 40; j++) {
-				celdaContainer.addCelda(new CeldaView(i,j,rnd.nextBoolean()));
+		for (int i = 0; i < parent.getWidthCells(); i++) {
+			for (int j = 0; j < parent.getHeightCells(); j++) {
+				celdaContainer.addCelda(parent.getTableroState()[i][j].getView());
 			}
 		}
 		celdaContainer.setPreferredSize(new Dimension((int) (40*CeldaView.CELDA_WIDTH), (int)(40*CeldaView.CELDA_HEIGHT)));
