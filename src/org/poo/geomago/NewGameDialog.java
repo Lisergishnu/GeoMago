@@ -10,6 +10,7 @@ import javax.swing.*;
  */
 public class NewGameDialog extends JDialog {
 	private int b;
+	private GameFrame gameFrame;
 	/**
 	 * Creates a NewGameDialog with Title title, width w and height h.
 	 * Is BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
@@ -19,7 +20,8 @@ public class NewGameDialog extends JDialog {
 	 * @param border Borders for Panels
 	 * @see JDialog
 	 */
-	public NewGameDialog(String title, int w, int h, int border) {
+	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		b = border;
 		add(getTableroSizePanel());
@@ -54,10 +56,28 @@ public class NewGameDialog extends JDialog {
 		p.add(Box.createHorizontalGlue());
 		p.add(Box.createHorizontalGlue());
 		
-		JButton okButton = new JButton("OK");
+		JButton okButton = new JButton("wena");
 		JButton cButton = new JButton("Cancel");
 		p.add(okButton);
 		p.add(cButton);
+		
+        okButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            	System.out.println("clicked ok");
+            	gameFrame.newBoard(10, 10, 2);
+            	setVisible(false);
+            }
+        });
+        cButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            	System.out.println("clicked cancel");
+            	setVisible(false);
+            }
+        });
 		return p;
 	}
 

@@ -72,7 +72,7 @@ public class GameFrame extends JFrame {
 		this.add(eastPanel, BorderLayout.EAST);
 		this.add(westPanel, BorderLayout.WEST);
 	
-		GameFrameMenuListener gListener = new GameFrameMenuListener(gameBoard);
+		GameFrameMenuListener gListener = new GameFrameMenuListener(gameBoard, this);
 		setJMenuBar(createGameFrameMenuBar(gListener));
 	}
 	
@@ -87,6 +87,16 @@ public class GameFrame extends JFrame {
 		eastPanel = new JPanel();
 		westPanel = new JPanel();
 		centerPanel = new JScrollPane(tablero);
+	}
+	
+	/**
+	 * Create a new gameBoard
+	 * @param w
+	 * @param h
+	 * @param p
+	 */
+	public void newBoard(int w, int h, int p){
+		initGameBoard(w, h, p);
 	}
 	
 	/**
