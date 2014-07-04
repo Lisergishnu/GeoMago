@@ -21,6 +21,10 @@ public class CeldaView {
 	private boolean isEnabled;
 	private Celda mCell;
 
+	/**
+	 * Creates the CeldaView for Celda cell
+	 * @param cell cell to create View
+	 */
 	public CeldaView(Celda cell) {
 		setX(cell.getX());
 		setY(cell.getY());

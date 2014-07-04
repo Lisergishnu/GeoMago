@@ -14,6 +14,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 public class NewGameDialog extends JDialog {
+	
 	public NewGameDialog() {
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		getContentPane().add(getTableroSizePanel());

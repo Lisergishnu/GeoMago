@@ -1,34 +1,31 @@
 package org.poo.geomago;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.TextArea;
-import java.util.Random;
+import java.awt.*;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import org.poo.geomago.celda.CeldaContainer;
 import org.poo.geomago.celda.CeldaView;
 
-public class TableroView extends JPanel {
-	
-	private JScrollPane scrollPane;
+public class TableroView extends CeldaContainer {
 	private CeldaContainer celdaContainer;
 	private GameBoard parent;
 
+	/**
+	 * View of the Game Board
+	 * @param gameBoard
+	 */
 	public TableroView(GameBoard gameBoard) {
 		parent = gameBoard;
-		setLayout(new BorderLayout());
 		createGrid();
-		scrollPane = new JScrollPane(celdaContainer);
-		add(scrollPane, BorderLayout.CENTER);
+		celdaContainer.setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells() ));	
+		add(celdaContainer);
 	}
 	
+	/**
+	 * Creates a new CeldaContainer with the number of cells
+	 * of gameBoard
+	 */
 	private void createGrid() {
 		celdaContainer = new CeldaContainer();
 		for (int i = 0; i < parent.getWidthCells(); i++) {
@@ -36,7 +33,6 @@ public class TableroView extends JPanel {
 				celdaContainer.addCelda(parent.getTableroState()[i][j].getView());
 			}
 		}
-		celdaContainer.setPreferredSize(new Dimension((int) (40*CeldaView.CELDA_WIDTH), (int)(40*CeldaView.CELDA_HEIGHT)));
+		celdaContainer.setPreferredSize(new Dimension((int) (parent.getWidthCells()*CeldaView.CELDA_WIDTH), (int)(parent.getHeightCells()*CeldaView.CELDA_HEIGHT)));
 	}
-
 }

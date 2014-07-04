@@ -1,22 +1,15 @@
 package org.poo.geomago;
 
 import java.awt.GridLayout;
+import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
-/**
- * Ventana principal del juego
- * @author Yuyin
- */
 public class GameFrame extends JFrame {
-
-	private TableroView tablero;
 	private GameBoard gameBoard;
-	private int hSeparation;
-	private int vSeparation;
+	private TableroView tablero;
+	private JPanel northPanel, southPanel, eastPanel, westPanel;
+	private int hSeparation, vSeparation;
 	
 	{
 		hSeparation = 2;
@@ -24,49 +17,80 @@ public class GameFrame extends JFrame {
 	}
 	
 	/**
-	 * Constructores
+	 * Main GameFrame
+	 * @param title frame title
+	 * @param w	board width
+	 * @param h board height
+	 * @param p number of players
 	 */
-	public GameFrame() {
-		this("Geomago Main Frame");
-	}
-	
-	public GameFrame(String title){
+	public GameFrame(String title, int w, int h, int p){
 		super(title);
-		setSize(800,600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initGameBoard();
+		//setSize(800,600);
+		createGUIPanels();
+		initGameBoard(w, h, p);
 		initWindow();
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 	}
 	
 	/**
-	 * Inits Game Board
+	 * Default Constructor
 	 */
-	private void initGameBoard() {
-		gameBoard = new GameBoard(30,30,2);		
+	public GameFrame() {
+		this("Geomago Main Frame", 30, 30, 2);
 	}
 
 	/**
-	 * Inits Panel and adds the gameBoard View to it.
+	 * Instantiates the gameBoard with
+	 * @param w width
+	 * @param h height
+	 * @param p player number
+	 * 
+	 * Assigns the tableroView to the gameBoardView and sets its layout
+	 * to GridLayout
+	 */
+	private void initGameBoard(int w, int h, int p) {
+		gameBoard = new GameBoard(w,h,p);	
+		tablero = gameBoard.getTableroView();
+	}
+
+	/**
+	 * Inits GameFrame With BorderLayout as Layout, and assigns the JPanels
 	 */
 	private void initWindow() {
-		tablero = gameBoard.getTableroView();
-		setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells(), hSeparation, vSeparation));
-		getContentPane().add(tablero);
+		this.setLayout(new BorderLayout());
+		
+		this.add(tablero, BorderLayout.CENTER);
+		this.add(northPanel, BorderLayout.NORTH);
+		this.add(southPanel, BorderLayout.SOUTH);
+		this.add(eastPanel, BorderLayout.EAST);
+		this.add(westPanel, BorderLayout.WEST);
 	
 		GameFrameMenuListener gListener = new GameFrameMenuListener(gameBoard);
 		setJMenuBar(createGameFrameMenuBar(gListener));
 	}
 	
+	
 	/**
-	 * Menu bar
+	 * Creates guiPanels with 4 JPanels (northPanel, southPanel, eastPanel, westPanel),
+	 * but does not assign them.
+	 */
+	private void createGUIPanels(){
+		northPanel = new JPanel();
+		southPanel = new JPanel();
+		eastPanel = new JPanel();
+		westPanel = new JPanel();
+	}
+	
+	/**
+	 * Creates menu bar for main game Frame
 	 * @param gListener
 	 * @return JMenuBar
 	 */
 	private JMenuBar createGameFrameMenuBar(GameFrameMenuListener gListener) {
-		//Create Menu
 		JMenuBar menuBar = new JMenuBar();
 	
 		JMenu menu = new JMenu ("Game");
