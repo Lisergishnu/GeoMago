@@ -7,11 +7,14 @@ import javax.swing.JMenuItem;
 
 public class GameFrameMenuListener implements ActionListener {
 
-	
-	private GameModel gameModel;
+	private GameBoard gameBoard;
 
-	public GameFrameMenuListener(GameModel gameModel) {
-		this.gameModel = gameModel;
+	/**
+	 * Constructor
+	 * @param gameBoard	
+	 */
+	public GameFrameMenuListener(GameBoard gameBoard) {
+		this.gameBoard = gameBoard;
 	}
 
 	@Override

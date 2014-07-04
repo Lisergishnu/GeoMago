@@ -7,36 +7,64 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-//Esta es la ventana principal del juego
+/**
+ * Ventana principal del juego
+ * @author Yuyin
+ */
 public class GameFrame extends JFrame {
 
 	private TableroView tablero;
-	private GameModel gameModel;
+	private GameBoard gameBoard;
+	private int hSeparation;
+	private int vSeparation;
 	
+	{
+		hSeparation = 2;
+		vSeparation = hSeparation;
+	}
+	
+	/**
+	 * Constructores
+	 */
 	public GameFrame() {
-		super("GeoMago");
+		this("Geomago Main Frame");
+	}
+	
+	public GameFrame(String title){
+		super(title);
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initGameModel();
+		initGameBoard();
 		initWindow();
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
-	private void initGameModel() {
-		gameModel = new GameModel(30,30,2);		
+	/**
+	 * Inits Game Board
+	 */
+	private void initGameBoard() {
+		gameBoard = new GameBoard(30,30,2);		
 	}
 
+	/**
+	 * Inits Panel and adds the gameBoard View to it.
+	 */
 	private void initWindow() {
-		tablero = new TableroView(gameModel);
-		setLayout(new GridLayout());
+		tablero = gameBoard.getTableroView();
+		setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells(), hSeparation, vSeparation));
 		getContentPane().add(tablero);
 	
-		GameFrameMenuListener gListener = new GameFrameMenuListener(gameModel);
+		GameFrameMenuListener gListener = new GameFrameMenuListener(gameBoard);
 		setJMenuBar(createGameFrameMenuBar(gListener));
 	}
 	
+	/**
+	 * Menu bar
+	 * @param gListener
+	 * @return JMenuBar
+	 */
 	private JMenuBar createGameFrameMenuBar(GameFrameMenuListener gListener) {
 		//Create Menu
 		JMenuBar menuBar = new JMenuBar();

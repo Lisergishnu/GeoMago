@@ -19,10 +19,10 @@ public class TableroView extends JPanel {
 	
 	private JScrollPane scrollPane;
 	private CeldaContainer celdaContainer;
-	private GameModel parent;
+	private GameBoard parent;
 
-	public TableroView(GameModel gameModel) {
-		parent = gameModel;
+	public TableroView(GameBoard gameBoard) {
+		parent = gameBoard;
 		setLayout(new BorderLayout());
 		createGrid();
 		scrollPane = new JScrollPane(celdaContainer);
