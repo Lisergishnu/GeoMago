@@ -27,7 +27,7 @@ public class GameFrameMenuListener implements ActionListener {
 		
 		if(text.equals("New Game...")) {
 			//TODO: ...
-			NewGameDialog n = new NewGameDialog();
+			NewGameDialog n = new NewGameDialog("New Game", 300, 200, 10);
 			n.setVisible(true);
 		}
 		if(text.equals("Quit GeoMago")) {

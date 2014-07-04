@@ -28,7 +28,6 @@ public class GameFrame extends JFrame {
 	 */
 	public GameFrame(String title, int w, int h, int p){
 		super(title);
-		//setSize(800,600);
 		createGUIPanels();
 		initGameBoard(w, h, p);
 		initWindow();
