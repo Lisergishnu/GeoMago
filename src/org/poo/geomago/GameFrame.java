@@ -5,6 +5,9 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+/**
+ * Main Frame of the Game 
+ */
 public class GameFrame extends JFrame {
 	private GameBoard gameBoard;
 	private TableroView tablero;

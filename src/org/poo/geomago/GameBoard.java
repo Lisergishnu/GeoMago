@@ -5,6 +5,9 @@ import java.util.Random;
 import org.poo.geomago.celda.Celda;
 import org.poo.geomago.celda.CeldaState;
 
+/**
+ * Game Board, action takes place here.
+ */
 public class GameBoard {
 	private int widthCells;
 	private int heightCells;

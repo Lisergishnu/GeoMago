@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+/**
+ * Upper Game Menu Action Listener
+ */
 public class GameFrameMenuListener implements ActionListener {
 
 	private GameBoard gameBoard;

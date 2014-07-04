@@ -6,35 +6,31 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ * Celda container JPanel, has a list of CellViews
+ */
 public class CeldaContainer extends JPanel {
 	private ArrayList<CeldaView> list;
 	
 	/**
-	 * Celda container JPanel, has a list of CellViews
+	 * Default constructor, creates a list of Celdas.
 	 */
 	public CeldaContainer() {
 		list = new ArrayList<CeldaView>();
 	}
 	
 	/**
-	 * Adds a cellView to the Container
+	 * Adds a CeldaView to the Container
 	 * @param c new cellView
+	 * @see CeldaView
 	 */
 	public void addCelda(CeldaView c) {
 		list.add(c);
 	}
 	
 	/**
-	 * Sets the CeldaContainer JPanel NewSize
-	 * @param w panel width
-	 * @param h panel height
-	 */
-	public void setNewSize(int w,int h){
-		setSize(w,h);
-	}
-	
-	/**
 	 * Paints all CeldaViews in CeldaContainer
+	 * @see CeldaView
 	 */
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;

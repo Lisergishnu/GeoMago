@@ -8,6 +8,10 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Viewer Class for Celda
+ * @see Celda
+ */
 public class CeldaView {
 	private static final Color CELDA_STROKE = Color.black;
 	public static final double CELDA_HEIGHT = 32;
@@ -22,8 +26,9 @@ public class CeldaView {
 	private Celda mCell;
 
 	/**
-	 * Creates the CeldaView for Celda cell
-	 * @param cell cell to create View
+	 * Creates the CeldaView for Celda cell of size CELDA_WIDTH, CELDA_HEIGHT
+	 * @see Celda
+	 * @param cell cell for wich to create View
 	 */
 	public CeldaView(Celda cell) {
 		setX(cell.getX());
@@ -33,6 +38,11 @@ public class CeldaView {
 		stroke = new BasicStroke(2f);
 	}
 	
+	/**
+	 * Paints the current CeldaView according to related cell State
+	 * @param g Graphics2D painter
+	 * @see Celda, CeldaState
+	 */
 	protected void paintComponent(Graphics2D g) {
  		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
  		switch (mCell.getmState()) {
@@ -51,19 +61,31 @@ public class CeldaView {
  		g.setStroke(stroke);
  		g.draw(shape);
 	}
-
+	
+	/**
+	 * @return coordinate x of this CeldaView
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * Sets coordinate x of this CeldaView
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
+	/**
+	 * @return coordinate y of this CeldaView
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Sets coordinate y of this CeldaView
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}

@@ -7,13 +7,18 @@ import javax.swing.*;
 import org.poo.geomago.celda.CeldaContainer;
 import org.poo.geomago.celda.CeldaView;
 
+/**
+ * Viewer Class for the Game Board
+ */
 public class TableroView extends CeldaContainer {
 	private CeldaContainer celdaContainer;
 	private GameBoard parent;
 
 	/**
-	 * View of the Game Board
-	 * @param gameBoard
+	 * Instantiates the Game Board Viewer and sets gameBoard as controller for
+	 * this class. Also initializes the CeldaContainer array and sets the Layout as GridLayout.
+	 * @param gameBoard controller GameBoard
+	 * @see	CeldaContainer
 	 */
 	public TableroView(GameBoard gameBoard) {
 		parent = gameBoard;
