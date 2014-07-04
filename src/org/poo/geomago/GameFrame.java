@@ -12,6 +12,7 @@ public class GameFrame extends JFrame {
 	private GameBoard gameBoard;
 	private TableroView tablero;
 	private JPanel northPanel, southPanel, eastPanel, westPanel;
+	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
 	
 	{
@@ -28,14 +29,14 @@ public class GameFrame extends JFrame {
 	 */
 	public GameFrame(String title, int w, int h, int p){
 		super(title);
-		createGUIPanels();
 		initGameBoard(w, h, p);
+		createGUIPanels();
 		initWindow();
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 	}
 	
 	/**
@@ -65,7 +66,7 @@ public class GameFrame extends JFrame {
 	private void initWindow() {
 		this.setLayout(new BorderLayout());
 		
-		this.add(tablero, BorderLayout.CENTER);
+		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(northPanel, BorderLayout.NORTH);
 		this.add(southPanel, BorderLayout.SOUTH);
 		this.add(eastPanel, BorderLayout.EAST);
@@ -85,6 +86,7 @@ public class GameFrame extends JFrame {
 		southPanel = new JPanel();
 		eastPanel = new JPanel();
 		westPanel = new JPanel();
+		centerPanel = new JScrollPane(tablero);
 	}
 	
 	/**

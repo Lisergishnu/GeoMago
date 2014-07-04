@@ -10,7 +10,7 @@ import org.poo.geomago.celda.CeldaView;
 /**
  * Viewer Class for the Game Board
  */
-public class TableroView extends CeldaContainer {
+public class TableroView extends JPanel {
 	private CeldaContainer celdaContainer;
 	private GameBoard parent;
 
