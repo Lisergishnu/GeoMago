@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_WLIc8AZHEeSA_8ZnsdtWkw" name="NewModel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_nEnikAZHEeSA_8ZnsdtWkw" name="triangulo" isLeaf="true">
+    <ownedAttribute xmi:id="_pFkGoAZHEeSA_8ZnsdtWkw" name="saltos"/>
+    <ownedAttribute xmi:id="_rqh9wAZHEeSA_8ZnsdtWkw" name="regeneracion"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_wvhhoAZHEeSA_8ZnsdtWkw" name="circulo" isLeaf="true">
+    <ownedAttribute xmi:id="_yP2r8AZHEeSA_8ZnsdtWkw" name="saltos"/>
+    <ownedAttribute xmi:id="_zo0C8AZHEeSA_8ZnsdtWkw" name="regeneracion"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_APU3gAZIEeSA_8ZnsdtWkw" name="pentagono" isLeaf="true">
+    <ownedAttribute xmi:id="_DvtOAAZIEeSA_8ZnsdtWkw" name="saltos"/>
+    <ownedAttribute xmi:id="_F_pQUAZIEeSA_8ZnsdtWkw" name="regeneracion"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_I_lMMAZIEeSA_8ZnsdtWkw" name="piezas" isAbstract="true">
+    <ownedAttribute xmi:id="_KMu70AZIEeSA_8ZnsdtWkw" name="saltos"/>
+    <ownedAttribute xmi:id="_L6MjMAZIEeSA_8ZnsdtWkw" name="regeneracion"/>
+    <ownedOperation xmi:id="_NU0HEAZIEeSA_8ZnsdtWkw" name="saltar">
+      <ownedParameter xmi:id="_PnVjUAZIEeSA_8ZnsdtWkw" name="posicion"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_TUqwsAZIEeSA_8ZnsdtWkw" name="destruir"/>
+    <ownedOperation xmi:id="_UvcFkAZIEeSA_8ZnsdtWkw" name="morir"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_cTbbcAZIEeSA_8ZnsdtWkw" name="piezassToCirculos" memberEnd="_cTbbcQZIEeSA_8ZnsdtWkw _cT1EEQZIEeSA_8ZnsdtWkw" navigableOwnedEnd="_cTbbcQZIEeSA_8ZnsdtWkw _cT1EEQZIEeSA_8ZnsdtWkw">
+    <ownedEnd xmi:id="_cTbbcQZIEeSA_8ZnsdtWkw" name="piezass" type="_I_lMMAZIEeSA_8ZnsdtWkw" association="_cTbbcAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cTeewAZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cT1EEAZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_cT1EEQZIEeSA_8ZnsdtWkw" name="circulos" type="_wvhhoAZHEeSA_8ZnsdtWkw" association="_cTbbcAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cT1rIAZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cT1rIQZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_nZwPoAZIEeSA_8ZnsdtWkw" name="piezassToPentagonos" memberEnd="_nZwPoQZIEeSA_8ZnsdtWkw _nZxdwAZIEeSA_8ZnsdtWkw" navigableOwnedEnd="_nZwPoQZIEeSA_8ZnsdtWkw _nZxdwAZIEeSA_8ZnsdtWkw">
+    <ownedEnd xmi:id="_nZwPoQZIEeSA_8ZnsdtWkw" name="piezass" type="_I_lMMAZIEeSA_8ZnsdtWkw" association="_nZwPoAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nZw2sAZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nZw2sQZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_nZxdwAZIEeSA_8ZnsdtWkw" name="pentagonos" type="_APU3gAZIEeSA_8ZnsdtWkw" association="_nZwPoAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nZxdwQZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nZxdwgZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_oiPhsAZIEeSA_8ZnsdtWkw" name="piezassToTriangulos" memberEnd="_oiPhsQZIEeSA_8ZnsdtWkw _oiQIwQZIEeSA_8ZnsdtWkw" navigableOwnedEnd="_oiPhsQZIEeSA_8ZnsdtWkw _oiQIwQZIEeSA_8ZnsdtWkw">
+    <ownedEnd xmi:id="_oiPhsQZIEeSA_8ZnsdtWkw" name="piezass" type="_I_lMMAZIEeSA_8ZnsdtWkw" association="_oiPhsAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oiPhsgZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oiQIwAZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_oiQIwQZIEeSA_8ZnsdtWkw" name="triangulos" type="_nEnikAZHEeSA_8ZnsdtWkw" association="_oiPhsAZIEeSA_8ZnsdtWkw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oiQIwgZIEeSA_8ZnsdtWkw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oiQIwwZIEeSA_8ZnsdtWkw" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
