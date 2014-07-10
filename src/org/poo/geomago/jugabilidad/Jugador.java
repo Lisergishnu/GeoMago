@@ -3,6 +3,7 @@
  */
 package org.poo.geomago.jugabilidad;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import org.poo.geomago.GameLogic;
@@ -19,15 +20,33 @@ public class Jugador {
 	private boolean isPlayerActive;
 	private int mID;
 	private GameLogic logic;
-	
+	private Color mColor;
 	
 	public Jugador(String name, GameLogic logic) {
 		this.logic = logic;
-		ID++;
+		ID++; //TODO: Cada vez que se resetea el juego hay que resetear ID también.
 		mID = ID;
 		mName = name;
 		if (mName.isEmpty()) {
 			mName = "Jugador" + mID;
+		}
+		
+		switch(mID) {
+		case 1:
+			mColor = Color.red;
+			break;
+		case 2:
+			mColor = Color.blue;
+			break;
+		case 3:
+			mColor = Color.yellow;
+			break;
+		case 4:
+			mColor = Color.green;
+			break;
+		default:
+			mColor = Color.gray;
+			break;
 		}
 	}
 	
@@ -60,5 +79,9 @@ public class Jugador {
 
 	public void setPiezas(ArrayList<Pieza> mPiezaList) {
 		this.mPiezaList = mPiezaList;
+	}
+	
+	public Color getPlayerColor() {
+		return mColor;
 	}
 }

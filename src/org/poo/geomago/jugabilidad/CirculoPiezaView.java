@@ -14,27 +14,19 @@ public class CirculoPiezaView {
 
 	public CirculoPiezaView(CirculoPieza pieza) {
 		this.pieza = pieza;	
-		shape = new Ellipse2D.Double(pieza.getX()*CeldaView.CELDA_WIDTH, 
-				pieza.getY()*CeldaView.CELDA_HEIGHT, 
-				CeldaView.CELDA_WIDTH, 
-				CeldaView.CELDA_HEIGHT);
+		shape = new Ellipse2D.Double(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.1, 
+				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.1, 
+				CeldaView.CELDA_WIDTH*.8, 
+				CeldaView.CELDA_HEIGHT*.8);
 
-		switch (pieza.playerOwner.getID()) {
-		case 1:
-			piezaColor = Color.red;
-			break;
-
-		default:
-			piezaColor = Color.gray;
-			break;
-		}
+		piezaColor = pieza.playerOwner.getPlayerColor();
 	}
 
 	protected void paintComponent(Graphics2D g) {
-		shape.setFrame(pieza.getX()*CeldaView.CELDA_WIDTH, 
-				pieza.getY()*CeldaView.CELDA_HEIGHT, 
-				CeldaView.CELDA_WIDTH, 
-				CeldaView.CELDA_HEIGHT);
+		shape.setFrame(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.1, 
+				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.1, 
+				CeldaView.CELDA_WIDTH*.8, 
+				CeldaView.CELDA_HEIGHT*.8);;
 
 		g.setColor(piezaColor);
 		g.fill(shape);

@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import org.poo.geomago.celda.Celda;
 
 public abstract class Pieza {
-	protected Jugador playerOwner; //ID
+	protected Jugador playerOwner;
 	protected int nMovimientos; 
 	protected final int nMaxMovimientos;
 	protected Celda actualPos;
