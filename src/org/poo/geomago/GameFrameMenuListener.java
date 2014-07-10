@@ -30,7 +30,7 @@ public class GameFrameMenuListener implements ActionListener {
 		String mText = menuItem.getText();
 		
 		if(mText.equals("New Game...")) {
-			NewGameDialog n = new NewGameDialog("New Game", 300, 200, 10, gameFrame);
+			NewGameDialog n = new NewGameDialog("New Game", 160, 230, 10, gameFrame);
 			n.setVisible(true);
 		}
 		if(mText.equals("Quit GeoMago")) {

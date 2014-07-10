@@ -2,8 +2,14 @@ package org.poo.geomago;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.*;
+
+import org.poo.geomago.jugabilidad.CirculoPieza;
+import org.poo.geomago.jugabilidad.Jugador;
+import org.poo.geomago.jugabilidad.Pieza;
+import org.poo.geomago.jugabilidad.TrianguloPieza;
 
 import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
 
@@ -29,9 +35,9 @@ public class GameFrame extends JFrame {
 	 * @param h board height
 	 * @param p number of players
 	 */
-	public GameFrame(String title, int w, int h, int p){
+	public GameFrame(String title, int w, int h, int p, String names[]){
 		super(title);
-		initGameBoard(w, h, p);
+		initGameBoard(w, h, p, names);
 		createGUIPanels();
 		initWindow();
 		pack();
@@ -45,7 +51,7 @@ public class GameFrame extends JFrame {
 	 * Default Constructor
 	 */
 	public GameFrame() {
-		this("Geomago Main Frame", 30, 30, 2);
+		this("Geomago Main Frame", 30, 30, 2, null);
 	}
 
 	/**
@@ -57,8 +63,8 @@ public class GameFrame extends JFrame {
 	 * Assigns the tableroView to the gameBoardView and sets its layout
 	 * to GridLayout
 	 */
-	private void initGameBoard(int w, int h, int p) {
-		gameBoard = new GameLogic(w,h,p);	
+	private void initGameBoard(int w, int h, int p, String names[]) {
+		gameBoard = new GameLogic(w,h,p, names);	
 		tablero = gameBoard.getTableroView();
 	}
 
@@ -97,8 +103,8 @@ public class GameFrame extends JFrame {
 	 * @param h
 	 * @param p
 	 */
-	public void newBoard(int w, int h, int p){
-		initGameBoard(w, h, p);
+	public void newBoard(int w, int h, int p, String names[]){
+		initGameBoard(w, h, p, names);
 		centerPanel.setViewportView(tablero); //at this point, tablero has changed
 		centerPanel.revalidate();
 		repaint();

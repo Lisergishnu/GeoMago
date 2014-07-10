@@ -39,7 +39,7 @@ public class Jugador {
 	public void endTurn() {
 		isPlayerActive = false;
 		//logic.notifyEndTurn();
-		}
+	}
 	
 	public void removePieza(Pieza p) {
 		if (p != null && getPiezas().contains(p)) {

@@ -33,7 +33,7 @@ public class GameLogic {
 	 * @param heightCells	number of vertical cells
 	 * @param nPlayers		number of players
 	 */
-	public GameLogic(int widthCells, int heightCells, int nPlayers) {
+	public GameLogic(int widthCells, int heightCells, int nPlayers, String[] pNames) {
 		this.widthCells = widthCells;
 		this.heightCells = heightCells;
 		this.nPlayers = nPlayers;
@@ -50,19 +50,45 @@ public class GameLogic {
 			}			
 		}
 		
-		//TODO: Crear jugadores y sus respectivas piezas
-		Jugador jugadorTest = new Jugador("Test",this);
-		piezasParaJugador = new ArrayList<Pieza>();
-		piezasParaJugador.add(new CirculoPieza(jugadorTest, tableroState[0][0]));
-		piezasParaJugador.add(new TrianguloPieza(jugadorTest, tableroState[0][1]));
-		jugadorTest.setPiezas(piezasParaJugador);
-		
-		playersList = new ArrayList<Jugador>();
-		playersList.add(jugadorTest);
-		
-		tableroView = new TableroView(this);
+		if(pNames == null){
+			String[] defPlayer = new String[3];
+			defPlayer[0] = "Player1";
+			defPlayer[1] = "Player2";
+			defPlayer[2] = "Player3";
+			newPlayers(defPlayer);
+		}
+		else{
+			//System.out.println(pNames.length);
+			//newPlayers(pNames);
+			String[] defPlayer = new String[3];
+			defPlayer[0] = "Player1";
+			defPlayer[1] = "Player2";
+			defPlayer[2] = "Player3";
+			newPlayers(defPlayer);
+		}
 	}
 
+	/**
+	 * Crea a todos los jugadores y sus respectivas piezas
+	 * @param names lista de nombres
+	 */
+	private void newPlayers(String names[]){
+		playersList = new ArrayList<Jugador>();
+		for(int i = 0; i < names.length; i++){
+			
+			Jugador jugadorTest = new Jugador(names[i],this);
+			piezasParaJugador = new ArrayList<Pieza>();
+			System.out.println("New player: " + names[i]);
+			CirculoPieza circ = new CirculoPieza(jugadorTest, tableroState[i][0]);
+			TrianguloPieza triang = new TrianguloPieza(jugadorTest, tableroState[i][1]);
+			piezasParaJugador.add(circ);
+			piezasParaJugador.add(triang);
+			jugadorTest.setPiezas(piezasParaJugador);
+
+			playersList.add(jugadorTest);
+		}
+		tableroView = new TableroView(this);
+	}
 	/**
 	 * 
 	 * @return number of horizontal cells
