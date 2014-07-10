@@ -45,7 +45,7 @@ public class GameFrame extends JFrame {
 	 * Default Constructor
 	 */
 	public GameFrame() {
-		this("Geomago Main Frame", 30, 30, 2);
+		this("Geomago Main Frame", 15, 15, 2);
 	}
 
 	/**

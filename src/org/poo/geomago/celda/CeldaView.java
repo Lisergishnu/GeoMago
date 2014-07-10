@@ -14,8 +14,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class CeldaView {
 	private static final Color CELDA_STROKE = Color.black;
-	public static final double CELDA_HEIGHT = 32;
-	public static final double CELDA_WIDTH = 32;
+	public static final double CELDA_HEIGHT = 50;
+	public static final double CELDA_WIDTH = 50;
 	private static final Color CELDA_COLOR_ENABLED = Color.white;
 	private static final Color CELDA_COLOR_DISABLED = Color.gray;
 	private Rectangle2D.Double shape;
