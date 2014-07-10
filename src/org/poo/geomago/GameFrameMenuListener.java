@@ -7,8 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import com.sun.xml.internal.ws.api.Component;
-
 /**
  * Upper Game Menu Action Listener
  */
