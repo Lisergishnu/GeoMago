@@ -13,6 +13,7 @@ public class NewPlayersDialog extends JDialog {
 	private GameFrame gameFrame;
 	private JTextField[] playersNames;
 	private String[] pNames;
+	private JDialog parent;
 	
 	/**
 	 * Creates a NewGameDialog with Title title, width w and height h.
@@ -24,8 +25,9 @@ public class NewPlayersDialog extends JDialog {
 	 * @param border Borders for Panels
 	 * @see JDialog
 	 */
-	public NewPlayersDialog(String title, int n, GameFrame gameFrame, int gw, int gh) {
+	public NewPlayersDialog(String title, int n, GameFrame gameFrame, int gw, int gh, JDialog parent) {
 		this.gameFrame = gameFrame;
+		this.parent = parent;
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		b = 10;
 		playersNames = new JTextField[n];
@@ -87,6 +89,7 @@ public class NewPlayersDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent arg0) {
             	System.out.println("clicked cancel");
+            	parent.setVisible(true);
             	setVisible(false);
             }
         });

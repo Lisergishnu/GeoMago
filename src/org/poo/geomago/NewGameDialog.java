@@ -12,6 +12,7 @@ public class NewGameDialog extends JDialog {
 	private int b;
 	private GameFrame gameFrame;
 	private JSpinner s1, s2, s3;
+	private JDialog self;
 	/**
 	 * Creates a NewGameDialog with Title title, width w and height h.
 	 * Is BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
@@ -23,6 +24,7 @@ public class NewGameDialog extends JDialog {
 	 */
 	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		self = this;
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		b = border;
 		add(getTableroSizePanel());
@@ -55,31 +57,6 @@ public class NewGameDialog extends JDialog {
 		return p;
 	}
 	
-	/**
-	 * Players Names
-	 * @return JPanel Container
-	 * @see BoxLayout
-	 */
-	/*private JPanel getPlayersNames() {
-		JPanel p = new JPanel();
-		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
-		p.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
-		
-		JTextField l = new JTextfield("Players:");
-		l.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(l);
-		s3 = new JSpinner(new SpinnerNumberModel(1, 1, 4, 1));
-		s3.setMaximumSize(new Dimension(40, 20));
-		s3.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(s3);
-		
-		return p;
-	}
-	/**
-	 * New Board OK, and CANCEL Buttons
-	 * @return JPanel with Buttons
-	 * @see JButton
-	 */
 	private JPanel getReturnPanel() {
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
@@ -100,7 +77,7 @@ public class NewGameDialog extends JDialog {
             	System.out.println("clicked ok");
             	setVisible(false);
     			NewPlayersDialog n = new NewPlayersDialog("Players Names", (int)s3.getValue(),
-    					gameFrame, (int)s1.getValue(), (int)s2.getValue());
+    					gameFrame, (int)s1.getValue(), (int)s2.getValue(), self);
     			n.setVisible(true);
             }
         });
