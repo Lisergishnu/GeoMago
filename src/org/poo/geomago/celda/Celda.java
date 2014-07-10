@@ -1,5 +1,7 @@
 package org.poo.geomago.celda;
 
+import org.poo.geomago.jugabilidad.Pieza;
+
 /**
  * Basic Game Board unit, forms the game grid.
  */
@@ -9,6 +11,7 @@ public class Celda {
 	private int y;
 	private CeldaState mState;
 	private CeldaView view;
+	private Pieza currentPieza;
 	
 	/**
 	 * Creates a Celda in coordinates x,y with State initialState
@@ -22,6 +25,7 @@ public class Celda {
 		this.y = y;
 		mState = initialState;
 		view = new CeldaView(this);
+		setCurrentPieza(null);
 	}
 
 	/**
@@ -82,6 +86,14 @@ public class Celda {
 	 */
 	public void setView(CeldaView view) {
 		this.view = view;
+	}
+
+	public Pieza getCurrentPieza() {
+		return currentPieza;
+	}
+
+	public void setCurrentPieza(Pieza currentPieza) {
+		this.currentPieza = currentPieza;
 	}
 
 }

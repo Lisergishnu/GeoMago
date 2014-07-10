@@ -6,17 +6,31 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import org.poo.geomago.GameLogic;
+import org.poo.geomago.jugabilidad.Jugador;
+import org.poo.geomago.jugabilidad.Pieza;
+
 /**
  * Celda container JPanel, has a list of CellViews
+ * Also draws Piezas
  */
 public class CeldaContainer extends JPanel {
 	private ArrayList<CeldaView> list;
+	private GameLogic gameLogic;
 	
 	/**
 	 * Default constructor, creates a list of Celdas.
+	 * @param parent Initialized GameLogic
 	 */
-	public CeldaContainer() {
+	public CeldaContainer(GameLogic parent) {
+		gameLogic = parent;
 		list = new ArrayList<CeldaView>();
+		for (int i = 0; i < parent.getWidthCells(); i++) {
+			for (int j = 0; j < parent.getHeightCells(); j++) {
+				list.add(parent.getTableroState()[i][j].getView());
+			}
+		}
+		
 	}
 	
 	/**
@@ -36,6 +50,11 @@ public class CeldaContainer extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		for (CeldaView celdaView : list) {
 			celdaView.paintComponent(g2);
+		}
+		for (Jugador player : gameLogic.getPlayersList()) {
+			for (Pieza p : player.getPiezas()) {
+				p.draw(g2);
+			}
 		}
 	}
 }

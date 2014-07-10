@@ -11,7 +11,7 @@ import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
  * Main Frame of the Game 
  */
 public class GameFrame extends JFrame {
-	private GameBoard gameBoard;
+	private GameLogic gameBoard;
 	private TableroView tablero;
 	private JPanel northPanel, southPanel, eastPanel, westPanel;
 	private JScrollPane centerPanel;
@@ -58,7 +58,7 @@ public class GameFrame extends JFrame {
 	 * to GridLayout
 	 */
 	private void initGameBoard(int w, int h, int p) {
-		gameBoard = new GameBoard(w,h,p);	
+		gameBoard = new GameLogic(w,h,p);	
 		tablero = gameBoard.getTableroView();
 	}
 

@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
  */
 public class GameFrameMenuListener implements ActionListener {
 
-	private GameBoard gameBoard;
+	private GameLogic gameBoard;
 	private GameFrame gameFrame;
 
 	/**
 	 * Constructor
 	 * @param gameBoard	
 	 */
-	public GameFrameMenuListener(GameBoard gameBoard, GameFrame gameFrame) {
+	public GameFrameMenuListener(GameLogic gameBoard, GameFrame gameFrame) {
 		this.gameBoard = gameBoard;
 		this.gameFrame = gameFrame;
 	}

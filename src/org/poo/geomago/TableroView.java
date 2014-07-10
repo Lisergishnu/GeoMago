@@ -12,7 +12,7 @@ import org.poo.geomago.celda.CeldaView;
  */
 public class TableroView extends JPanel {
 	private CeldaContainer celdaContainer;
-	private GameBoard parent;
+	private GameLogic parent;
 
 	/**
 	 * Instantiates the Game Board Viewer and sets gameBoard as controller for
@@ -20,7 +20,7 @@ public class TableroView extends JPanel {
 	 * @param gameBoard controller GameBoard
 	 * @see	CeldaContainer
 	 */
-	public TableroView(GameBoard gameBoard) {
+	public TableroView(GameLogic gameBoard) {
 		parent = gameBoard;
 		createGrid();
 		celdaContainer.setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells() ));	
@@ -32,12 +32,9 @@ public class TableroView extends JPanel {
 	 * of gameBoard
 	 */
 	private void createGrid() {
-		celdaContainer = new CeldaContainer();
-		for (int i = 0; i < parent.getWidthCells(); i++) {
-			for (int j = 0; j < parent.getHeightCells(); j++) {
-				celdaContainer.addCelda(parent.getTableroState()[i][j].getView());
-			}
-		}
+		celdaContainer = new CeldaContainer(parent);
 		celdaContainer.setPreferredSize(new Dimension((int) (parent.getWidthCells()*CeldaView.CELDA_WIDTH), (int)(parent.getHeightCells()*CeldaView.CELDA_HEIGHT)));
 	}
+	
+	
 }

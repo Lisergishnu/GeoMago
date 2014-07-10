@@ -1,14 +1,19 @@
 package org.poo.geomago;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.poo.geomago.celda.Celda;
 import org.poo.geomago.celda.CeldaState;
+import org.poo.geomago.jugabilidad.CirculoPieza;
+import org.poo.geomago.jugabilidad.Jugador;
+import org.poo.geomago.jugabilidad.Pieza;
+import org.poo.geomago.jugabilidad.TrianguloPieza;
 
 /**
  * Game Board, action takes place here.
  */
-public class GameBoard {
+public class GameLogic {
 	private int widthCells;
 	private int heightCells;
 	private int nPlayers;
@@ -16,6 +21,8 @@ public class GameBoard {
 	private int currentPlayer;
 	private Celda[][] tableroState;
 	private TableroView tableroView;
+	private ArrayList<Pieza> piezasParaJugador;
+	private ArrayList<Jugador> playersList;
 
 	/**
 	 * Creates a Board with horizontal cells, vertical cells, players number.
@@ -26,7 +33,7 @@ public class GameBoard {
 	 * @param heightCells	number of vertical cells
 	 * @param nPlayers		number of players
 	 */
-	public GameBoard(int widthCells, int heightCells, int nPlayers) {
+	public GameLogic(int widthCells, int heightCells, int nPlayers) {
 		this.widthCells = widthCells;
 		this.heightCells = heightCells;
 		this.nPlayers = nPlayers;
@@ -42,6 +49,16 @@ public class GameBoard {
 				this.tableroState[i][j] = new Celda(i, j, (rnd.nextBoolean()) ? CeldaState.NORMAL : CeldaState.DISABLED);
 			}			
 		}
+		
+		//TODO: Crear jugadores y sus respectivas piezas
+		Jugador jugadorTest = new Jugador("Test",this);
+		piezasParaJugador = new ArrayList<Pieza>();
+		piezasParaJugador.add(new CirculoPieza(jugadorTest, tableroState[0][0]));
+		piezasParaJugador.add(new TrianguloPieza(jugadorTest, tableroState[0][1]));
+		jugadorTest.setPiezas(piezasParaJugador);
+		
+		playersList = new ArrayList<Jugador>();
+		playersList.add(jugadorTest);
 		
 		tableroView = new TableroView(this);
 	}
@@ -100,6 +117,14 @@ public class GameBoard {
 	 */
 	public Celda[][] getTableroState() {
 		return tableroState;
+	}
+
+	public ArrayList<Jugador> getPlayersList() {
+		return playersList;
+	}
+
+	public void setPlayersList(ArrayList<Jugador> playersList) {
+		this.playersList = playersList;
 	}
 	
 	
