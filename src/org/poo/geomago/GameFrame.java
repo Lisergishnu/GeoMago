@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
+
 /**
  * Main Frame of the Game 
  */
@@ -97,6 +99,9 @@ public class GameFrame extends JFrame {
 	 */
 	public void newBoard(int w, int h, int p){
 		initGameBoard(w, h, p);
+		centerPanel.setViewportView(tablero); //at this point, tablero has changed
+		centerPanel.revalidate();
+		repaint();
 	}
 	
 	/**
