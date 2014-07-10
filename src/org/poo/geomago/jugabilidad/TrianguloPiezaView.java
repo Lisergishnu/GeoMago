@@ -15,10 +15,10 @@ public class TrianguloPiezaView {
 
 	public TrianguloPiezaView(TrianguloPieza pieza) {
 		this.pieza = pieza;	
-		shape = new TriangleShape(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.1, 
-				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.1, 
-				CeldaView.CELDA_WIDTH*.8, 
-				CeldaView.CELDA_HEIGHT*.8);
+		shape = new TriangleShape(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.05, 
+				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.05, 
+				CeldaView.CELDA_WIDTH*.9, 
+				CeldaView.CELDA_HEIGHT*.9);
 		
 		piezaColor = pieza.playerOwner.getPlayerColor();
 	}
@@ -26,6 +26,11 @@ public class TrianguloPiezaView {
 	protected void paintComponent(Graphics2D g) {
 		g.setColor(piezaColor);
 		shape.fill(g);
+		
+		g.setColor(piezaColor.darker().darker().darker());
+		g.drawString(pieza.nMovimientos+"/"+pieza.nMaxMovimientos, 
+				(int)(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.175), 
+				(int)(pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.675));
 	}
 	
 }

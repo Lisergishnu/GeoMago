@@ -14,22 +14,27 @@ public class CirculoPiezaView {
 
 	public CirculoPiezaView(CirculoPieza pieza) {
 		this.pieza = pieza;	
-		shape = new Ellipse2D.Double(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.1, 
-				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.1, 
-				CeldaView.CELDA_WIDTH*.8, 
-				CeldaView.CELDA_HEIGHT*.8);
+		shape = new Ellipse2D.Double(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.05, 
+				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.05, 
+				CeldaView.CELDA_WIDTH*.9, 
+				CeldaView.CELDA_HEIGHT*.9);
 
 		piezaColor = pieza.playerOwner.getPlayerColor();
 	}
 
 	protected void paintComponent(Graphics2D g) {
-		shape.setFrame(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.1, 
-				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.1, 
-				CeldaView.CELDA_WIDTH*.8, 
-				CeldaView.CELDA_HEIGHT*.8);;
+		shape.setFrame(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.05, 
+				pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.05, 
+				CeldaView.CELDA_WIDTH*.9, 
+				CeldaView.CELDA_HEIGHT*.9);;
 
 		g.setColor(piezaColor);
 		g.fill(shape);
+		
+		g.setColor(piezaColor.darker().darker().darker());
+		g.drawString(pieza.nMovimientos+"/"+pieza.nMaxMovimientos, 
+				(int)(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.175), 
+				(int)(pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.675));
 	}
 
 }
