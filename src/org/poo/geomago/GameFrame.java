@@ -1,5 +1,7 @@
 package org.poo.geomago;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
@@ -16,6 +18,7 @@ public class GameFrame extends JFrame {
 	private JPanel northPanel, southPanel, eastPanel, westPanel;
 	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
+	private JLabel currentPiezaMovementsLabel;
 	
 	{
 		hSeparation = 2;
@@ -86,11 +89,43 @@ public class GameFrame extends JFrame {
 	private void createGUIPanels(){
 		northPanel = new JPanel();
 		southPanel = new JPanel();
-		eastPanel = new JPanel();
 		westPanel = new JPanel();
+		eastPanel = createGameSidePanel();
 		centerPanel = new JScrollPane(tablero);
 	}
 	
+	private JPanel createGameSidePanel() {
+		JPanel p = new JPanel(); 
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		JPanel sub = new JPanel();
+		sub.setLayout(new GridLayout(2, 2));
+		sub.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
+		JLabel l = new JLabel("Jugador 1:");
+		sub.add(l);
+		l = new JLabel("#");
+		sub.add(l);
+		l = new JLabel("Jugador 2:");
+		sub.add(l);
+		l = new JLabel("#");
+		sub.add(l);
+		p.add(sub);
+		p.add(Box.createVerticalGlue());
+		sub = new JPanel();
+		sub = new JPanel();
+		sub.setLayout(new GridLayout(1, 2));
+		sub.setBorder(BorderFactory.createTitledBorder("Pieza actual"));
+		sub.add(new JLabel("# movimientos:"));
+		currentPiezaMovementsLabel = new JLabel("- / -");
+		sub.add(currentPiezaMovementsLabel);
+		p.add(sub);
+		p.add(Box.createVerticalGlue());
+		JButton bb = new JButton("Terminar Turno");
+		//bb.setPreferredSize(new Dimension(100, 50));
+		bb.setAlignmentX(Component.CENTER_ALIGNMENT);
+		p.add(bb);
+		return p;
+	}
+
 	/**
 	 * Create a new gameBoard
 	 * @param w
