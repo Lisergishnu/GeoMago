@@ -1,5 +1,6 @@
 package org.poo.geomago.celda;
 
+import org.poo.geomago.GameLogic;
 import org.poo.geomago.jugabilidad.Pieza;
 
 /**
@@ -12,15 +13,18 @@ public class Celda {
 	private CeldaState mState;
 	private CeldaView view;
 	private Pieza currentPieza;
+	private GameLogic gameLogic;
 	
 	/**
 	 * Creates a Celda in coordinates x,y with State initialState
+	 * @param gameLogic Parent initialized game state
 	 * @param x coordinate
 	 * @param y coordinate
 	 * @param initialState initial State
 	 * @see CeldaState
 	 */
-	public Celda(int x, int y, CeldaState initialState) {
+	public Celda(GameLogic gameLogic, int x, int y, CeldaState initialState) {
+		this.gameLogic = gameLogic;
 		this.x = x;
 		this.y = y;
 		mState = initialState;
@@ -94,6 +98,15 @@ public class Celda {
 
 	public void setCurrentPieza(Pieza currentPieza) {
 		this.currentPieza = currentPieza;
+	}
+
+	/**
+	 * This method is called when the mouse is over this cell. Delegates the call onto the logic in order
+	 * to let it know that there is a piece in focus.
+	 */
+	public void mouseOver() {
+		System.out.println("Cell Mouse over");
+		gameLogic.focusPieza(currentPieza);
 	}
 
 }

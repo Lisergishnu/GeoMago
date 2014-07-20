@@ -18,7 +18,7 @@ public class GameFrame extends JFrame {
 	private JPanel northPanel, southPanel, eastPanel, westPanel;
 	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
-	private JLabel currentPiezaMovementsLabel;
+	private JLabel focusedPiezaMovements;
 	
 	{
 		hSeparation = 2;
@@ -61,7 +61,7 @@ public class GameFrame extends JFrame {
 	 * to GridLayout
 	 */
 	private void initGameBoard(int w, int h, int p) {
-		gameBoard = new GameLogic(w,h,p);	
+		gameBoard = new GameLogic(this, w,h,p);	
 		tablero = gameBoard.getTableroView();
 	}
 
@@ -114,18 +114,24 @@ public class GameFrame extends JFrame {
 		sub = new JPanel();
 		sub.setLayout(new GridLayout(1, 2));
 		sub.setBorder(BorderFactory.createTitledBorder("Pieza actual"));
-		sub.add(new JLabel("# movimientos:"));
-		currentPiezaMovementsLabel = new JLabel("- / -");
-		sub.add(currentPiezaMovementsLabel);
+		sub.add(new JLabel("Movimientos "));
+		focusedPiezaMovements = new JLabel("- / -");
+		sub.add(focusedPiezaMovements);
 		p.add(sub);
 		p.add(Box.createVerticalGlue());
 		JButton bb = new JButton("Terminar Turno");
-		//bb.setPreferredSize(new Dimension(100, 50));
 		bb.setAlignmentX(Component.CENTER_ALIGNMENT);
 		p.add(bb);
 		return p;
 	}
 
+	public void setPiezaMovements(int current, int max) {
+		if (current == max && current == 0)
+			focusedPiezaMovements.setText("- / -");
+		else
+			focusedPiezaMovements.setText(current + " / " + max);
+	}
+	
 	/**
 	 * Create a new gameBoard
 	 * @param w

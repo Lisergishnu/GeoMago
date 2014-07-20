@@ -23,17 +23,21 @@ public class GameLogic {
 	private TableroView tableroView;
 	private ArrayList<Pieza> piezasParaJugador;
 	private ArrayList<Jugador> playersList;
+	private Pieza focusedPieza;
+	private GameFrame gameFrame;
 
 	/**
 	 * Creates a Board with horizontal cells, vertical cells, players number.
 	 * Inits the turn counter and player turn.
 	 * Creates a board with number of cells according to parameters and sets them on/off
 	 * randomly.
+	 * @param gameFrame  Initialized game frame. 
 	 * @param widthCells 	number of horizontal cells
 	 * @param heightCells	number of vertical cells
 	 * @param nPlayers		number of players
 	 */
-	public GameLogic(int widthCells, int heightCells, int nPlayers) {
+	public GameLogic(GameFrame gameFrame, int widthCells, int heightCells, int nPlayers) {
+		this.gameFrame = gameFrame;
 		this.widthCells = widthCells;
 		this.heightCells = heightCells;
 		this.nPlayers = nPlayers;
@@ -46,7 +50,7 @@ public class GameLogic {
 		
 		for (int i = 0; i < widthCells; i++) {
 			for (int j = 0; j < heightCells; j++) {
-				this.tableroState[i][j] = new Celda(i, j, (rnd.nextBoolean()) ? CeldaState.NORMAL : CeldaState.DISABLED);
+				this.tableroState[i][j] = new Celda(this, i, j, (rnd.nextBoolean()) ? CeldaState.NORMAL : CeldaState.DISABLED);
 			}			
 		}
 		
@@ -125,6 +129,22 @@ public class GameLogic {
 
 	public void setPlayersList(ArrayList<Jugador> playersList) {
 		this.playersList = playersList;
+	}
+
+	public void focusPieza(Pieza currentPieza) {
+		focusedPieza = currentPieza; 
+		updatePiezaGUI();
+	
+	}
+
+	/*
+	 * Updates the GUI caption
+	 */
+	private void updatePiezaGUI() {
+		if (focusedPieza != null)
+			gameFrame.setPiezaMovements(focusedPieza.getMovements(), focusedPieza.getMaxMovments());
+		else
+			gameFrame.setPiezaMovements(0,0);
 	}
 	
 	

@@ -15,6 +15,7 @@ public abstract class Pieza {
 		nMaxMovimientos = maxMovimientos;
 		nMovimientos = nMaxMovimientos;
 		playerOwner = jugador;
+		actualPos.setCurrentPieza(this);
 	}
 	
 	public boolean move(Celda destino) {
@@ -39,6 +40,14 @@ public abstract class Pieza {
 	
 	public int getY() {
 		return actualPos.getY();
+	}
+	
+	public int getMovements() {
+		return nMovimientos;
+	}
+	
+	public int getMaxMovments() {
+		return nMaxMovimientos;
 	}
 	
 	public abstract void draw(Graphics2D g);

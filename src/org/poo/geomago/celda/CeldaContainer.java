@@ -64,8 +64,9 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		int clickX = (int) (arg0.getX() / CeldaView.CELDA_WIDTH);
+		int clickY = (int) (arg0.getY() / CeldaView.CELDA_HEIGHT);
+		System.out.println("Mouse Click: (" + clickX+ "," + clickY + ")");	
 	}
 
 	@Override
@@ -82,9 +83,6 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		int clickX = (int) (arg0.getX() / CeldaView.CELDA_WIDTH);
-		int clickY = (int) (arg0.getY() / CeldaView.CELDA_HEIGHT);
-		System.out.println("Mouse Click: (" + clickX+ "," + clickY + ")");
 		
 	}
 
@@ -102,8 +100,9 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		int movX = (int) (e.getX() / CeldaView.CELDA_WIDTH);
+		int movY = (int) (e.getY() / CeldaView.CELDA_HEIGHT);
+		gameLogic.getTableroState()[movX][movY].mouseOver();
 	}
 	
 	
