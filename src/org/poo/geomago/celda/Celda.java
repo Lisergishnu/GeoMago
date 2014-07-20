@@ -105,7 +105,6 @@ public class Celda {
 	 * to let it know that there is a piece in focus.
 	 */
 	public void mouseOver() {
-		System.out.println("Cell Mouse over");
 		gameLogic.focusPieza(currentPieza);
 	}
 
