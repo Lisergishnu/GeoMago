@@ -1,19 +1,24 @@
 package org.poo.geomago;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
+
 /**
  * Main Frame of the Game 
  */
 public class GameFrame extends JFrame {
-	private GameBoard gameBoard;
+	private GameLogic gameBoard;
 	private TableroView tablero;
 	private JPanel northPanel, southPanel, eastPanel, westPanel;
 	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
+	private JLabel focusedPiezaMovements;
 	
 	{
 		hSeparation = 2;
@@ -43,7 +48,7 @@ public class GameFrame extends JFrame {
 	 * Default Constructor
 	 */
 	public GameFrame() {
-		this("Geomago Main Frame", 30, 30, 2);
+		this("Geomago Main Frame", 15, 15, 2);
 	}
 
 	/**
@@ -56,7 +61,7 @@ public class GameFrame extends JFrame {
 	 * to GridLayout
 	 */
 	private void initGameBoard(int w, int h, int p) {
-		gameBoard = new GameBoard(w,h,p);	
+		gameBoard = new GameLogic(this, w,h,p);	
 		tablero = gameBoard.getTableroView();
 	}
 
@@ -84,9 +89,47 @@ public class GameFrame extends JFrame {
 	private void createGUIPanels(){
 		northPanel = new JPanel();
 		southPanel = new JPanel();
-		eastPanel = new JPanel();
 		westPanel = new JPanel();
+		eastPanel = createGameSidePanel();
 		centerPanel = new JScrollPane(tablero);
+	}
+	
+	private JPanel createGameSidePanel() {
+		JPanel p = new JPanel(); 
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		JPanel sub = new JPanel();
+		sub.setLayout(new GridLayout(2, 2));
+		sub.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
+		JLabel l = new JLabel("Jugador 1:");
+		sub.add(l);
+		l = new JLabel("#");
+		sub.add(l);
+		l = new JLabel("Jugador 2:");
+		sub.add(l);
+		l = new JLabel("#");
+		sub.add(l);
+		p.add(sub);
+		p.add(Box.createVerticalGlue());
+		sub = new JPanel();
+		sub = new JPanel();
+		sub.setLayout(new GridLayout(1, 2));
+		sub.setBorder(BorderFactory.createTitledBorder("Pieza actual"));
+		sub.add(new JLabel("Movimientos "));
+		focusedPiezaMovements = new JLabel("- / -");
+		sub.add(focusedPiezaMovements);
+		p.add(sub);
+		p.add(Box.createVerticalGlue());
+		JButton bb = new JButton("Terminar Turno");
+		bb.setAlignmentX(Component.CENTER_ALIGNMENT);
+		p.add(bb);
+		return p;
+	}
+
+	public void setPiezaMovements(int current, int max) {
+		if (current == max && current == 0)
+			focusedPiezaMovements.setText("- / -");
+		else
+			focusedPiezaMovements.setText(current + " / " + max);
 	}
 	
 	/**
@@ -97,6 +140,9 @@ public class GameFrame extends JFrame {
 	 */
 	public void newBoard(int w, int h, int p){
 		initGameBoard(w, h, p);
+		centerPanel.setViewportView(tablero); //at this point, tablero has changed
+		centerPanel.revalidate();
+		repaint();
 	}
 	
 	/**
