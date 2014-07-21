@@ -17,4 +17,18 @@ public class PentagonoPieza extends Pieza {
 		
 	}
 
+	@Override
+	public void mouseDrag(int xOnScreen, int yOnScreen) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseRelease(Celda destino) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 }

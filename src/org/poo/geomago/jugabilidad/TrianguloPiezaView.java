@@ -8,10 +8,7 @@ import java.awt.geom.Ellipse2D;
 import org.poo.geomago.celda.CeldaView;
 import org.poo.geomago.etc.TriangleShape;
 
-public class TrianguloPiezaView {
-	private TrianguloPieza pieza;
-	private TriangleShape shape;
-	private Color piezaColor;
+public class TrianguloPiezaView extends PiezaView {
 
 	public TrianguloPiezaView(TrianguloPieza pieza) {
 		this.pieza = pieza;	
@@ -21,16 +18,6 @@ public class TrianguloPiezaView {
 				CeldaView.CELDA_HEIGHT*.9);
 		
 		piezaColor = pieza.playerOwner.getPlayerColor();
-	}
-	
-	protected void paintComponent(Graphics2D g) {
-		g.setColor(piezaColor);
-		shape.fill(g);
-		
-		g.setColor(piezaColor.darker().darker().darker());
-		g.drawString(pieza.nMovimientos+"/"+pieza.nMaxMovimientos, 
-				(int)(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.175), 
-				(int)(pieza.getY()*CeldaView.CELDA_HEIGHT + CeldaView.CELDA_HEIGHT*.675));
 	}
 	
 }

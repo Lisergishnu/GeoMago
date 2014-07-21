@@ -108,4 +108,20 @@ public class Celda {
 		gameLogic.focusPieza(currentPieza);
 	}
 
+	/**
+	 * This method is called when the mouse does a drag event on this cell.
+	 * @param xOnScreen X on absolute coordinates
+	 * @param yOnScreen Y on absolute coordinates
+	 */
+	public void mouseDrag(int xOnScreen, int yOnScreen) {
+		if (currentPieza != null)
+			currentPieza.mouseDrag(xOnScreen,yOnScreen);		
+	}
+	/**
+	 * @return Whether the cell can have a piece over it or not
+	 */
+	public boolean isWalkable() {
+		return (mState == CeldaState.DISABLED) ? false : true;
+	}
+
 }

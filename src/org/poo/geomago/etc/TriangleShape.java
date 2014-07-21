@@ -13,7 +13,7 @@ import java.awt.geom.*;
  * Class to represent a Triangle.
  * Implementing the java.awt.Shape inteface.
  */
-public class TriangleShape implements Shape
+public class TriangleShape extends RectangularShape
 {
   private Polygon poly;
 
@@ -114,5 +114,39 @@ public void draw( Graphics g )
   {
     return poly.getPathIterator(at, flatness);
   }
+
+@Override
+public double getHeight() {
+	return poly.getBounds2D().getHeight();
+}
+
+@Override
+public double getWidth() {
+	return poly.getBounds2D().getWidth();
+}
+
+@Override
+public double getX() {
+	return poly.getBounds2D().getX();
+}
+
+@Override
+public double getY() {
+	return poly.getBounds2D().getY();
+}
+
+@Override
+public boolean isEmpty() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public void setFrame(double x, double y, double w, double h) {
+	Rectangle2D r = poly.getBounds2D();
+	double mX = r.getX();
+	double mY = r.getY();
+	poly.translate((int) (x - mX), (int) (y - mY));
+}
 
 }

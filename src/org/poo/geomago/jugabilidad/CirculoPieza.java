@@ -17,5 +17,4 @@ public class CirculoPieza extends Pieza {
 	public void draw(Graphics2D g) {
 		view.paintComponent(g);
 	}
-		
 }

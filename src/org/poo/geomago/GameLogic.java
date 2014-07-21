@@ -25,6 +25,7 @@ public class GameLogic {
 	private ArrayList<Jugador> playersList;
 	private Pieza focusedPieza;
 	private GameFrame gameFrame;
+	private Pieza currentPiezaDragged;
 
 	/**
 	 * Creates a Board with horizontal cells, vertical cells, players number.
@@ -145,6 +146,33 @@ public class GameLogic {
 			gameFrame.setPiezaMovements(focusedPieza.getMovements(), focusedPieza.getMaxMovments());
 		else
 			gameFrame.setPiezaMovements(0,0);
+	}
+
+	/**
+	 * Called when a mouse drag initiates
+	 * @param movX Cell X position where drag started
+	 * @param movY Cell Y position where drag started
+	 * @param xOnScreen Tablero X position where drag started
+	 * @param yOnScreen Tablero Y position where drag started
+	 */
+	public void mouseDrag(int movX, int movY, int xOnScreen, int yOnScreen) {
+		if (currentPiezaDragged == null) {
+			if (tableroState[movX][movY].getCurrentPieza() != null)
+				currentPiezaDragged = tableroState[movX][movY].getCurrentPieza();
+		} else {
+			currentPiezaDragged.mouseDrag(xOnScreen, yOnScreen);
+		}
+	}
+	/**
+	 * Called when mouse releases.
+	 * @param movX Cell X position where drag started
+	 * @param movY Cell Y position where drag started
+	 */
+	public void mouseRelease(int movX, int movY) {
+		if (currentPiezaDragged != null) {
+			currentPiezaDragged.mouseRelease(tableroState[movX][movY]);
+			currentPiezaDragged = null;
+		}
 	}
 	
 	

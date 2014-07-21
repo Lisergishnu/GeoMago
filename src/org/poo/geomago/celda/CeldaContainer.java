@@ -87,15 +87,20 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent e) {
+		// End Drag if exists
+		int movX = (int) (e.getX() / CeldaView.CELDA_WIDTH);
+		int movY = (int) (e.getY() / CeldaView.CELDA_HEIGHT);
+		gameLogic.mouseRelease(movX, movY);
+		repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		int movX = (int) (e.getX() / CeldaView.CELDA_WIDTH);
+		int movY = (int) (e.getY() / CeldaView.CELDA_HEIGHT);
+		gameLogic.mouseDrag(movX,movY,e.getX(),e.getY());
+		repaint();
 	}
 
 	@Override
