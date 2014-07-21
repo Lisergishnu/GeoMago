@@ -51,21 +51,61 @@ public class GameLogic {
 		
 		for (int i = 0; i < widthCells; i++) {
 			for (int j = 0; j < heightCells; j++) {
+				//TODO: La generacion debe ser inteligente, para que no hayan tantos espacios bloqueados ni
+				//		caminos sin salida
 				this.tableroState[i][j] = new Celda(this, i, j, (rnd.nextBoolean()) ? CeldaState.NORMAL : CeldaState.DISABLED);
 			}			
 		}
 		
 		//TODO: Crear jugadores y sus respectivas piezas
+		//Considerar que cada jugador va a tener unas 10 piezas
+		//5 circulos, 3 triangulos, 2 pentagonos
+		
 		Jugador jugadorTest = new Jugador("Test",this);
-		piezasParaJugador = new ArrayList<Pieza>();
-		piezasParaJugador.add(new CirculoPieza(jugadorTest, tableroState[0][0]));
-		piezasParaJugador.add(new TrianguloPieza(jugadorTest, tableroState[0][1]));
-		jugadorTest.setPiezas(piezasParaJugador);
+		Jugador jugadorTest2 = new Jugador("Test2",this);
+		preparePlayer(jugadorTest);		
+		preparePlayer(jugadorTest2);
 		
 		playersList = new ArrayList<Jugador>();
 		playersList.add(jugadorTest);
+		playersList.add(jugadorTest2);
 		
 		tableroView = new TableroView(this);
+	}
+	/**
+	 * Does the initialization of pieces on a corner of the map for some player
+	 * @param jugadorTest
+	 */
+	private void preparePlayer(Jugador j) {
+		int id = j.getID();
+		piezasParaJugador = new ArrayList<Pieza>();
+		//TODO: Agregar los 2 pentagonos
+		//Agregar los 3 triangulos
+		//Agregar los 4 circulos
+		switch (id) {
+		case 1:
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][0]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][0]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][3]));
+			break;
+		case 2:
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][0]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][0]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][3]));
+			break;
+		//TODO: Agregar los otros dos jugadores
+		default:
+			break;
+		}
+		j.setPiezas(piezasParaJugador);		
 	}
 
 	/**
