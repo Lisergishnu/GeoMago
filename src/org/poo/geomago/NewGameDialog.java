@@ -11,9 +11,11 @@ import javax.swing.*;
 public class NewGameDialog extends JDialog {
 	private int b;
 	private GameFrame gameFrame;
+	private JSpinner mHeightSpinner;
+	private JSpinner mWidthSpinner;
 	/**
-	 * Creates a NewGameDialog with Title title, width w and height h.
-	 * Is BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
+	 * Creates a New Game modal dialog.
+	 * Has a BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
 	 * @param title JDialog title
 	 * @param w JDialog width
 	 * @param h JDialog height
@@ -30,6 +32,7 @@ public class NewGameDialog extends JDialog {
 		setTitle(title);
 		setSize(w,h);
 		setLocationRelativeTo(null);
+		setModal(true);
 	}
 		
 	/**
@@ -56,7 +59,7 @@ public class NewGameDialog extends JDialog {
 		p.add(Box.createHorizontalGlue());
 		p.add(Box.createHorizontalGlue());
 		
-		JButton okButton = new JButton("wena");
+		JButton okButton = new JButton("OK");
 		JButton cButton = new JButton("Cancel");
 		p.add(okButton);
 		p.add(cButton);
@@ -66,7 +69,7 @@ public class NewGameDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent arg0) {
             	System.out.println("clicked ok");
-            	gameFrame.newBoard(10, 10, 2);
+            	gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), 2);
             	setVisible(false);
             }
         });
@@ -95,17 +98,25 @@ public class NewGameDialog extends JDialog {
 		JLabel l = new JLabel("Width:");
 		l.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		p.add(l);
-		JSpinner s = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
-		s.setPreferredSize(getMinimumSize());
-		p.add(s);
+		mWidthSpinner = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
+		mWidthSpinner.setPreferredSize(getMinimumSize());
+		p.add(mWidthSpinner);
 		
 		l = new JLabel("Height:");
 		l.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		p.add(l);
-		s = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
-		p.add(s);
+		mHeightSpinner = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
+		p.add(mHeightSpinner);
 		
 		return p;
+	}
+	
+	public int getDesiredTableroWidth() {
+		return (Integer) mWidthSpinner.getValue();
+	}
+	
+	public int getDesiredTableroHeight() {
+		return (Integer) mHeightSpinner.getValue();
 	}
 
 }
