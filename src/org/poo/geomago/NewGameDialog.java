@@ -12,8 +12,8 @@ public class NewGameDialog extends JDialog {
 	private int b;
 	private GameFrame gameFrame;
 	/**
-	 * Creates a NewGameDialog with Title title, width w and height h.
-	 * Is BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
+	 * Creates a New Game modal dialog.
+	 * Has a BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
 	 * @param title JDialog title
 	 * @param w JDialog width
 	 * @param h JDialog height
@@ -30,6 +30,7 @@ public class NewGameDialog extends JDialog {
 		setTitle(title);
 		setSize(w,h);
 		setLocationRelativeTo(null);
+		setModal(true);
 	}
 		
 	/**
