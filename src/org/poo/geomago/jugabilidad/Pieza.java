@@ -29,13 +29,25 @@ public abstract class Pieza {
 			y = actualPos.getY();
 			return false;
 		}
-		//TODO: Si es valida, liberar actual, y setear celda nueva
+		//Si se puede mover, probar si el numero de movimientos alcanza
+		//Un paso en diagonal descuenta solo un movimiento (no dos)
+		int dx = Math.abs(destino.getX() - actualPos.getX());
+		int dy = Math.abs(destino.getY() - actualPos.getY());
+		int dist = (int) Math.floor(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
+		System.out.println("Pieza moving: " + Integer.toString(dx) + ":" + Integer.toString(dy) + " . d: " + Double.toString(dist));
+		if (dist > nMovimientos) {
+			x = actualPos.getX();
+			y = actualPos.getY(); 
+			return false;
+		}
+		
+ 		//Si es valida, liberar actual, y setear celda nueva. Ademas reducir numero de movimientos
 		actualPos.setCurrentPieza(null);
 		actualPos = destino;
 		actualPos.setCurrentPieza(this);
 		x = actualPos.getX();
 		y = actualPos.getY();
-		//TODO: Si se movio bien, reducir en uno el movimiento
+		nMovimientos = nMovimientos - dist; //no deberia pasarse a negativo 
 		return true;
 	}
 	
@@ -94,5 +106,9 @@ public abstract class Pieza {
 
 	public Jugador getPlayerOwner() {
 		return playerOwner;
+	}
+
+	public Celda getParentCell() {
+		return actualPos;
 	}	
 }

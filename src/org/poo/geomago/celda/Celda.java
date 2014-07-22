@@ -64,7 +64,7 @@ public class Celda {
 	 * @return currentState of this Celda
 	 * @see CeldaState
 	 */
-	public CeldaState getmState() {
+	public CeldaState getState() {
 		return mState;
 	}
 
@@ -72,7 +72,7 @@ public class Celda {
 	 * Sets currentState of this Celda
 	 * @see CeldaState
 	 */
-	public void setmState(CeldaState mState) {
+	public void setState(CeldaState mState) {
 		this.mState = mState;
 	}
 	
@@ -121,7 +121,7 @@ public class Celda {
 	 * @return Whether the cell can have a piece over it or not
 	 */
 	public boolean isWalkable() {
-		return (mState == CeldaState.DISABLED) ? false : true;
+		return (mState != CeldaState.DISABLED && currentPieza == null) ? true : false;
 	}
 
 }

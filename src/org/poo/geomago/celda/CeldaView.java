@@ -43,7 +43,7 @@ public class CeldaView {
 	 */
 	protected void paintComponent(Graphics2D g) {
  		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
- 		switch (mCell.getmState()) {
+ 		switch (mCell.getState()) {
 		case NORMAL:
 			g.setColor(CELDA_COLOR_ENABLED);
 			break;

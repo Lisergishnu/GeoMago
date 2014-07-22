@@ -98,6 +98,10 @@ public class GameLogic {
 		} else {
 			gameFrame.setEnabledNextTurnButton(false);
 		}
+		//renovar movimientos del turno
+		for (Pieza pieza : playerInFocus.getPiezas()) {
+			pieza.gainMovement();
+		}
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
 
@@ -133,6 +137,10 @@ public class GameLogic {
 		//TODO: Agregar los otros dos jugadores
 		default:
 			break;
+		}
+		//Por consitencia hacer que todas las celdas de las piezas sean disponibles
+		for (Pieza pieza : piezasParaJugador) {
+			pieza.getParentCell().setState(CeldaState.NORMAL);
 		}
 		j.setPiezas(piezasParaJugador);		
 	}
@@ -255,7 +263,7 @@ public class GameLogic {
 	/**
 	 * @return Whether there is a currently game running or not
 	 */
-	public boolean getGameRunning() {
+	public boolean isGameRunning() {
 		return isGameRunning;
 	}
 	
