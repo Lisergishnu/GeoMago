@@ -121,7 +121,7 @@ public class Celda {
 	 * @return Whether the cell can have a piece over it or not
 	 */
 	public boolean isWalkable() {
-		return (mState != CeldaState.DISABLED && currentPieza == null) ? true : false;
+		return (mState != CeldaState.DISABLED) ? true : false;
 	}
 
 }

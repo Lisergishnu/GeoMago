@@ -95,7 +95,7 @@ public class GameFrame extends JFrame {
 	 */
 	public void refreshPieceRecount(int playerIndex) {
 		ArrayList<Jugador> pL = gameBoard.getPlayersList();
-		playersPieceList.get(playerIndex).setText(Integer.toString(pL.get(playerIndex).getPieceCount()));
+		playersPieceList.get(playerIndex).setText(Integer.toString(pL.get(playerIndex-1).getPieceCount()));
 	}
 
 	/**

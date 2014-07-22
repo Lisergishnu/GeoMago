@@ -23,8 +23,9 @@ public abstract class Pieza {
 	}
 	
 	public boolean move(Celda destino) {
-		//TODO: Calcular si la jugada es viable
-		if(!destino.isWalkable()) {
+		//Calcular si la jugada es viable
+		if(!destino.isWalkable() && 
+				(destino.getCurrentPieza() != null && destino.getCurrentPieza().getPlayerOwner() != playerOwner)) {
 			x = actualPos.getX();
 			y = actualPos.getY();
 			return false;
@@ -40,9 +41,12 @@ public abstract class Pieza {
 			y = actualPos.getY(); 
 			return false;
 		}
-		
- 		//Si es valida, liberar actual, y setear celda nueva. Ademas reducir numero de movimientos
+ 		//Si es valida, liberar actual, y setear celda nueva. Ademas eliminar piezas
+		//del enemigo que pueden estar en el lugar y reducir numero de movimientos
 		actualPos.setCurrentPieza(null);
+		if (destino.getCurrentPieza() != null) {
+			destino.getCurrentPieza().getPlayerOwner().removePieza(destino.getCurrentPieza());
+		}
 		actualPos = destino;
 		actualPos.setCurrentPieza(this);
 		x = actualPos.getX();

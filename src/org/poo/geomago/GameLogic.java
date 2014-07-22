@@ -218,7 +218,7 @@ public class GameLogic {
 	/*
 	 * Updates the GUI caption
 	 */
-	private void updatePiezaGUI() {
+	public void updatePiezaGUI() {
 		if (focusedPieza != null)
 			gameFrame.setPiezaMovements(focusedPieza.getMovements(), focusedPieza.getMaxMovments());
 		else
@@ -267,4 +267,7 @@ public class GameLogic {
 		return isGameRunning;
 	}
 	
+	public GameFrame getGameFrame() {
+		return gameFrame;
+	}
 }
