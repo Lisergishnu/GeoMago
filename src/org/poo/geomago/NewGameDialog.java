@@ -25,7 +25,12 @@ public class NewGameDialog extends JDialog {
 	 * @see JDialog
 	 */
 	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
+		super(gameFrame);
 		this.gameFrame = gameFrame;
+		setTitle(title);
+		setSize(w,h);
+		setLocationRelativeTo(gameFrame);
+		setModal(true);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		b = border;
 		add(getNumberPlayersPanel());
@@ -34,10 +39,6 @@ public class NewGameDialog extends JDialog {
 		add(getPlayersPane());
 		add(Box.createVerticalGlue());
 		add(getReturnPanel());
-		setTitle(title);
-		setSize(w,h);
-		setLocationRelativeTo(null);
-		setModal(true);
 	}
 		
 	private JPanel getNumberPlayersPanel() {

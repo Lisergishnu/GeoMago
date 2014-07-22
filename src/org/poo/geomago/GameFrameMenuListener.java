@@ -1,5 +1,6 @@
 package org.poo.geomago;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +29,7 @@ public class GameFrameMenuListener implements ActionListener {
 		GameLogic gameBoard = gameFrame.getCurrentGame();
 		if(mText.equals("New Game...")) {
 			if(gameBoard != null) {
-				int i = okcancel(menuItem, "There is a game in progress, Want to end it?");
+				int i = okcancel(gameFrame, "There is a game in progress, Want to end it?");
 				if (i != 0)
 					return;
 			}
@@ -36,7 +37,7 @@ public class GameFrameMenuListener implements ActionListener {
 			n.setVisible(true);
 		}
 		if(mText.equals("Quit GeoMago")) {
-			int i = okcancel(menuItem, "Quit GeoMago?");
+			int i = okcancel(gameFrame, "Quit GeoMago?");
 			if(i == 0)
 				System.exit(0);
 		}
@@ -46,7 +47,7 @@ public class GameFrameMenuListener implements ActionListener {
 	}
 
 
-	private int okcancel(JMenuItem parent, String theMessage) {
+	private int okcancel(Component parent, String theMessage) {
 		int result = JOptionPane.showConfirmDialog(parent, theMessage,
 			"Confirm", JOptionPane.OK_CANCEL_OPTION);
 		return result;
