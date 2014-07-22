@@ -214,6 +214,14 @@ public class GameLogic {
 			currentPiezaDragged = null;
 		}
 	}
+	/**
+	 * Cleans up the current board. Must be called when switching boards.
+	 */
+	public void cleanUp() {
+		for (Jugador j : playersList) {
+			j.endGame();
+		}
+	}
 	
 	
 }

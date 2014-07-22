@@ -2,7 +2,6 @@ package org.poo.geomago.jugabilidad;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.geom.RectangularShape;
 
 import org.poo.geomago.celda.CeldaView;

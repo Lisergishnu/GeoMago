@@ -1,10 +1,5 @@
 package org.poo.geomago.jugabilidad;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.geom.Ellipse2D;
-
 import org.poo.geomago.celda.CeldaView;
 import org.poo.geomago.etc.TriangleShape;
 

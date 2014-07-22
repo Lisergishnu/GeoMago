@@ -3,7 +3,6 @@ package org.poo.geomago.jugabilidad;
 import java.awt.Graphics2D;
 
 import org.poo.geomago.celda.Celda;
-import org.poo.geomago.celda.CeldaView;
 
 public abstract class Pieza {
 	protected Jugador playerOwner;

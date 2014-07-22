@@ -1,7 +1,5 @@
 package org.poo.geomago.jugabilidad;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.geom.*;
 
 import org.poo.geomago.celda.CeldaView;

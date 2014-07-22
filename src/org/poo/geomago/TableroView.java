@@ -23,7 +23,7 @@ public class TableroView extends JPanel {
 	public TableroView(GameLogic gameBoard) {
 		parent = gameBoard;
 		createGrid();
-		celdaContainer.setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells() ));	
+		celdaContainer.setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells() ));		
 		add(celdaContainer);
 	}
 	

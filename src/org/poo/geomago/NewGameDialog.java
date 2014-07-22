@@ -68,7 +68,6 @@ public class NewGameDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	System.out.println("clicked ok");
             	gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), 2);
             	setVisible(false);
             }
@@ -77,7 +76,6 @@ public class NewGameDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	System.out.println("clicked cancel");
             	setVisible(false);
             }
         });

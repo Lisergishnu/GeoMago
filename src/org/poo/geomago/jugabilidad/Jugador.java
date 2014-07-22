@@ -84,4 +84,19 @@ public class Jugador {
 	public Color getPlayerColor() {
 		return mColor;
 	}
+
+	/**
+	 * Called when the board is being removed. (Game ended)
+	 */
+	public void endGame() {
+		ID--; //Resets ID to 0 since this is called the same amount of time ID has incremented
+	}
+
+	public String getName() {
+		return mName;
+	}
+
+	public int getPieceCount() {
+		return mPiezaList.size();
+	}
 }

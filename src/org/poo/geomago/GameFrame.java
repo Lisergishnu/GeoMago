@@ -4,10 +4,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.swing.*;
 
-import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
+import org.poo.geomago.jugabilidad.Jugador;
 
 /**
  * Main Frame of the Game 
@@ -19,6 +21,10 @@ public class GameFrame extends JFrame {
 	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
 	private JLabel focusedPiezaMovements;
+	private JPanel currentPiezaPanel;
+	private JButton endTurnButton;
+	private JPanel remainingPiezasPanel;
+	private Hashtable<Integer,JLabel> playersPieceList;
 	
 	{
 		hSeparation = 2;
@@ -34,7 +40,6 @@ public class GameFrame extends JFrame {
 	 */
 	public GameFrame(String title, int w, int h, int p){
 		super(title);
-		initGameBoard(w, h, p);
 		createGUIPanels();
 		initWindow();
 		pack();
@@ -42,6 +47,7 @@ public class GameFrame extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(true);
+		//initGameBoard(w, h, p);
 	}
 	
 	/**
@@ -61,8 +67,33 @@ public class GameFrame extends JFrame {
 	 * to GridLayout
 	 */
 	private void initGameBoard(int w, int h, int p) {
+		if (gameBoard != null) {
+			gameBoard.cleanUp();
+		}
 		gameBoard = new GameLogic(this, w,h,p);	
 		tablero = gameBoard.getTableroView();
+		remainingPiezasPanel.setEnabled(true);
+		currentPiezaPanel.setEnabled(true);
+		focusedPiezaMovements.setEnabled(true);
+		remainingPiezasPanel.removeAll();
+		//Add players captions
+		ArrayList<Jugador> pL = gameBoard.getPlayersList();
+		playersPieceList = new Hashtable<Integer,JLabel>();
+		for (Jugador jugador : pL) {
+			remainingPiezasPanel.add(new JLabel(jugador.getName()));
+			JLabel l = new JLabel(Integer.toString(jugador.getPieceCount()));
+			playersPieceList.put(jugador.getID(), l);
+			remainingPiezasPanel.add(l);
+		}
+	}
+	
+	/**
+	 * Updates the text label with the count of remaining pieces in the board for the player specified.
+	 * @param playerIndex ID of player whose label will be refreshed
+	 */
+	public void refreshPieceRecount(int playerIndex) {
+		ArrayList<Jugador> pL = gameBoard.getPlayersList();
+		playersPieceList.get(playerIndex).setText(Integer.toString(pL.get(playerIndex).getPieceCount()));
 	}
 
 	/**
@@ -77,7 +108,7 @@ public class GameFrame extends JFrame {
 		this.add(eastPanel, BorderLayout.EAST);
 		this.add(westPanel, BorderLayout.WEST);
 	
-		GameFrameMenuListener gListener = new GameFrameMenuListener(gameBoard, this);
+		GameFrameMenuListener gListener = new GameFrameMenuListener(this);
 		setJMenuBar(createGameFrameMenuBar(gListener));
 	}
 	
@@ -91,37 +122,34 @@ public class GameFrame extends JFrame {
 		southPanel = new JPanel();
 		westPanel = new JPanel();
 		eastPanel = createGameSidePanel();
+		eastPanel.setPreferredSize(new Dimension(200,0));
 		centerPanel = new JScrollPane(tablero);
+		centerPanel.setPreferredSize(new Dimension(800,600));
 	}
 	
 	private JPanel createGameSidePanel() {
 		JPanel p = new JPanel(); 
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		JPanel sub = new JPanel();
-		sub.setLayout(new GridLayout(2, 2));
-		sub.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
-		JLabel l = new JLabel("Jugador 1:");
-		sub.add(l);
-		l = new JLabel("#");
-		sub.add(l);
-		l = new JLabel("Jugador 2:");
-		sub.add(l);
-		l = new JLabel("#");
-		sub.add(l);
-		p.add(sub);
+		remainingPiezasPanel = new JPanel();
+		remainingPiezasPanel.setLayout(new GridLayout(2, 2));
+		remainingPiezasPanel.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
+		remainingPiezasPanel.setEnabled(false);
+		p.add(remainingPiezasPanel);
 		p.add(Box.createVerticalGlue());
-		sub = new JPanel();
-		sub = new JPanel();
-		sub.setLayout(new GridLayout(1, 2));
-		sub.setBorder(BorderFactory.createTitledBorder("Pieza actual"));
-		sub.add(new JLabel("Movimientos "));
+		currentPiezaPanel = new JPanel();
+		currentPiezaPanel.setLayout(new GridLayout(1, 2));
+		currentPiezaPanel.setBorder(BorderFactory.createTitledBorder("Pieza actual"));
+		currentPiezaPanel.setEnabled(false);
+		currentPiezaPanel.add(new JLabel("Movimientos "));
 		focusedPiezaMovements = new JLabel("- / -");
-		sub.add(focusedPiezaMovements);
-		p.add(sub);
+		focusedPiezaMovements.setEnabled(false);
+		currentPiezaPanel.add(focusedPiezaMovements);
+		p.add(currentPiezaPanel);
 		p.add(Box.createVerticalGlue());
-		JButton bb = new JButton("Terminar Turno");
-		bb.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(bb);
+		endTurnButton = new JButton("Terminar Turno");
+		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		endTurnButton.setEnabled(false);
+		p.add(endTurnButton);
 		return p;
 	}
 
@@ -164,6 +192,16 @@ public class GameFrame extends JFrame {
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 		
+		menu = new JMenu ("Help");
+		menuItem = new JMenuItem("About...");
+		menuItem.addActionListener(gListener);
+		menu.add(menuItem);
+		menuBar.add(menu);
+		
 		return menuBar;
+	}
+
+	public GameLogic getCurrentGame() {
+		return gameBoard;
 	}
 }

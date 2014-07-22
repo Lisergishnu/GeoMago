@@ -65,52 +65,62 @@ public void draw( Graphics g )
 
   //methods implemented from interface Shape
 
-  public Rectangle getBounds()
+  @Override
+public Rectangle getBounds()
   {
     return poly.getBounds();
   }
 
-  public Rectangle2D getBounds2D()
+  @Override
+public Rectangle2D getBounds2D()
   {
     return poly.getBounds2D();
   }
 
-  public boolean contains(double x, double y)
+  @Override
+public boolean contains(double x, double y)
   {
     return poly.contains(x, y);
   }
 
-  public boolean contains(Point2D p)
+  @Override
+public boolean contains(Point2D p)
   {
     return poly.contains(p);
   }
 
-  public boolean intersects(double x, double y, double w, double h)
+  @Override
+public boolean intersects(double x, double y, double w, double h)
   {
     return poly.intersects(x, y, w, h);
   }
 
-  public boolean intersects(Rectangle2D r)
+  @Override
+public boolean intersects(Rectangle2D r)
   {
     return poly.intersects(r);
   }
 
-  public boolean contains(double x, double y, double w, double h)
+  @Override
+public boolean contains(double x, double y, double w, double h)
   {
     return poly.contains(x, y, w, h);
   }
 
-  public boolean contains(Rectangle2D r)
+  @Override
+public boolean contains(Rectangle2D r)
   {
     return poly.intersects(r);
   }
 
-  public PathIterator getPathIterator(AffineTransform at)
+  @Override
+public PathIterator getPathIterator(AffineTransform at)
   {
     return poly.getPathIterator(at);
   }
 
-  public PathIterator getPathIterator(AffineTransform at, double flatness)
+  @Override
+public PathIterator getPathIterator(AffineTransform at, double flatness)
   {
     return poly.getPathIterator(at, flatness);
   }

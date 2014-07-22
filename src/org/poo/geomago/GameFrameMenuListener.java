@@ -3,7 +3,6 @@ package org.poo.geomago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -12,15 +11,13 @@ import javax.swing.JOptionPane;
  */
 public class GameFrameMenuListener implements ActionListener {
 
-	private GameLogic gameBoard;
 	private GameFrame gameFrame;
 
 	/**
 	 * Constructor
 	 * @param gameBoard	
 	 */
-	public GameFrameMenuListener(GameLogic gameBoard, GameFrame gameFrame) {
-		this.gameBoard = gameBoard;
+	public GameFrameMenuListener(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 	}
 
@@ -28,15 +25,23 @@ public class GameFrameMenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem menuItem = (JMenuItem)(e.getSource());
 		String mText = menuItem.getText();
-		
+		GameLogic gameBoard = gameFrame.getCurrentGame();
 		if(mText.equals("New Game...")) {
+			if(gameBoard != null) {
+				int i = okcancel(menuItem, "There is a game in progress, Want to end it?");
+				if (i != 0)
+					return;
+			}
 			NewGameDialog n = new NewGameDialog("New Game", 300, 200, 10, gameFrame);
 			n.setVisible(true);
 		}
 		if(mText.equals("Quit GeoMago")) {
-			int i = okcancel(menuItem, "Quit GeoMago :c?");
+			int i = okcancel(menuItem, "Quit GeoMago?");
 			if(i == 0)
 				System.exit(0);
+		}
+		if(mText.equals("About...")) {
+			//TODO: Do an About dialog
 		}
 	}
 
