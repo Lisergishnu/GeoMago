@@ -90,5 +90,9 @@ public abstract class Pieza {
 			System.out.println("No se puede mover");
 		}
 		isBeingDragged = false;
+	}
+
+	public Jugador getPlayerOwner() {
+		return playerOwner;
 	}	
 }

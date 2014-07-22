@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -147,6 +149,13 @@ public class GameFrame extends JFrame {
 		p.add(currentPiezaPanel);
 		p.add(Box.createVerticalGlue());
 		endTurnButton = new JButton("Terminar Turno");
+		endTurnButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameBoard.switchPlayer();
+			}
+		});
 		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		endTurnButton.setEnabled(false);
 		p.add(endTurnButton);
@@ -203,5 +212,9 @@ public class GameFrame extends JFrame {
 
 	public GameLogic getCurrentGame() {
 		return gameBoard;
+	}
+
+	public void setEnabledNextTurnButton(boolean enabled) {
+		endTurnButton.setEnabled(enabled);
 	}
 }

@@ -99,4 +99,11 @@ public class Jugador {
 	public int getPieceCount() {
 		return mPiezaList.size();
 	}
+	/**
+	 * Must be overriden in AI players 
+	 * @return Whether the player is human or not
+	 */
+	public boolean isHuman() {
+		return true;
+	}
 }

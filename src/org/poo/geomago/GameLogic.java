@@ -1,6 +1,7 @@
 package org.poo.geomago;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Random;
 
 import org.poo.geomago.celda.Celda;
@@ -26,6 +27,8 @@ public class GameLogic {
 	private Pieza focusedPieza;
 	private GameFrame gameFrame;
 	private Pieza currentPiezaDragged;
+	private boolean isGameRunning;
+	private Jugador playerInFocus;
 
 	/**
 	 * Creates a Board with horizontal cells, vertical cells, players number.
@@ -42,9 +45,7 @@ public class GameLogic {
 		this.widthCells = widthCells;
 		this.heightCells = heightCells;
 		this.nPlayers = nPlayers;
-		
-		this.turn = 1;
-		this.currentPlayer = 1;
+		this.isGameRunning = false;
 		this.tableroState = new Celda[widthCells][heightCells];
 		
 		Random rnd = new Random();
@@ -71,10 +72,38 @@ public class GameLogic {
 		playersList.add(jugadorTest2);
 		
 		tableroView = new TableroView(this);
+		
+		startGameLoop();
+	}
+	
+	private void startGameLoop() {
+		isGameRunning = true;
+		//Traer al primer jugador
+		turn = 0;
+		currentPlayer = -1;
+		switchPlayer();
 	}
 	/**
+	 * Computes whos the next player and gives focus to him/her. Also computes increments the current
+	 * turn counter if necesary and enables GUI elements if the player is human.
+	 */
+	public void switchPlayer() {
+		currentPlayer = (currentPlayer < nPlayers - 1) ? currentPlayer + 1 : 0;
+		if (currentPlayer == 0) {
+			turn += 1;
+		}
+		playerInFocus = playersList.get(currentPlayer);
+		if (playerInFocus.isHuman()) {
+			gameFrame.setEnabledNextTurnButton(true);
+		} else {
+			gameFrame.setEnabledNextTurnButton(false);
+		}
+		//TODO: Hacer que en la GUI se vea cual es el jugador actual
+	}
+
+	/**
 	 * Does the initialization of pieces on a corner of the map for some player
-	 * @param jugadorTest
+	 * @param jugadorTest Initialized Jugador
 	 */
 	private void preparePlayer(Jugador j) {
 		int id = j.getID();
@@ -197,8 +226,9 @@ public class GameLogic {
 	 */
 	public void mouseDrag(int movX, int movY, int xOnScreen, int yOnScreen) {
 		if (currentPiezaDragged == null) {
-			if (tableroState[movX][movY].getCurrentPieza() != null)
-				currentPiezaDragged = tableroState[movX][movY].getCurrentPieza();
+			if (tableroState[movX][movY].getCurrentPieza() != null) 
+				if (tableroState[movX][movY].getCurrentPieza().getPlayerOwner() == playerInFocus)
+					currentPiezaDragged = tableroState[movX][movY].getCurrentPieza();
 		} else {
 			currentPiezaDragged.mouseDrag(xOnScreen, yOnScreen);
 		}
@@ -222,6 +252,11 @@ public class GameLogic {
 			j.endGame();
 		}
 	}
-	
+	/**
+	 * @return Whether there is a currently game running or not
+	 */
+	public boolean getGameRunning() {
+		return isGameRunning;
+	}
 	
 }
