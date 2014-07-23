@@ -24,8 +24,8 @@ public abstract class Pieza {
 	
 	public boolean move(Celda destino) {
 		//Calcular si la jugada es viable
-		if(!destino.isWalkable() && 
-				(destino.getCurrentPieza() != null && destino.getCurrentPieza().getPlayerOwner() != playerOwner)) {
+		if(!destino.isWalkable() || 
+				(destino.getCurrentPieza() != null && destino.getCurrentPieza().getPlayerOwner() == playerOwner)) {
 			x = actualPos.getX();
 			y = actualPos.getY();
 			return false;
