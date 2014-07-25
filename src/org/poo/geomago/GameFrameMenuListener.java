@@ -42,7 +42,8 @@ public class GameFrameMenuListener implements ActionListener {
 				System.exit(0);
 		}
 		if(mText.equals("About...")) {
-			//TODO: Do an About dialog
+			AboutDialog about = new AboutDialog("About", 300, 200, 10, gameFrame);
+			about.setVisible(true);
 		}
 	}
 
