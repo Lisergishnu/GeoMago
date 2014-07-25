@@ -124,4 +124,8 @@ public class Celda {
 		return (mState != CeldaState.DISABLED) ? true : false;
 	}
 
+	public double getDistance(Celda destino) {
+		return Math.sqrt(Math.pow(getX() - destino.getX(), 2) + Math.pow(getY() - destino.getY(), 2));
+	}
+
 }

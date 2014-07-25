@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.poo.geomago.celda.Celda;
 import org.poo.geomago.celda.CeldaState;
+import org.poo.geomago.jugabilidad.AIJugador;
 import org.poo.geomago.jugabilidad.CirculoPieza;
 import org.poo.geomago.jugabilidad.Jugador;
 import org.poo.geomago.jugabilidad.Pieza;
@@ -14,7 +15,7 @@ import org.poo.geomago.jugabilidad.TrianguloPieza;
 /**
  * Game Board, action takes place here.
  */
-public class GameLogic {
+public class GameLogic implements Runnable{
 	private int widthCells;
 	private int heightCells;
 	private int nPlayers;
@@ -62,8 +63,8 @@ public class GameLogic {
 		//Considerar que cada jugador va a tener unas 10 piezas
 		//5 circulos, 3 triangulos, 2 pentagonos
 		
-		Jugador jugadorTest = new Jugador("Test",this);
-		Jugador jugadorTest2 = new Jugador("Test2",this);
+		Jugador jugadorTest = new Jugador("Asdf",this);
+		Jugador jugadorTest2 = new AIJugador(this);
 		preparePlayer(jugadorTest);		
 		preparePlayer(jugadorTest2);
 		
@@ -73,14 +74,14 @@ public class GameLogic {
 		
 		tableroView = new TableroView(this);
 		
-		startGameLoop();
 	}
 	
-	private void startGameLoop() {
+	public void startGameLoop() {
 		isGameRunning = true;
 		//Traer al primer jugador
 		turn = 0;
 		currentPlayer = -1;
+		gameFrame.setEnabledNextTurnButton(true);
 		switchPlayer();
 	}
 	/**
@@ -93,15 +94,12 @@ public class GameLogic {
 			turn += 1;
 		}
 		playerInFocus = playersList.get(currentPlayer);
-		if (playerInFocus.isHuman()) {
-			gameFrame.setEnabledNextTurnButton(true);
-		} else {
-			gameFrame.setEnabledNextTurnButton(false);
-		}
 		//renovar movimientos del turno
 		for (Pieza pieza : playerInFocus.getPiezas()) {
 			pieza.gainMovement();
 		}
+		
+		playerInFocus.executeTurn();
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
 
@@ -269,5 +267,33 @@ public class GameLogic {
 	
 	public GameFrame getGameFrame() {
 		return gameFrame;
+	}
+	/**
+	 * Called when the current player want to end his turn. Preferably this must be called from another thread.
+	 * @see EndTurnAction
+	 */
+	public void endTurn() {
+		playerInFocus.endTurn();
+		if (playersList.size() > 1) {
+			switchPlayer();
+		} else {
+			System.out.println("Juego Terminado. Ganador: " + playersList.get(0).getName());
+			gameFrame.setEnabledNextTurnButton(false);
+		}
+	}
+
+	public void redraw() {
+		gameFrame.repaint();	
+	}
+
+	@Override
+	public void run() {
+		startGameLoop();
+	}
+
+	public void removePlayerFromGame(Jugador jugador) {
+		gameFrame.setPlayerNameAsRemoved(jugador.getID());
+		playersList.remove(jugador);
+		nPlayers -= 1;
 	}
 }
