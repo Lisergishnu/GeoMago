@@ -15,12 +15,12 @@ import org.poo.geomago.GameLogic;
 public class Jugador {
 	private static int ID = 0;
 	
-	private ArrayList<Pieza> mPiezaList;
-	private String mName;
-	private boolean isPlayerActive;
-	private int mID;
-	private GameLogic logic;
-	private Color mColor;
+	protected ArrayList<Pieza> mPiezaList;
+	protected String mName;
+	protected  boolean isPlayerActive;
+	protected  int mID;
+	protected  GameLogic logic;
+	protected Color mColor;
 	
 	public Jugador(String name, GameLogic logic) {
 		this.logic = logic;

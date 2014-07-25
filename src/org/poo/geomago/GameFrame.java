@@ -153,7 +153,7 @@ public class GameFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameBoard.switchPlayer();
+				gameBoard.endTurn();
 			}
 		});
 		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);

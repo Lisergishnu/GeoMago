@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.poo.geomago.celda.Celda;
 import org.poo.geomago.celda.CeldaState;
+import org.poo.geomago.jugabilidad.AIJugador;
 import org.poo.geomago.jugabilidad.CirculoPieza;
 import org.poo.geomago.jugabilidad.Jugador;
 import org.poo.geomago.jugabilidad.Pieza;
@@ -63,7 +64,7 @@ public class GameLogic {
 		//5 circulos, 3 triangulos, 2 pentagonos
 		
 		Jugador jugadorTest = new Jugador("Test",this);
-		Jugador jugadorTest2 = new Jugador("Test2",this);
+		Jugador jugadorTest2 = new AIJugador(this);
 		preparePlayer(jugadorTest);		
 		preparePlayer(jugadorTest2);
 		
@@ -93,6 +94,7 @@ public class GameLogic {
 			turn += 1;
 		}
 		playerInFocus = playersList.get(currentPlayer);
+		playerInFocus.executeTurn();
 		if (playerInFocus.isHuman()) {
 			gameFrame.setEnabledNextTurnButton(true);
 		} else {
@@ -101,6 +103,11 @@ public class GameLogic {
 		//renovar movimientos del turno
 		for (Pieza pieza : playerInFocus.getPiezas()) {
 			pieza.gainMovement();
+		}
+		
+		//Si el jugador es AI, hacer correr su hilo de pensamiento
+		if (playerInFocus instanceof AIJugador) {
+			((AIJugador) playerInFocus).run();
 		}
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
@@ -269,5 +276,14 @@ public class GameLogic {
 	
 	public GameFrame getGameFrame() {
 		return gameFrame;
+	}
+
+	public void endTurn() {
+		playerInFocus.endTurn();
+		switchPlayer();
+	}
+
+	public void redraw() {
+		gameFrame.repaint();	
 	}
 }
