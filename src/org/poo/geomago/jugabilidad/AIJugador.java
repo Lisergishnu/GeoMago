@@ -25,11 +25,11 @@ public class AIJugador extends Jugador {
 	
 	@Override
 	public void executeTurn() {
+		logic.getGameFrame().getNextTurnButton().setEnabled(false);
 		processTurn();
 		//Emulate the end of Turn
 		logic.getGameFrame().getNextTurnButton().setEnabled(true);
 		logic.getGameFrame().getNextTurnButton().doClick();
-		logic.getGameFrame().getNextTurnButton().setEnabled(false);
 	}
 	
 	private void processTurn() {

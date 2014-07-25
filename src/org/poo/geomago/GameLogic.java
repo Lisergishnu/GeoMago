@@ -63,7 +63,7 @@ public class GameLogic implements Runnable{
 		//Considerar que cada jugador va a tener unas 10 piezas
 		//5 circulos, 3 triangulos, 2 pentagonos
 		
-		Jugador jugadorTest = new AIJugador(this);
+		Jugador jugadorTest = new Jugador("Asdf",this);
 		Jugador jugadorTest2 = new AIJugador(this);
 		preparePlayer(jugadorTest);		
 		preparePlayer(jugadorTest2);
@@ -81,6 +81,7 @@ public class GameLogic implements Runnable{
 		//Traer al primer jugador
 		turn = 0;
 		currentPlayer = -1;
+		gameFrame.setEnabledNextTurnButton(true);
 		switchPlayer();
 	}
 	/**
@@ -93,11 +94,6 @@ public class GameLogic implements Runnable{
 			turn += 1;
 		}
 		playerInFocus = playersList.get(currentPlayer);
-		if (playerInFocus.isHuman()) {
-			gameFrame.setEnabledNextTurnButton(true);
-		} else {
-			gameFrame.setEnabledNextTurnButton(false);
-		}
 		//renovar movimientos del turno
 		for (Pieza pieza : playerInFocus.getPiezas()) {
 			pieza.gainMovement();
@@ -272,10 +268,18 @@ public class GameLogic implements Runnable{
 	public GameFrame getGameFrame() {
 		return gameFrame;
 	}
-
+	/**
+	 * Called when the current player want to end his turn. Preferably this must be called from another thread.
+	 * @see EndTurnAction
+	 */
 	public void endTurn() {
 		playerInFocus.endTurn();
-		switchPlayer();
+		if (playersList.size() > 1) {
+			switchPlayer();
+		} else {
+			System.out.println("Juego Terminado. Ganador: " + playersList.get(0).getName());
+			gameFrame.setEnabledNextTurnButton(false);
+		}
 	}
 
 	public void redraw() {
@@ -285,5 +289,11 @@ public class GameLogic implements Runnable{
 	@Override
 	public void run() {
 		startGameLoop();
+	}
+
+	public void removePlayerFromGame(Jugador jugador) {
+		gameFrame.setPlayerNameAsRemoved(jugador.getID());
+		playersList.remove(jugador);
+		nPlayers -= 1;
 	}
 }
