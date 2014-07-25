@@ -13,7 +13,7 @@ import org.poo.geomago.celda.Celda;
  * @author mbenzit
  *
  */
-public class AIJugador extends Jugador implements Runnable {
+public class AIJugador extends Jugador {
 
 	private int mDifficulty;
 	public AIJugador(GameLogic logic) {
@@ -22,11 +22,14 @@ public class AIJugador extends Jugador implements Runnable {
 		//Dificulty expresses as the number of iterations per piece.
 		mDifficulty = 2;
 	}
-	/**Called when the game logic gives focus to an AI player
-	 * 
-	 */
-	public void startTurn() {
-		this.run();
+	
+	@Override
+	public void executeTurn() {
+		processTurn();
+		//Emulate the end of Turn
+		logic.getGameFrame().getNextTurnButton().setEnabled(true);
+		logic.getGameFrame().getNextTurnButton().doClick();
+		logic.getGameFrame().getNextTurnButton().setEnabled(false);
 	}
 	
 	private void processTurn() {
@@ -76,14 +79,14 @@ public class AIJugador extends Jugador implements Runnable {
 			if (target != null) {
 				p.move(target);
 			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			logic.redraw();
 		}
-		logic.endTurn();
-	}
-
-	@Override
-	public void run() {
-		processTurn();
 	}
 	
 	@Override

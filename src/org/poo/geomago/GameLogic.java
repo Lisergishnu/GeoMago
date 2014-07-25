@@ -15,7 +15,7 @@ import org.poo.geomago.jugabilidad.TrianguloPieza;
 /**
  * Game Board, action takes place here.
  */
-public class GameLogic {
+public class GameLogic implements Runnable{
 	private int widthCells;
 	private int heightCells;
 	private int nPlayers;
@@ -63,7 +63,7 @@ public class GameLogic {
 		//Considerar que cada jugador va a tener unas 10 piezas
 		//5 circulos, 3 triangulos, 2 pentagonos
 		
-		Jugador jugadorTest = new Jugador("Test",this);
+		Jugador jugadorTest = new AIJugador(this);
 		Jugador jugadorTest2 = new AIJugador(this);
 		preparePlayer(jugadorTest);		
 		preparePlayer(jugadorTest2);
@@ -74,10 +74,9 @@ public class GameLogic {
 		
 		tableroView = new TableroView(this);
 		
-		startGameLoop();
 	}
 	
-	private void startGameLoop() {
+	public void startGameLoop() {
 		isGameRunning = true;
 		//Traer al primer jugador
 		turn = 0;
@@ -94,7 +93,6 @@ public class GameLogic {
 			turn += 1;
 		}
 		playerInFocus = playersList.get(currentPlayer);
-		playerInFocus.executeTurn();
 		if (playerInFocus.isHuman()) {
 			gameFrame.setEnabledNextTurnButton(true);
 		} else {
@@ -105,10 +103,7 @@ public class GameLogic {
 			pieza.gainMovement();
 		}
 		
-		//Si el jugador es AI, hacer correr su hilo de pensamiento
-		if (playerInFocus instanceof AIJugador) {
-			((AIJugador) playerInFocus).run();
-		}
+		playerInFocus.executeTurn();
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
 
@@ -285,5 +280,10 @@ public class GameLogic {
 
 	public void redraw() {
 		gameFrame.repaint();	
+	}
+
+	@Override
+	public void run() {
+		startGameLoop();
 	}
 }

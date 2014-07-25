@@ -69,8 +69,6 @@ public abstract class Pieza {
 		int dy = Math.abs(destino.getY() - actualPos.getY());
 		int dist = (int) Math
 				.floor(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-		System.out.println("Pieza moving: " + Integer.toString(dx) + ":"
-				+ Integer.toString(dy) + " . d: " + Double.toString(dist));
 		if (dist > nMovimientos) {
 			return false;
 		}

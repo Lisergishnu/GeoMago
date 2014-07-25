@@ -149,13 +149,8 @@ public class GameFrame extends JFrame {
 		p.add(currentPiezaPanel);
 		p.add(Box.createVerticalGlue());
 		endTurnButton = new JButton("Terminar Turno");
-		endTurnButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				gameBoard.endTurn();
-			}
-		});
+		EndTurnAction endTurnAction = new EndTurnAction();
+		endTurnButton.addActionListener(endTurnAction);
 		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		endTurnButton.setEnabled(false);
 		p.add(endTurnButton);
@@ -180,6 +175,7 @@ public class GameFrame extends JFrame {
 		centerPanel.setViewportView(tablero); //at this point, tablero has changed
 		centerPanel.revalidate();
 		repaint();
+		(new Thread(gameBoard)).start();
 	}
 	
 	/**
@@ -216,5 +212,23 @@ public class GameFrame extends JFrame {
 
 	public void setEnabledNextTurnButton(boolean enabled) {
 		endTurnButton.setEnabled(enabled);
+	}
+	
+	public JButton getNextTurnButton() {
+		return endTurnButton;
+	}
+	
+	class EndTurnAction extends AbstractAction implements Runnable {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			(new Thread ((Runnable) this )).start();
+		}
+
+		@Override
+		public void run() {
+			gameBoard.endTurn();
+		}
+		
 	}
 }
