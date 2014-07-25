@@ -2,12 +2,15 @@ package org.poo.geomago;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 
 import javax.swing.*;
 
@@ -87,6 +90,7 @@ public class GameFrame extends JFrame {
 			playersPieceList.put(jugador.getID(), l);
 			remainingPiezasPanel.add(l);
 		}
+		remainingPiezasPanel.validate();
 	}
 	
 	/**
@@ -96,6 +100,21 @@ public class GameFrame extends JFrame {
 	public void refreshPieceRecount(int playerIndex) {
 		ArrayList<Jugador> pL = gameBoard.getPlayersList();
 		playersPieceList.get(playerIndex).setText(Integer.toString(pL.get(playerIndex-1).getPieceCount()));
+	}
+	
+	/**
+	 * Set the player specified from the parameter with his name striked out.
+	 * @param playerIndex index from the player to be marked
+	 */
+	@SuppressWarnings("unchecked")
+	public void setPlayerNameAsRemoved(int playerIndex) {
+		JLabel l = (JLabel) remainingPiezasPanel.getComponent((playerIndex-1)*2);
+		Font font = l.getFont();
+		@SuppressWarnings("rawtypes")
+		Map attrib = font.getAttributes();
+		attrib.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+		l.setFont(font.deriveFont(attrib));
+		repaint();
 	}
 
 	/**
@@ -149,13 +168,8 @@ public class GameFrame extends JFrame {
 		p.add(currentPiezaPanel);
 		p.add(Box.createVerticalGlue());
 		endTurnButton = new JButton("Terminar Turno");
-		endTurnButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				gameBoard.switchPlayer();
-			}
-		});
+		EndTurnAction endTurnAction = new EndTurnAction();
+		endTurnButton.addActionListener(endTurnAction);
 		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		endTurnButton.setEnabled(false);
 		p.add(endTurnButton);
@@ -180,6 +194,7 @@ public class GameFrame extends JFrame {
 		centerPanel.setViewportView(tablero); //at this point, tablero has changed
 		centerPanel.revalidate();
 		repaint();
+		(new Thread(gameBoard)).start();
 	}
 	
 	/**
@@ -216,5 +231,23 @@ public class GameFrame extends JFrame {
 
 	public void setEnabledNextTurnButton(boolean enabled) {
 		endTurnButton.setEnabled(enabled);
+	}
+	
+	public JButton getNextTurnButton() {
+		return endTurnButton;
+	}
+	
+	class EndTurnAction extends AbstractAction implements Runnable {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			(new Thread ((Runnable) this )).start();
+		}
+
+		@Override
+		public void run() {
+			gameBoard.endTurn();
+		}
+		
 	}
 }
