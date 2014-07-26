@@ -12,11 +12,48 @@ public class PentagonShape extends RectangularShape
 	    poly = p;
 	  }
 
-	  public PentagonShape(){
+	 /* public PentagonShape(){
 	     for (int i = 0; i < 5; i++)
 	    	 poly.addPoint((int) (100 + 50 * Math.cos(i * 2 * Math.PI / 5)),(int) (100 + 50 * Math.sin(i * 2 * Math.PI / 5)));
-	  }
+	  }*/
 	  
+	  /*
+	   * Extension of original Triangle shape code
+	   * Makes a triangle shape pointing upwards
+	   * constrained into the defined box.
+	   * 
+	   * @param x X coordinate
+	   * @param y Y coordinate
+	   * @param w Width
+	   * @param h Height
+	   * 
+	   * @author Marco Benzi
+	   */
+	  
+	  public PentagonShape(int x, int y, int w, int h) {
+		  poly = new Polygon();
+		  int w2 = (int) (w*0.14);
+		  int w3 = (int) (w*0.86);
+		  poly.addPoint(x+w/2, y);
+		  poly.addPoint(x, y+h/2);
+		  poly.addPoint(x+w, y+h/2);
+		  poly.addPoint(x+w2, y+h);
+		  poly.addPoint(x+w3, y+h);
+	  }	  
+	  
+	  public PentagonShape(double x, double y, double w, double h) {
+			this((int)x,(int)y,(int)w,(int)h);
+		}
+	  
+	  public void draw( Graphics g )
+	  {
+	    g.drawPolygon( poly );
+	  }
+
+	  public void fill( Graphics g )
+	  {
+	    g.fillPolygon( poly );
+	  }
 	  
 	  //methods implemented from interface Shape
 
