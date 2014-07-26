@@ -14,6 +14,7 @@ public class NewPlayersDialog extends JDialog {
 	private GameFrame gameFrame;
 	private JTextField[] playersNames;
 	private ArrayList<String> pNames;
+	private int returnValue;
 
 	/**
 	 * Creates a NewGameDialog with Title title, width w and height h.
@@ -37,7 +38,9 @@ public class NewPlayersDialog extends JDialog {
 		setModal(true);
 		setTitle(title);
 		setSize(160, 40*n);
+		setLocationRelativeTo(gameFrame);
 		pack();
+		
 	}
 
 	/**
@@ -51,10 +54,9 @@ public class NewPlayersDialog extends JDialog {
 		p.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
 
 		for(int i = 0; i < playersNames.length; i++){
-			playersNames[i] = new JTextField("Player" + (i+1));
-			p.add(new JLabel("Player " + (i+1) + " Name:"));
+			playersNames[i] = new JTextField("Jugador " + (i+1));
+			p.add(new JLabel("Jugador " + (i+1) + " Nombre:"));
 			p.add(playersNames[i]);
-			System.out.println("Player " + (i + 1));
 		}
 
 		return p;
@@ -80,6 +82,7 @@ public class NewPlayersDialog extends JDialog {
 					pNames.add(playersNames[i].getText());
 				}
 				setVisible(false);
+				returnValue = JOptionPane.OK_OPTION;
 			}
 		});
 		cButton.addActionListener(new ActionListener() {
@@ -88,9 +91,18 @@ public class NewPlayersDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("clicked cancel");
 				setVisible(false);
+				returnValue = JOptionPane.CANCEL_OPTION;
 			}
 		});
 		return p;
+	}
+	
+	/**
+	 * Para verificar el resultado se sirve de los valores OK_OPTION y CANCEL_OPTION
+	 * @see JOptionPane
+	 */
+	public int getRetunValue() {
+		return returnValue;
 	}
 
 	public ArrayList<String> getPlayerNames() {

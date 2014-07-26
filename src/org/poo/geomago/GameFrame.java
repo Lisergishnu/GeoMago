@@ -232,19 +232,19 @@ public class GameFrame extends JFrame {
 	private JMenuBar createGameFrameMenuBar(GameFrameMenuListener gListener) {
 		JMenuBar menuBar = new JMenuBar();
 	
-		JMenu menu = new JMenu ("Game");
+		JMenu menu = new JMenu ("Juego");
 		menuBar.add(menu);
 		
-		JMenuItem menuItem = new JMenuItem("New Game...");
+		JMenuItem menuItem = new JMenuItem("Nueva partida...");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 	
-		menuItem = new JMenuItem("Quit GeoMago");
+		menuItem = new JMenuItem("Salir de GeoMago");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 		
-		menu = new JMenu ("Help");
-		menuItem = new JMenuItem("About...");
+		menu = new JMenu ("Ayuda");
+		menuItem = new JMenuItem("Acerca...");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 		menuBar.add(menu);
