@@ -92,6 +92,7 @@ public class GameLogic implements Runnable{
 		currentPlayer = (currentPlayer < nPlayers - 1) ? currentPlayer + 1 : 0;
 		if (currentPlayer == 0) {
 			turn += 1;
+			gameFrame.setTurnNumber(turn);
 		}
 		playerInFocus = playersList.get(currentPlayer);
 		//renovar movimientos del turno

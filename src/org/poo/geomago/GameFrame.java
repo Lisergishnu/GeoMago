@@ -26,10 +26,14 @@ public class GameFrame extends JFrame {
 	private JScrollPane centerPanel;
 	private int hSeparation, vSeparation;
 	private JLabel focusedPiezaMovements;
+	private JLabel turnNumberLabel;
+	private JLabel turnPlayerLabel;
 	private JPanel currentPiezaPanel;
 	private JButton endTurnButton;
 	private JPanel remainingPiezasPanel;
 	private Hashtable<Integer,JLabel> playersPieceList;
+	private final String turnNumberCaption = "Turno Número: ";
+	private final String turnCaption = "Es el turno de ";
 	
 	{
 		hSeparation = 2;
@@ -151,6 +155,9 @@ public class GameFrame extends JFrame {
 	private JPanel createGameSidePanel() {
 		JPanel p = new JPanel(); 
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		turnPlayerLabel = new JLabel();
+		p.add(turnPlayerLabel);
+		p.add(Box.createVerticalGlue());
 		remainingPiezasPanel = new JPanel();
 		remainingPiezasPanel.setLayout(new GridLayout(2, 2));
 		remainingPiezasPanel.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
@@ -166,6 +173,10 @@ public class GameFrame extends JFrame {
 		focusedPiezaMovements.setEnabled(false);
 		currentPiezaPanel.add(focusedPiezaMovements);
 		p.add(currentPiezaPanel);
+		p.add(Box.createVerticalGlue());
+		turnNumberLabel = new JLabel();
+		turnNumberLabel.setAlignmentX(CENTER_ALIGNMENT);
+		p.add(turnNumberLabel);
 		p.add(Box.createVerticalGlue());
 		endTurnButton = new JButton("Terminar Turno");
 		EndTurnAction endTurnAction = new EndTurnAction();
@@ -253,10 +264,16 @@ public class GameFrame extends JFrame {
 	private void clean() {
 		remainingPiezasPanel.removeAll();
 		setPiezaMovements(0, 0);
+		turnNumberLabel.setText(null);
+		turnPlayerLabel.setText(null);
 		gameBoard.cleanUp();
 		gameBoard = null;
 	}
 
+	public void setTurnNumber(int turn) {
+		turnNumberLabel.setText(turnNumberCaption + Integer.toString(turn));
+	}
+	
 	//El proposito de estas clases es generar eventos que: 1.- No bloqueen la GUI y 2.- No generen recursividad en el stack
 	class EndTurnAction extends AbstractAction implements Runnable {
 
