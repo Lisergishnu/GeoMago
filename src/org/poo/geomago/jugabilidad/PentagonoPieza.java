@@ -13,24 +13,9 @@ public class PentagonoPieza extends Pieza {
 		
 		view = new PentagonoPiezaView(this);
 	}
-
+	
 	@Override
 	public void draw(Graphics2D g) {
 		view.paintComponent(g);		
 	}
-
-	/*@Override
-	public void mouseDrag(int xOnScreen, int yOnScreen) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseRelease(Celda destino) {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	
-
 }

@@ -17,7 +17,6 @@ public class PentagonShape extends RectangularShape
 	    poly = p;
 	  }
 
-
 	  /*
 	   * Extension of original Triangle shape code
 	   * Makes a pentagon shape pointing upwards
@@ -44,113 +43,113 @@ public class PentagonShape extends RectangularShape
 	  
 	  public PentagonShape(double x, double y, double w, double h) {
 			this((int)x,(int)y,(int)w,(int)h);
-		}
+	  }
 	  
 	  public void draw( Graphics g )
 	  {
-	    g.drawPolygon( poly );
+		  g.drawPolygon( poly );
 	  }
 
 	  public void fill( Graphics g )
 	  {
-	    g.fillPolygon( poly );
+		  g.fillPolygon( poly );
 	  }
 	  
 	  //methods implemented from interface Shape
 
 	  @Override
-	public Rectangle getBounds()
+	  public Rectangle getBounds()
 	  {
-	    return poly.getBounds();
+		  return poly.getBounds();
 	  }
 
 	  @Override
-	public Rectangle2D getBounds2D()
+	  public Rectangle2D getBounds2D()
 	  {
-	    return poly.getBounds2D();
+		  return poly.getBounds2D();
 	  }
 
 	  @Override
-	public boolean contains(double x, double y)
+	  public boolean contains(double x, double y)
 	  {
-	    return poly.contains(x, y);
+		  return poly.contains(x, y);
 	  }
 
 	  @Override
-	public boolean contains(Point2D p)
+	  public boolean contains(Point2D p)
 	  {
-	    return poly.contains(p);
+		  return poly.contains(p);
 	  }
 
 	  @Override
-	public boolean intersects(double x, double y, double w, double h)
+	  public boolean intersects(double x, double y, double w, double h)
 	  {
-	    return poly.intersects(x, y, w, h);
+		  return poly.intersects(x, y, w, h);
 	  }
 
 	  @Override
-	public boolean intersects(Rectangle2D r)
+	  public boolean intersects(Rectangle2D r)
 	  {
-	    return poly.intersects(r);
+		  return poly.intersects(r);
 	  }
 
 	  @Override
-	public boolean contains(double x, double y, double w, double h)
+	  public boolean contains(double x, double y, double w, double h)
 	  {
-	    return poly.contains(x, y, w, h);
+		  return poly.contains(x, y, w, h);
 	  }
 
 	  @Override
-	public boolean contains(Rectangle2D r)
+	  public boolean contains(Rectangle2D r)
 	  {
-	    return poly.intersects(r);
+		  return poly.intersects(r);
 	  }
 
 	  @Override
-	public PathIterator getPathIterator(AffineTransform at)
+	  public PathIterator getPathIterator(AffineTransform at)
 	  {
-	    return poly.getPathIterator(at);
+		  return poly.getPathIterator(at);
 	  }
 
 	  @Override
-	public PathIterator getPathIterator(AffineTransform at, double flatness)
+	  public PathIterator getPathIterator(AffineTransform at, double flatness)
 	  {
-	    return poly.getPathIterator(at, flatness);
+		  return poly.getPathIterator(at, flatness);
 	  }
 
-	@Override
-	public double getHeight() {
-		return poly.getBounds2D().getHeight();
-	}
+	  @Override
+	  public double getHeight() {
+		  return poly.getBounds2D().getHeight();
+	  }
 
-	@Override
-	public double getWidth() {
-		return poly.getBounds2D().getWidth();
-	}
+	  @Override
+	  public double getWidth() {
+		  return poly.getBounds2D().getWidth();
+	  }
+	  
+	  @Override
+	  public double getX() {
+		  return poly.getBounds2D().getX();
+	  }
 
-	@Override
-	public double getX() {
-		return poly.getBounds2D().getX();
-	}
+	  @Override
+	  public double getY() {
+		  return poly.getBounds2D().getY();
+	  }
 
-	@Override
-	public double getY() {
-		return poly.getBounds2D().getY();
-	}
+	  @Override
+	  public boolean isEmpty() {
+		  // TODO Auto-generated method stub
+		  return false;
+	  }
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setFrame(double x, double y, double w, double h) {
-		Rectangle2D r = poly.getBounds2D();
-		double mX = r.getX();
-		double mY = r.getY();
-		poly.translate((int) (x - mX), (int) (y - mY));
-	}
+	  @Override
+	  public void setFrame(double x, double y, double w, double h) {
+		  Rectangle2D r = poly.getBounds2D();
+		  double mX = r.getX();
+		  double mY = r.getY();
+		  poly.translate((int) (x - mX), (int) (y - mY));
+	  }
 
    
 }
