@@ -3,6 +3,11 @@ package org.poo.geomago.etc;
 import java.awt.*;
 import java.awt.geom.*;
 
+/**
+ * Class to represent a Pentagon.
+ * Implementing the java.awt.Shape inteface.
+ */
+
 public class PentagonShape extends RectangularShape
 {
 	  private Polygon poly;
@@ -17,7 +22,7 @@ public class PentagonShape extends RectangularShape
 	    	 poly.addPoint((int) (100 + 50 * Math.cos(i * 2 * Math.PI / 5)),(int) (100 + 50 * Math.sin(i * 2 * Math.PI / 5)));
 	  }*/
 	  
-	  /*
+	  /**
 	   * Extension of original Triangle shape code
 	   * Makes a triangle shape pointing upwards
 	   * constrained into the defined box.
@@ -34,11 +39,11 @@ public class PentagonShape extends RectangularShape
 		  poly = new Polygon();
 		  int w2 = (int) (w*0.14);
 		  int w3 = (int) (w*0.86);
-		  poly.addPoint(x+w/2, y);
-		  poly.addPoint(x, y+h/2);
-		  poly.addPoint(x+w, y+h/2);
-		  poly.addPoint(x+w2, y+h);
-		  poly.addPoint(x+w3, y+h);
+		  poly.addPoint(x+w/2, y);//punto superior
+		  poly.addPoint(x, y+h/2);//punto intermedio izquierdo
+		  poly.addPoint(x+w, y+h/2);//punto intermedio derecho
+		  poly.addPoint(x+w2, y+h);//punto inferior izquierdo
+		  poly.addPoint(x+w3, y+h);//punto inferior derecho
 	  }	  
 	  
 	  public PentagonShape(double x, double y, double w, double h) {

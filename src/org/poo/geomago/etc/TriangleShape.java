@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 
-/*
+/**
  * Class to represent a Triangle.
  * Implementing the java.awt.Shape inteface.
  */

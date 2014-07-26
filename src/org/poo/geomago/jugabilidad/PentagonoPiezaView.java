@@ -5,6 +5,11 @@ import org.poo.geomago.etc.PentagonShape;
 
 public class PentagonoPiezaView extends PiezaView {
 	
+	/**
+	 * Paints the pentagon
+	 * @param pieza
+	 */
+	
 	public PentagonoPiezaView(PentagonoPieza pieza) {
 		this.pieza = pieza;	
 		shape = new PentagonShape(pieza.getX()*CeldaView.CELDA_WIDTH + CeldaView.CELDA_WIDTH*.05, 

@@ -4,6 +4,11 @@ import org.poo.geomago.celda.CeldaView;
 import org.poo.geomago.etc.TriangleShape;
 
 public class TrianguloPiezaView extends PiezaView {
+	
+	/**
+	 * Paints the triangle
+	 * @param pieza
+	 */
 
 	public TrianguloPiezaView(TrianguloPieza pieza) {
 		this.pieza = pieza;	
