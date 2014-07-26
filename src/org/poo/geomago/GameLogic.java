@@ -52,11 +52,16 @@ public class GameLogic implements Runnable{
 		
 		Random rnd = new Random();
 		
+		boolean blocked;
 		for (int i = 0; i < widthCells; i++) {
 			for (int j = 0; j < heightCells; j++) {
 				//TODO: La generacion debe ser inteligente, para que no hayan tantos espacios bloqueados ni
 				//		caminos sin salida
-				this.tableroState[i][j] = new Celda(this, i, j, (rnd.nextBoolean()) ? CeldaState.NORMAL : CeldaState.DISABLED);
+				if(rnd.nextDouble()<0.31)
+					blocked = false;
+				else
+					blocked = true;
+				this.tableroState[i][j] = new Celda(this, i, j, (blocked) ? CeldaState.NORMAL : CeldaState.DISABLED);
 			}			
 		}
 		
