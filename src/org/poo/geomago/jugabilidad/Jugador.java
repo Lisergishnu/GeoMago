@@ -15,12 +15,12 @@ import org.poo.geomago.GameLogic;
 public class Jugador {
 	private static int ID = 0;
 	
-	private ArrayList<Pieza> mPiezaList;
-	private String mName;
-	private boolean isPlayerActive;
-	private int mID;
-	private GameLogic logic;
-	private Color mColor;
+	protected ArrayList<Pieza> mPiezaList;
+	protected String mName;
+	protected  boolean isPlayerActive;
+	protected  int mID;
+	protected  GameLogic logic;
+	protected Color mColor;
 	
 	public Jugador(String name, GameLogic logic) {
 		this.logic = logic;
@@ -64,6 +64,11 @@ public class Jugador {
 		if (p != null && getPiezas().contains(p)) {
 			p.remove();
 			getPiezas().remove(p);
+			logic.getGameFrame().refreshPieceRecount(mID);
+			if (getPiezas().size() == 0) {
+				//Game over man, game over
+				logic.removePlayerFromGame(this);
+			}
 		} else {
 			System.err.println("Tried to remove piece not from the player");
 		}		
@@ -83,5 +88,27 @@ public class Jugador {
 	
 	public Color getPlayerColor() {
 		return mColor;
+	}
+
+	/**
+	 * Called when the board is being removed. (Game ended)
+	 */
+	public void endGame() {
+		ID--; //Resets ID to 0 since this is called the same amount of time ID has incremented
+	}
+
+	public String getName() {
+		return mName;
+	}
+
+	public int getPieceCount() {
+		return mPiezaList.size();
+	}
+	/**
+	 * Must be overriden in AI players 
+	 * @return Whether the player is human or not
+	 */
+	public boolean isHuman() {
+		return true;
 	}
 }

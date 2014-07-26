@@ -9,11 +9,11 @@ import java.awt.*;
 import java.awt.geom.*;
 
 
-/*
+/**
  * Class to represent a Triangle.
  * Implementing the java.awt.Shape inteface.
  */
-public class TriangleShape implements Shape
+public class TriangleShape extends RectangularShape
 {
   private Polygon poly;
 
@@ -65,54 +65,98 @@ public void draw( Graphics g )
 
   //methods implemented from interface Shape
 
-  public Rectangle getBounds()
+  @Override
+public Rectangle getBounds()
   {
     return poly.getBounds();
   }
 
-  public Rectangle2D getBounds2D()
+  @Override
+public Rectangle2D getBounds2D()
   {
     return poly.getBounds2D();
   }
 
-  public boolean contains(double x, double y)
+  @Override
+public boolean contains(double x, double y)
   {
     return poly.contains(x, y);
   }
 
-  public boolean contains(Point2D p)
+  @Override
+public boolean contains(Point2D p)
   {
     return poly.contains(p);
   }
 
-  public boolean intersects(double x, double y, double w, double h)
+  @Override
+public boolean intersects(double x, double y, double w, double h)
   {
     return poly.intersects(x, y, w, h);
   }
 
-  public boolean intersects(Rectangle2D r)
+  @Override
+public boolean intersects(Rectangle2D r)
   {
     return poly.intersects(r);
   }
 
-  public boolean contains(double x, double y, double w, double h)
+  @Override
+public boolean contains(double x, double y, double w, double h)
   {
     return poly.contains(x, y, w, h);
   }
 
-  public boolean contains(Rectangle2D r)
+  @Override
+public boolean contains(Rectangle2D r)
   {
     return poly.intersects(r);
   }
 
-  public PathIterator getPathIterator(AffineTransform at)
+  @Override
+public PathIterator getPathIterator(AffineTransform at)
   {
     return poly.getPathIterator(at);
   }
 
-  public PathIterator getPathIterator(AffineTransform at, double flatness)
+  @Override
+public PathIterator getPathIterator(AffineTransform at, double flatness)
   {
     return poly.getPathIterator(at, flatness);
   }
+
+@Override
+public double getHeight() {
+	return poly.getBounds2D().getHeight();
+}
+
+@Override
+public double getWidth() {
+	return poly.getBounds2D().getWidth();
+}
+
+@Override
+public double getX() {
+	return poly.getBounds2D().getX();
+}
+
+@Override
+public double getY() {
+	return poly.getBounds2D().getY();
+}
+
+@Override
+public boolean isEmpty() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public void setFrame(double x, double y, double w, double h) {
+	Rectangle2D r = poly.getBounds2D();
+	double mX = r.getX();
+	double mY = r.getY();
+	poly.translate((int) (x - mX), (int) (y - mY));
+}
 
 }
