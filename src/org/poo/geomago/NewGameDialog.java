@@ -143,7 +143,7 @@ public class NewGameDialog extends JDialog {
 			panel.add(lblHorizontal, gbc_lblHorizontal);
 		}
 		{
-			mWidthSpinner = new JSpinner(new SpinnerNumberModel(20, 10, 40, 1));
+			mWidthSpinner = new JSpinner(new SpinnerNumberModel(10, 10, 40, 1));
 			GridBagConstraints gbc_spinner = new GridBagConstraints();
 			gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
 			gbc_spinner.anchor = GridBagConstraints.EAST;
@@ -162,7 +162,7 @@ public class NewGameDialog extends JDialog {
 			panel.add(lblVertical, gbc_lblVertical);
 		}
 		{
-			mHeightSpinner = new JSpinner(new SpinnerNumberModel(20, 10, 40, 1));
+			mHeightSpinner = new JSpinner(new SpinnerNumberModel(10, 10, 40, 1));
 			GridBagConstraints gbc_spinner = new GridBagConstraints();
 			gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
 			gbc_spinner.insets = new Insets(0, 0, 0, 5);
