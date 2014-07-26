@@ -90,7 +90,7 @@ public class AIJugador extends Jugador {
 				if (target == null && c.isWalkable()) {
 					target = c;
 				}
-				if (pT != null && pT.playerOwner != (Jugador) this) {
+				if (pT != null && pT.playerOwner != this) {
 					//CAPTURE!
 					target = c;
 					break;

@@ -1,7 +1,6 @@
 package org.poo.geomago;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Random;
 
 import org.poo.geomago.celda.Celda;

@@ -9,15 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import org.poo.geomago.jugabilidad.CirculoPieza;
 import org.poo.geomago.jugabilidad.Jugador;
-import org.poo.geomago.jugabilidad.Pieza;
-import org.poo.geomago.jugabilidad.TrianguloPieza;
-
-import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
-
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.Hashtable;
 import java.util.Map;
@@ -38,7 +31,7 @@ public class GameFrame extends JFrame {
 	private JButton endTurnButton;
 	private JPanel remainingPiezasPanel;
 	private Hashtable<Integer,JLabel> playersPieceList;
-	private final String turnNumberCaption = "Turno Número: ";
+	private final String turnNumberCaption = "Turno NÃºmero: ";
 	private final String turnCaption = "Es el turno de ";
 	
 	{
@@ -266,7 +259,7 @@ public class GameFrame extends JFrame {
 	
 	public void showGameOverDialog(String winner) {
 		int n = JOptionPane.showConfirmDialog(this,
-				"¡Juego terminado!, ganó " + winner + " ¿Desea jugar de nuevo?",
+				"Â¡Juego terminado!, ganÃ³ " + winner + " Â¿Desea jugar de nuevo?",
 				"Juego Terminado",
 				JOptionPane.YES_NO_OPTION); 
 		if (n == JOptionPane.YES_OPTION) {
@@ -300,7 +293,7 @@ public class GameFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			(new Thread ((Runnable) this )).start();
+			(new Thread (this )).start();
 		}
 
 		@Override
@@ -314,7 +307,7 @@ public class GameFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			(new Thread ((Runnable) this )).start();
+			(new Thread (this )).start();
 		}
 
 		@Override

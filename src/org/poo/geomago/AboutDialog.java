@@ -1,10 +1,8 @@
 package org.poo.geomago;
 
-import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 
 /**
  * About Dialog for further information about the game
@@ -53,7 +51,7 @@ public class AboutDialog extends JDialog{
 				JLabel about = new JLabel();
 				about.setText("<html><h1><strong>GeoMago v1.0</strong></h1>"+
 						"<strong>Autores:</strong><br/><ul>"+
-						"<li>Andrés Ulloa</li><li>Marco Benzi</li><li>René Pozo</li>"+
+						"<li>Andrï¿½s Ulloa</li><li>Marco Benzi</li><li>Renï¿½ Pozo</li>"+
 						"</ul><h3>(c) 2014. GNU v2</h3></html>");
 				a.add(about);
 			}

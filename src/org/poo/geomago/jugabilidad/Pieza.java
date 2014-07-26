@@ -1,9 +1,6 @@
 package org.poo.geomago.jugabilidad;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-
-import org.poo.geomago.GameLogic;
 import org.poo.geomago.celda.Celda;
 
 public abstract class Pieza {
