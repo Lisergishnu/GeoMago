@@ -63,7 +63,7 @@ public class GameLogic implements Runnable{
 		//Considerar que cada jugador va a tener unas 10 piezas
 		//5 circulos, 3 triangulos, 2 pentagonos
 		
-		Jugador jugadorTest = new Jugador("Asdf",this);
+		Jugador jugadorTest = new AIJugador(this);
 		Jugador jugadorTest2 = new AIJugador(this);
 		preparePlayer(jugadorTest);		
 		preparePlayer(jugadorTest2);
@@ -274,11 +274,12 @@ public class GameLogic implements Runnable{
 	 */
 	public void endTurn() {
 		playerInFocus.endTurn();
-		if (playersList.size() > 1) {
+		if (isGameRunning) {
 			switchPlayer();
 		} else {
 			System.out.println("Juego Terminado. Ganador: " + playersList.get(0).getName());
 			gameFrame.setEnabledNextTurnButton(false);
+			gameFrame.showGameOverDialog(playersList.get(0).getName());
 		}
 	}
 
@@ -293,7 +294,11 @@ public class GameLogic implements Runnable{
 
 	public void removePlayerFromGame(Jugador jugador) {
 		gameFrame.setPlayerNameAsRemoved(jugador.getID());
+		jugador.endGame();
 		playersList.remove(jugador);
 		nPlayers -= 1;
+		if (nPlayers == 1) {
+			isGameRunning = false;
+		}
 	}
 }

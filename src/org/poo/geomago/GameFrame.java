@@ -237,6 +237,27 @@ public class GameFrame extends JFrame {
 		return endTurnButton;
 	}
 	
+	public void showGameOverDialog(String winner) {
+		int n = JOptionPane.showConfirmDialog(this,
+				"¡Juego terminado!, ganó " + winner + ". ¿Desea jugar de nuevo?",
+				"Juego Terminado",
+				JOptionPane.YES_NO_OPTION); 
+		if (n == JOptionPane.YES_OPTION) {
+			(new Thread(new NewGameDialogAction())).start();
+			clean();
+		}
+	}
+	/**
+	 * Cleans the GUI from the previous game and deletes the reference to the logic from that game
+	 */
+	private void clean() {
+		remainingPiezasPanel.removeAll();
+		setPiezaMovements(0, 0);
+		gameBoard.cleanUp();
+		gameBoard = null;
+	}
+
+	//El proposito de estas clases es generar eventos que: 1.- No bloqueen la GUI y 2.- No generen recursividad en el stack
 	class EndTurnAction extends AbstractAction implements Runnable {
 
 		@Override
@@ -250,4 +271,20 @@ public class GameFrame extends JFrame {
 		}
 		
 	}
+	
+	class NewGameDialogAction extends AbstractAction implements Runnable {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			(new Thread ((Runnable) this )).start();
+		}
+
+		@Override
+		public void run() {
+			//Simular click
+			((JMenuItem) getJMenuBar().getMenu(0).getSubElements()[0].getSubElements()[0]).doClick();
+		}
+		
+	}
+
 }
