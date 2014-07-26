@@ -55,7 +55,7 @@ public class NewPlayersDialog extends JDialog {
 
 		for(int i = 0; i < playersNames.length; i++){
 			playersNames[i] = new JTextField("Jugador " + (i+1));
-			p.add(new JLabel("Jugador " + (i+1) + " Nombre:"));
+			p.add(new JLabel("Nombre jugador #" + (i+1)));
 			p.add(playersNames[i]);
 		}
 
@@ -70,7 +70,7 @@ public class NewPlayersDialog extends JDialog {
 		p.add(Box.createHorizontalGlue());
 
 		JButton okButton = new JButton("Ok");
-		JButton cButton = new JButton("Cancel");
+		JButton cButton = new JButton("Cancelar");
 
 		p.add(okButton);
 		p.add(cButton);
@@ -89,7 +89,6 @@ public class NewPlayersDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("clicked cancel");
 				setVisible(false);
 				returnValue = JOptionPane.CANCEL_OPTION;
 			}

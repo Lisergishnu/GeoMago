@@ -135,7 +135,7 @@ public class NewGameDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				NewPlayersDialog n = new NewPlayersDialog("Nombres Humanos",getDesiredNumberOfHumanPlayers(),
+				NewPlayersDialog n = new NewPlayersDialog("Nombres jugadores humanos",getDesiredNumberOfHumanPlayers(),
 						gameFrame);
 				setVisible(false);
 				n.setVisible(true);

@@ -44,7 +44,7 @@ public class GameFrameMenuListener implements ActionListener {
 			}
 		}
 		if(mText.equals("Acerca...")) {
-			AboutDialog about = new AboutDialog("About", 300, 200, 10, gameFrame);
+			AboutDialog about = new AboutDialog("Acerca", 300, 200, 10, gameFrame);
 			about.setVisible(true);
 		}
 	}
