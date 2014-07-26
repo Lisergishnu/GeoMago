@@ -50,7 +50,7 @@ public class NewGameDialog extends JDialog {
 		gbl_panel.rowWeights = new double[]{1.0};
 		panel.setLayout(gbl_panel);
 		{
-			JLabel lblNewLabel = new JLabel("NÃºmero de Jugadores:");
+			JLabel lblNewLabel = new JLabel("Número de Jugadores:");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -126,7 +126,7 @@ public class NewGameDialog extends JDialog {
 	 */
 	private JPanel getTableroSizePanel() {
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "TamaÃ±o del Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null, "Tamaño del Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] {115, 70};
 		gbl_panel.rowHeights = new int[] {28, 0};

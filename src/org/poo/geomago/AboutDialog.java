@@ -44,7 +44,7 @@ public class AboutDialog extends JDialog{
 	private JPanel getAboutPanel() {
 		JPanel a = new JPanel();
 		
-		setSize(350,250);
+		setSize(350,275);
 		
 		a.setLayout(new BoxLayout(a,BoxLayout.X_AXIS));
 		a.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
@@ -53,7 +53,7 @@ public class AboutDialog extends JDialog{
 				JLabel about = new JLabel();
 				about.setText("<html><h1><strong>GeoMago v1.0</strong></h1>"+
 						"<strong>Autores:</strong><br/><ul>"+
-						"<li>AndrÃ©s Ulloa</li><li>Marco Benzi</li><li>RenÃ© Pozo</li>"+
+						"<li>Andrés Ulloa</li><li>Marco Benzi</li><li>René Pozo</li>"+
 						"</ul><h3>(c) 2014. GNU v2</h3></html>");
 				a.add(about);
 			}

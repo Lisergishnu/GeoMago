@@ -32,7 +32,7 @@ public class GameFrame extends JFrame {
 	private JButton endTurnButton;
 	private JPanel remainingPiezasPanel;
 	private Hashtable<Integer,JLabel> playersPieceList;
-	private final String turnNumberCaption = "Turno NÃºmero: ";
+	private final String turnNumberCaption = "Turno Número: ";
 	private final String turnCaption = "Es el turno de ";
 	
 	{
@@ -256,7 +256,7 @@ public class GameFrame extends JFrame {
 	
 	public void showGameOverDialog(String winner) {
 		int n = JOptionPane.showConfirmDialog(this,
-				"Â¡Juego terminado!, ganÃ³ " + winner + ". Â¿Desea jugar de nuevo?",
+				"¡Juego terminado!, ganó " + winner + " ¿Desea jugar de nuevo?",
 				"Juego Terminado",
 				JOptionPane.YES_NO_OPTION); 
 		if (n == JOptionPane.YES_OPTION) {
