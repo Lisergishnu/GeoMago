@@ -8,12 +8,21 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import org.poo.geomago.jugabilidad.Jugador;
 
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+
 import java.awt.event.ActionEvent;
 import java.awt.font.TextAttribute;
+import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -35,7 +44,7 @@ public class GameFrame extends JFrame {
 	private Hashtable<Integer,JLabel> playersPieceList;
 	private final String turnNumberCaption = "Turno Número: ";
 	private final String turnCaption = "Es el turno de ";
-	
+	private File pieceMoveSound;
 	{
 		hSeparation = 2;
 		vSeparation = hSeparation;
@@ -51,6 +60,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(String title, int w, int h, int p){
 		super(title);
 		createGUIPanels();
+		loadSoundClips();
 		initWindow();
 		pack();
 		setLocationRelativeTo(null);
@@ -60,6 +70,11 @@ public class GameFrame extends JFrame {
 		//initGameBoard(w, h, p);
 	}
 	
+	private void loadSoundClips() {
+		//Esto no carga los archivos per se, solo los ubica
+		pieceMoveSound = new File("assets/pieceMove.wav");
+	}
+
 	/**
 	 * Default Constructor
 	 */
@@ -290,6 +305,28 @@ public class GameFrame extends JFrame {
 		turnPlayerLabel.setText("<html> <b>" + turnCaption + "<br/>" + j.getName() + "</b></html>"); 
 	}
 	
+	public void playMovePieceClip() {
+		(new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					Clip c = AudioSystem.getClip();
+					AudioInputStream pieceMoveSoundStream = AudioSystem.getAudioInputStream(pieceMoveSound);
+					c.open(pieceMoveSoundStream);
+					c.setFramePosition(0);
+					c.start();
+					while(c.isRunning());
+					c.flush();
+					c.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		})).start();
+	}
+	
 	//El proposito de estas clases es generar eventos que: 1.- No bloqueen la GUI y 2.- No generen recursividad en el stack
 	class EndTurnAction extends AbstractAction implements Runnable {
 
@@ -319,5 +356,4 @@ public class GameFrame extends JFrame {
 		}
 		
 	}
-
 }

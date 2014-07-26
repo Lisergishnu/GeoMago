@@ -111,4 +111,8 @@ public class Jugador {
 	public boolean isHuman() {
 		return true;
 	}
+
+	public GameLogic getGameLogic() {
+		return logic;
+	}
 }

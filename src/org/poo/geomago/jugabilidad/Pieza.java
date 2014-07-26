@@ -46,6 +46,8 @@ public abstract class Pieza {
 		x = actualPos.getX();
 		y = actualPos.getY();
 		nMovimientos = nMovimientos - dist; // no deberia pasarse a negativo
+		//Tocar sonido
+		playerOwner.getGameLogic().getGameFrame().playMovePieceClip();
 		return true;
 	}
 	/**
