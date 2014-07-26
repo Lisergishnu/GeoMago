@@ -5,16 +5,22 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Map;
 
 import javax.swing.*;
 
+import org.poo.geomago.jugabilidad.CirculoPieza;
 import org.poo.geomago.jugabilidad.Jugador;
+import org.poo.geomago.jugabilidad.Pieza;
+import org.poo.geomago.jugabilidad.TrianguloPieza;
+
+import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Main Frame of the Game 
@@ -63,7 +69,7 @@ public class GameFrame extends JFrame {
 	 * Default Constructor
 	 */
 	public GameFrame() {
-		this("Geomago Main Frame", 15, 15, 2);
+		this("Geomago", 15, 15, 2);
 	}
 
 	/**
@@ -75,11 +81,15 @@ public class GameFrame extends JFrame {
 	 * Assigns the tableroView to the gameBoardView and sets its layout
 	 * to GridLayout
 	 */
-	private void initGameBoard(int w, int h, int p) {
+
+	private void initGameBoard(int w, int h, int p, ArrayList<String> names) {
+
+
 		if (gameBoard != null) {
 			gameBoard.cleanUp();
 		}
-		gameBoard = new GameLogic(this, w,h,p);	
+		gameBoard = new GameLogic(this, w,h,p , names);	
+	
 		tablero = gameBoard.getTableroView();
 		remainingPiezasPanel.setEnabled(true);
 		currentPiezaPanel.setEnabled(true);
@@ -206,8 +216,8 @@ public class GameFrame extends JFrame {
 	 * @param h
 	 * @param p
 	 */
-	public void newBoard(int w, int h, int p){
-		initGameBoard(w, h, p);
+	public void newBoard(int w, int h, int p, ArrayList<String> names){
+		initGameBoard(w, h, p, names);
 		centerPanel.setViewportView(tablero); //at this point, tablero has changed
 		centerPanel.revalidate();
 		repaint();
@@ -222,19 +232,19 @@ public class GameFrame extends JFrame {
 	private JMenuBar createGameFrameMenuBar(GameFrameMenuListener gListener) {
 		JMenuBar menuBar = new JMenuBar();
 	
-		JMenu menu = new JMenu ("Game");
+		JMenu menu = new JMenu ("Juego");
 		menuBar.add(menu);
 		
-		JMenuItem menuItem = new JMenuItem("New Game...");
+		JMenuItem menuItem = new JMenuItem("Nueva partida...");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 	
-		menuItem = new JMenuItem("Quit GeoMago");
+		menuItem = new JMenuItem("Salir de GeoMago");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 		
-		menu = new JMenu ("Help");
-		menuItem = new JMenuItem("About...");
+		menu = new JMenu ("Ayuda");
+		menuItem = new JMenuItem("Acerca...");
 		menuItem.addActionListener(gListener);
 		menu.add(menuItem);
 		menuBar.add(menu);

@@ -22,7 +22,7 @@ public class TriangleShape extends RectangularShape
     poly = p;
   }
   
-  /*
+  /**
    * Extension of original Triangle shape code
    * Makes a triangle shape pointing upwards
    * constrained into the defined box.

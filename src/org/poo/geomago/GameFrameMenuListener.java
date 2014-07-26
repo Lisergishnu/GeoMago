@@ -27,22 +27,24 @@ public class GameFrameMenuListener implements ActionListener {
 		JMenuItem menuItem = (JMenuItem)(e.getSource());
 		String mText = menuItem.getText();
 		GameLogic gameBoard = gameFrame.getCurrentGame();
-		if(mText.equals("New Game...")) {
+		if(mText.equals("Nueva partida...")) {
 			if(gameBoard != null) {
-				int i = okcancel(gameFrame, "There is a game in progress, Want to end it?");
+				int i = okcancel(gameFrame, "Hay un juego en progreso. ¿Desea terminarlo y hacer uno nuevo?");
 				if (i != 0)
 					return;
 			}
-			NewGameDialog n = new NewGameDialog("New Game", 300, 200, 10, gameFrame);
+			NewGameDialog n = new NewGameDialog("Nueva partida", 300, 250, 10, gameFrame);
 			n.setVisible(true);
 		}
-		if(mText.equals("Quit GeoMago")) {
-			int i = okcancel(gameFrame, "Quit GeoMago?");
-			if(i == 0)
-				System.exit(0);
+		if(mText.equals("Salir de GeoMago")) {
+			if (gameBoard != null) {
+				int i = okcancel(gameFrame, "¿Seguro que quiere salir?");
+				if(i == 0)
+					System.exit(0);
+			}
 		}
-		if(mText.equals("About...")) {
-			AboutDialog about = new AboutDialog("About", 300, 200, 10, gameFrame);
+		if(mText.equals("Acerca...")) {
+			AboutDialog about = new AboutDialog("Acerca", 300, 200, 10, gameFrame);
 			about.setVisible(true);
 		}
 	}
@@ -50,7 +52,7 @@ public class GameFrameMenuListener implements ActionListener {
 
 	private int okcancel(Component parent, String theMessage) {
 		int result = JOptionPane.showConfirmDialog(parent, theMessage,
-			"Confirm", JOptionPane.OK_CANCEL_OPTION);
+				"Confirmar", JOptionPane.OK_CANCEL_OPTION);
 		return result;
 	}
 }

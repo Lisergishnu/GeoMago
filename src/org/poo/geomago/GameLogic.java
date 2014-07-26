@@ -41,17 +41,19 @@ public class GameLogic implements Runnable{
 	 * @param widthCells 	number of horizontal cells
 	 * @param heightCells	number of vertical cells
 	 * @param nPlayers		number of players
+	 * @param pNames	ArrayList with the names of the players. Its size is the numbers of human players
 	 */
-	public GameLogic(GameFrame gameFrame, int widthCells, int heightCells, int nPlayers) {
+
+	public GameLogic(GameFrame gameFrame, int widthCells, int heightCells, int nPlayers, ArrayList<String> pNames) {
 		this.gameFrame = gameFrame;
 		this.widthCells = widthCells;
 		this.heightCells = heightCells;
 		this.nPlayers = nPlayers;
 		this.isGameRunning = false;
 		this.tableroState = new Celda[widthCells][heightCells];
-		
+
 		Random rnd = new Random();
-		
+
 		boolean blocked;
 		for (int i = 0; i < widthCells; i++) {
 			for (int j = 0; j < heightCells; j++) {
@@ -64,24 +66,29 @@ public class GameLogic implements Runnable{
 				this.tableroState[i][j] = new Celda(this, i, j, (blocked) ? CeldaState.NORMAL : CeldaState.DISABLED);
 			}			
 		}
-		
-		//TODO: Crear jugadores y sus respectivas piezas
+
+
+		//Crear jugadores y sus respectivas piezas
+		//Se asume que el numero de nombres en pNames es el numero de jugadores humanos y que siempre <= nPlayers
 		//Considerar que cada jugador va a tener unas 10 piezas
 		//5 circulos, 3 triangulos, 2 pentagonos
-		
-		Jugador jugadorTest = new AIJugador(this);
-		Jugador jugadorTest2 = new AIJugador(this);
-		preparePlayer(jugadorTest);		
-		preparePlayer(jugadorTest2);
-		
 		playersList = new ArrayList<Jugador>();
-		playersList.add(jugadorTest);
-		playersList.add(jugadorTest2);
-		
+
+		for (String string : pNames) {
+			Jugador j = new Jugador(string, this);
+			preparePlayer(j);
+			playersList.add(j);
+		}
+		while (playersList.size() != nPlayers) {
+			//Completar con AI
+			Jugador j = new AIJugador(this);
+			preparePlayer(j);
+			playersList.add(j);
+		}
 		tableroView = new TableroView(this);
-		
+
 	}
-	
+
 	public void startGameLoop() {
 		isGameRunning = true;
 		//Traer al primer jugador
@@ -106,7 +113,7 @@ public class GameLogic implements Runnable{
 		for (Pieza pieza : playerInFocus.getPiezas()) {
 			pieza.gainMovement();
 		}
-		
+
 		playerInFocus.executeTurn();
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
@@ -144,7 +151,7 @@ public class GameLogic implements Runnable{
 			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][2]));
 			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][3]));
 			break;
-		//TODO: Agregar los otros dos jugadores
+			//TODO: Agregar los otros dos jugadores
 		default:
 			break;
 		}
@@ -154,7 +161,6 @@ public class GameLogic implements Runnable{
 		}
 		j.setPiezas(piezasParaJugador);		
 	}
-
 	/**
 	 * 
 	 * @return number of horizontal cells
@@ -194,7 +200,7 @@ public class GameLogic implements Runnable{
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
-	
+
 	/**
 	 * Get tablero view instance
 	 * @return tableroView
@@ -202,7 +208,7 @@ public class GameLogic implements Runnable{
 	public TableroView getTableroView() {
 		return tableroView;
 	}
-	
+
 	/**
 	 * @see Celda
 	 * @return Celda[][] Status of each board cells
@@ -222,7 +228,7 @@ public class GameLogic implements Runnable{
 	public void focusPieza(Pieza currentPieza) {
 		focusedPieza = currentPieza; 
 		updatePiezaGUI();
-	
+
 	}
 
 	/*
@@ -276,7 +282,7 @@ public class GameLogic implements Runnable{
 	public boolean isGameRunning() {
 		return isGameRunning;
 	}
-	
+
 	public GameFrame getGameFrame() {
 		return gameFrame;
 	}
