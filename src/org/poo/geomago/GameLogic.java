@@ -95,6 +95,7 @@ public class GameLogic implements Runnable{
 			gameFrame.setTurnNumber(turn);
 		}
 		playerInFocus = playersList.get(currentPlayer);
+		gameFrame.setCurrentPlayerName(playerInFocus);
 		//renovar movimientos del turno
 		for (Pieza pieza : playerInFocus.getPiezas()) {
 			pieza.gainMovement();

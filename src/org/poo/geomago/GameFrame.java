@@ -121,6 +121,13 @@ public class GameFrame extends JFrame {
 		repaint();
 	}
 
+	public void setPiezaMovements(int current, int max) {
+		if (current == max && current == 0)
+			focusedPiezaMovements.setText("- / -");
+		else
+			focusedPiezaMovements.setText(current + " / " + max);
+	}
+
 	/**
 	 * Inits GameFrame With BorderLayout as Layout, and assigns the JPanels
 	 */
@@ -155,7 +162,10 @@ public class GameFrame extends JFrame {
 	private JPanel createGameSidePanel() {
 		JPanel p = new JPanel(); 
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		turnPlayerLabel = new JLabel();
+		p.add(Box.createVerticalGlue());
+		turnPlayerLabel = new JLabel("", SwingConstants.CENTER);
+		turnPlayerLabel.setAlignmentX(CENTER_ALIGNMENT);
+		turnPlayerLabel.setAlignmentY(CENTER_ALIGNMENT);
 		p.add(turnPlayerLabel);
 		p.add(Box.createVerticalGlue());
 		remainingPiezasPanel = new JPanel();
@@ -174,8 +184,11 @@ public class GameFrame extends JFrame {
 		currentPiezaPanel.add(focusedPiezaMovements);
 		p.add(currentPiezaPanel);
 		p.add(Box.createVerticalGlue());
+		p.add(Box.createVerticalGlue());
+		p.add(Box.createVerticalGlue());
 		turnNumberLabel = new JLabel();
 		turnNumberLabel.setAlignmentX(CENTER_ALIGNMENT);
+		turnNumberLabel.setAlignmentY(CENTER_ALIGNMENT);
 		p.add(turnNumberLabel);
 		p.add(Box.createVerticalGlue());
 		endTurnButton = new JButton("Terminar Turno");
@@ -187,13 +200,6 @@ public class GameFrame extends JFrame {
 		return p;
 	}
 
-	public void setPiezaMovements(int current, int max) {
-		if (current == max && current == 0)
-			focusedPiezaMovements.setText("- / -");
-		else
-			focusedPiezaMovements.setText(current + " / " + max);
-	}
-	
 	/**
 	 * Create a new gameBoard
 	 * @param w
@@ -272,6 +278,11 @@ public class GameFrame extends JFrame {
 
 	public void setTurnNumber(int turn) {
 		turnNumberLabel.setText(turnNumberCaption + Integer.toString(turn));
+	}
+	
+	public void setCurrentPlayerName(Jugador j) {
+		turnPlayerLabel.setForeground(j.getPlayerColor());
+		turnPlayerLabel.setText("<html> <b>" + turnCaption + "<br/>" + j.getName() + "</b></html>"); 
 	}
 	
 	//El proposito de estas clases es generar eventos que: 1.- No bloqueen la GUI y 2.- No generen recursividad en el stack
