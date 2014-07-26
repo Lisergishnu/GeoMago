@@ -111,7 +111,7 @@ public class GameLogic implements Runnable{
 	private void preparePlayer(Jugador j) {
 		int id = j.getID();
 		piezasParaJugador = new ArrayList<Pieza>();
-		//TODO: Agregar los 2 pentagonos
+		//Agregar los 2 pentagonos
 		//Agregar los 3 triangulos
 		//Agregar los 4 circulos
 		switch (id) {
