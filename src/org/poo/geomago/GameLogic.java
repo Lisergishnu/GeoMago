@@ -11,6 +11,7 @@ import org.poo.geomago.jugabilidad.CirculoPieza;
 import org.poo.geomago.jugabilidad.Jugador;
 import org.poo.geomago.jugabilidad.Pieza;
 import org.poo.geomago.jugabilidad.TrianguloPieza;
+import org.poo.geomago.jugabilidad.PentagonoPieza;
 
 /**
  * Game Board, action takes place here.
@@ -115,6 +116,8 @@ public class GameLogic implements Runnable{
 		//Agregar los 4 circulos
 		switch (id) {
 		case 1:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][0]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][1]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][0]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][1]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][2]));
@@ -124,6 +127,8 @@ public class GameLogic implements Runnable{
 			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][3]));
 			break;
 		case 2:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][0]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][1]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][0]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][1]));
 			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][2]));
