@@ -64,7 +64,7 @@ public class Jugador {
 		if (p != null && getPiezas().contains(p)) {
 			p.remove();
 			getPiezas().remove(p);
-			logic.getGameFrame().refreshPieceRecount(mID);
+			logic.getGameFrame().refreshPieceRecount(this);
 			if (getPiezas().size() == 0) {
 				//Game over man, game over
 				logic.removePlayerFromGame(this);

@@ -3,6 +3,7 @@ package org.poo.geomago;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import org.poo.geomago.jugabilidad.Jugador;
+
 import java.awt.event.ActionEvent;
 import java.awt.font.TextAttribute;
 import java.util.Hashtable;
@@ -91,6 +93,7 @@ public class GameFrame extends JFrame {
 		//Add players captions
 		ArrayList<Jugador> pL = gameBoard.getPlayersList();
 		playersPieceList = new Hashtable<Integer,JLabel>();
+		remainingPiezasPanel.setLayout(new GridLayout(pL.size(),2));
 		for (Jugador jugador : pL) {
 			remainingPiezasPanel.add(new JLabel(jugador.getName()));
 			JLabel l = new JLabel(Integer.toString(jugador.getPieceCount()));
@@ -102,11 +105,11 @@ public class GameFrame extends JFrame {
 	
 	/**
 	 * Updates the text label with the count of remaining pieces in the board for the player specified.
-	 * @param playerIndex ID of player whose label will be refreshed
+	 * @param player player whose label will be refreshed
 	 */
-	public void refreshPieceRecount(int playerIndex) {
-		ArrayList<Jugador> pL = gameBoard.getPlayersList();
-		playersPieceList.get(playerIndex).setText(Integer.toString(pL.get(playerIndex-1).getPieceCount()));
+	public void refreshPieceRecount(Jugador player) {
+		int playerIndex = player.getID();
+		playersPieceList.get(playerIndex).setText(Integer.toString(player.getPieceCount()));
 	}
 	
 	/**
@@ -172,7 +175,6 @@ public class GameFrame extends JFrame {
 		p.add(turnPlayerLabel);
 		p.add(Box.createVerticalGlue());
 		remainingPiezasPanel = new JPanel();
-		remainingPiezasPanel.setLayout(new GridLayout(2, 2));
 		remainingPiezasPanel.setBorder(BorderFactory.createTitledBorder("Piezas restantes"));
 		remainingPiezasPanel.setEnabled(false);
 		p.add(remainingPiezasPanel);

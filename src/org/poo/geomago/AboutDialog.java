@@ -51,7 +51,7 @@ public class AboutDialog extends JDialog{
 				JLabel about = new JLabel();
 				about.setText("<html><h1><strong>GeoMago v1.0</strong></h1>"+
 						"<strong>Autores:</strong><br/><ul>"+
-						"<li>Andr�s Ulloa</li><li>Marco Benzi</li><li>Ren� Pozo</li>"+
+						"<li>Andrés Ulloa</li><li>Marco Benzi</li><li>René Pozo</li>"+
 						"</ul><h3>(c) 2014. GNU v2</h3></html>");
 				a.add(about);
 			}

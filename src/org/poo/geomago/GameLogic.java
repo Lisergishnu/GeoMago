@@ -150,7 +150,28 @@ public class GameLogic implements Runnable{
 			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][2]));
 			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][3]));
 			break;
-			//TODO: Agregar los otros dos jugadores
+		case 3:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][heightCells - 1]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][heightCells - 1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][heightCells - 1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][heightCells - 2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][heightCells - 4]));
+			break;
+		case 4:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][heightCells - 1]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][heightCells - 1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][heightCells - 1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][heightCells - 2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][heightCells - 4]));
+			break;
 		default:
 			break;
 		}
