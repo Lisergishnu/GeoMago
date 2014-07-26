@@ -12,14 +12,10 @@ import javax.swing.border.TitledBorder;
 public class NewGameDialog extends JDialog {
 	private int b;
 	private GameFrame gameFrame;
-<<<<<<< HEAD
-	private JSpinner s1, s2, s3;
-	private JDialog self;
-=======
 	private JSpinner mHeightSpinner;
 	private JSpinner mWidthSpinner;
 	private JSpinner mNPlayersSpinner;
->>>>>>> master
+
 	/**
 	 * Creates a New Game modal dialog.
 	 * Has a BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
@@ -32,29 +28,17 @@ public class NewGameDialog extends JDialog {
 	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
 		super(gameFrame);
 		this.gameFrame = gameFrame;
-<<<<<<< HEAD
-		self = this;
-=======
 		setTitle(title);
 		setSize(w,h);
 		setLocationRelativeTo(gameFrame);
 		setModal(true);
->>>>>>> master
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		b = border;
 		add(getNumberPlayersPanel());
 		add(Box.createVerticalGlue());
 		add(getTableroSizePanel());
-		add(getPlayersPane());
 		add(Box.createVerticalGlue());
 		add(getReturnPanel());
-<<<<<<< HEAD
-		setTitle(title);
-		setSize(w,h);
-		pack();
-		setLocationRelativeTo(null);
-=======
->>>>>>> master
 	}
 		
 	private JPanel getNumberPlayersPanel() {
@@ -87,27 +71,7 @@ public class NewGameDialog extends JDialog {
 		return panel;
 	}
 
-	/**
-	 * New Board Container BoxLayout
-	 * @return JPanel Container
-	 * @see BoxLayout
-	 */
-	private JPanel getPlayersPane() {
-		JPanel p = new JPanel();
-		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
-		p.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
-		
-		JLabel l = new JLabel("Players:");
-		l.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(l);
-		s3 = new JSpinner(new SpinnerNumberModel(1, 1, 4, 1));
-		s3.setMaximumSize(new Dimension(40, 20));
-		s3.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(s3);
-		
-		return p;
-	}
-	
+
 	private JPanel getReturnPanel() {
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
@@ -115,11 +79,7 @@ public class NewGameDialog extends JDialog {
 		p.add(Box.createHorizontalGlue());
 		p.add(Box.createHorizontalGlue());
 		
-<<<<<<< HEAD
 		JButton okButton = new JButton("Ok");
-=======
-		JButton okButton = new JButton("OK");
->>>>>>> master
 		JButton cButton = new JButton("Cancel");
 		
 		p.add(okButton);
@@ -129,16 +89,13 @@ public class NewGameDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-<<<<<<< HEAD
-            	System.out.println("clicked ok");
-=======
             	//TODO: Abrir otro dialogo que permita poner nombres a jugadores humanos?
-            	gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), getDesiredNumberOfPlayers());
->>>>>>> master
             	setVisible(false);
-    			NewPlayersDialog n = new NewPlayersDialog("Players Names", (int)s3.getValue(),
-    					gameFrame, (int)s1.getValue(), (int)s2.getValue(), self);
+    			NewPlayersDialog n = new NewPlayersDialog("Players Names", (Integer)mNPlayersSpinner.getValue(),
+    					gameFrame);
     			n.setVisible(true);
+    			gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), getDesiredNumberOfPlayers(),
+    					n.getPlayerNames());
             }
         });
         cButton.addActionListener(new ActionListener() {
@@ -157,30 +114,6 @@ public class NewGameDialog extends JDialog {
 	 * @see SpinnerNumberModel
 	 */
 	private JPanel getTableroSizePanel() {
-<<<<<<< HEAD
-		JPanel p = new JPanel();
-		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		p.setBorder(BorderFactory.createTitledBorder("Board Size"));
-		p.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
-		
-		JLabel l = new JLabel("Width:");
-		l.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(l);
-		s1 = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
-		s1.setMaximumSize(new Dimension(40, 20));
-		s1.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(s1);
-		
-		l = new JLabel("Height:");
-		l.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(l);
-		s2 = new JSpinner(new SpinnerNumberModel(20, 15, 30, 1));
-		s2.setMaximumSize(new Dimension(40, 20));
-		s2.setAlignmentX(Component.CENTER_ALIGNMENT);
-		p.add(s2);
-		
-		return p;
-=======
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Tamaño del Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -236,7 +169,6 @@ public class NewGameDialog extends JDialog {
 	
 	public int getDesiredTableroHeight() {
 		return (Integer) mHeightSpinner.getValue();
->>>>>>> master
 	}
 
 	public int getDesiredNumberOfPlayers() {

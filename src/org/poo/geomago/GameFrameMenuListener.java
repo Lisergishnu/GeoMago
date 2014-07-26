@@ -28,16 +28,12 @@ public class GameFrameMenuListener implements ActionListener {
 		String mText = menuItem.getText();
 		GameLogic gameBoard = gameFrame.getCurrentGame();
 		if(mText.equals("New Game...")) {
-<<<<<<< HEAD
-			NewGameDialog n = new NewGameDialog("New Game", 160, 230, 10, gameFrame);
-=======
 			if(gameBoard != null) {
 				int i = okcancel(gameFrame, "There is a game in progress, Want to end it?");
 				if (i != 0)
 					return;
 			}
 			NewGameDialog n = new NewGameDialog("New Game", 300, 200, 10, gameFrame);
->>>>>>> master
 			n.setVisible(true);
 		}
 		if(mText.equals("Quit GeoMago")) {
