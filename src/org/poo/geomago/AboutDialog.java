@@ -44,23 +44,18 @@ public class AboutDialog extends JDialog{
 	private JPanel getAboutPanel() {
 		JPanel a = new JPanel();
 		
-		setSize(350,400);
+		setSize(350,250);
 		
 		a.setLayout(new BoxLayout(a,BoxLayout.X_AXIS));
 		a.setBorder(BorderFactory.createEmptyBorder(b,b,b,b));
 		{
-			// aquí se pone el JTextArea dentro de un JScrollPane
-			// para que tenga barras de desplazamiento
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 11, 424, 146);
-			a.add(scrollPane);
 			{
-				JTextArea about = new JTextArea();
-				about.setText("Este juego fue creado bajo los estandares GNU y por lo tanto de código abierto."
-						+ "\n\n Creadores: \n\tAndres Ulloa \n\tMarco Benzi \n\tRene Pozo");
-				about.setLineWrap(true);
-				about.setAutoscrolls(true);
-				scrollPane.setViewportView(about);
+				JLabel about = new JLabel();
+				about.setText("<html><h1><strong>GeoMago v1.0</strong></h1>"+
+						"<strong>Autores:</strong><br/><ul>"+
+						"<li>AndrÃ©s Ulloa</li><li>Marco Benzi</li><li>RenÃ© Pozo</li>"+
+						"</ul><h3>(c) 2014. GNU v2</h3></html>");
+				a.add(about);
 			}
 		}
 		return a;
