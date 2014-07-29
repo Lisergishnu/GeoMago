@@ -1,9 +1,49 @@
 ﻿GeoMago
 =======
 
+Índice
+------------
+1. Introducción
+	1. Concepto
+	2. Reglas del juego
+2. Análisis
+    1. Solución
+	2. Casos de uso
+3. Arquitectura
+    1. Gráficos de clases
+	2. Gráficos de secuencia
+4. Dificultades
+5. Prueba de uso
+6. Instrucciones de uso
+    1. Compilación y ejecución
+	2. Comenzar un nuevo juego
+7. Otros
+
 Introducción
 ------------
 ##### En búsqueda de satisfacer nuestro tiempo libre o de ocio en alguna actividad fue que creamos un nuevo juego de mesa llamado GeoMago. Este juego se inspira en el ajedrez pero agregando nuevas reglas y dificultades dandole un toque original. El juego requiere un mínimo de 2 jugadores y pueden jugar hasta 4 personas. Cada jugador parte con 10 piezas, cada una con su característica especial que lo define, y debe eliminar las piezas de los contrincantes "comiendolas" con las suyas. Gana el último jugador con piezas restantes.
+
+###### Reglas del juego:
+- **Objetivo**: Eliminar las piezas del contricante.
+- Cantidad de jugadores: 2 a 4.
+- Piezas:
+	- Cada jugador posee 10 piezas inciales:
+		- 2 pentagonos.
+		- 3 triangulos.
+		- 5 circulos.
+	- Cada pieza tiene un máximo de movimientos segun lados que tenga:
+		- Circulo: 1 movimiento.
+		- Triangulo: 3 movimientos.
+		- Pentagono: 5 movimientos.
+	- Las piezas recuperan 1 movimiento consumido cada turno.
+	- Una pieza es eliminada del juego cuando una pieza contricante ocupa su espacio (cuando una pieza "come" a otra).
+- Turnos:
+	- Un turno para cada jugador en cada ronda.
+	- El turno finaliza cuando el jugador lo desee o al no tener más movimientos disponibles en sus piezas.
+- Tablero:
+	- Celdas blancas son de libre acceso.
+	- Celdas negras son inaccesibles por las piezas (obstáculos).
+- **Fin del juego**: Finaliza al haber un solo jugador restante con piezas.
 
 Análisis
 ------------
@@ -81,6 +121,35 @@ A continuación se presentan los 3 casos de uso planteados en el análisis anter
 	
 - **Oberservar juego**:
 	![alt text](enlace)
+
+Instrucciones de uso
+------------
+#### El programa se ejecuta desde la terminal mediante un makefile, a continuación se presentan los distintos comandos implementados en el makefile:
+
+- Para compilar:
+
+		$ make jar
+	
+- Para limpiar el directorio:
+
+		$ make clean
+	
+- Para ejecutar una vez que esta compilado:
+
+		$ make run
+	
+- Para crear documentación del código:
+
+		$make doc
+	
+#### Una vez ejecutado el juego hay que realizar los siguientes pasos para iniciar una partida.
+
+1. Ir al menú "Juego" en la esquina superior izquierda de la ventana.
+2. Seleccionar la opcion "Nueva Partida...".
+3. Escoger la cantidad de jugadores en la partida (mínimo 2, máximo 4 jugadores).
+4. Escoger cuantos jugadores humanos habran.
+5. Definir tamaño del tablero en cantidad de celdas.
+6. Seleccionar boton "Ok".
 	
 Otros
 ------------
