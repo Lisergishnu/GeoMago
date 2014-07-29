@@ -274,6 +274,17 @@ public class GameFrame extends JFrame {
 		return endTurnButton;
 	}
 	
+	public void showTieGameDialog() {
+		int n = JOptionPane.showConfirmDialog(this,
+				"¡Juego empatado! ¿Desea jugar de nuevo?",
+				"Juego Terminado",
+				JOptionPane.YES_NO_OPTION); 
+		if (n == JOptionPane.YES_OPTION) {
+			(new Thread(new NewGameDialogAction())).start();
+			clean();
+		}
+	}
+	
 	public void showGameOverDialog(String winner) {
 		int n = JOptionPane.showConfirmDialog(this,
 				"¡Juego terminado!, ganó " + winner + " ¿Desea jugar de nuevo?",

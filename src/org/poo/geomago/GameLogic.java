@@ -105,6 +105,12 @@ public class GameLogic implements Runnable{
 		if (currentPlayer == 0) {
 			turn += 1;
 			gameFrame.setTurnNumber(turn);
+			if (turn > 50) {
+				//El juego se empata a los 50 turnos
+				gameFrame.showTieGameDialog();
+				isGameRunning = false;
+				return;
+			}
 		}
 		playerInFocus = playersList.get(currentPlayer);
 		gameFrame.setCurrentPlayerName(playerInFocus);
