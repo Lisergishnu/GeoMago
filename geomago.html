@@ -1,0 +1,85 @@
+﻿<h1 id="geomago">GeoMago</h1>
+<h2 id="introducci-n">Introducción</h2>
+<h5 id="en-b-squeda-de-satisfacer-nuestro-tiempo-libre-o-de-ocio-en-alguna-actividad-fue-que-creamos-un-nuevo-juego-de-mesa-llamado-geomago-este-juego-se-inspira-en-el-ajedrez-pero-agregando-nuevas-reglas-y-dificultades-dandole-un-toque-original-el-juego-requiere-un-m-nimo-de-2-jugadores-y-pueden-jugar-hasta-4-personas-cada-jugador-parte-con-10-piezas-cada-una-con-su-caracter-stica-especial-que-lo-define-y-debe-eliminar-las-piezas-de-los-contrincantes-comiendolas-con-las-suyas-gana-el-ltimo-jugador-con-piezas-restantes-">En búsqueda de satisfacer nuestro tiempo libre o de ocio en alguna actividad fue que creamos un nuevo juego de mesa llamado GeoMago. Este juego se inspira en el ajedrez pero agregando nuevas reglas y dificultades dandole un toque original. El juego requiere un mínimo de 2 jugadores y pueden jugar hasta 4 personas. Cada jugador parte con 10 piezas, cada una con su característica especial que lo define, y debe eliminar las piezas de los contrincantes "comiendolas" con las suyas. Gana el último jugador con piezas restantes.</h5>
+<h2 id="an-lisis">Análisis</h2>
+<h3 id="nuestra-soluci-n-se-basa-principalmente-en-4-tipos-de-objetos-">Nuestra solución se basa principalmente en 4 tipos de objetos:</h3>
+<ul>
+<li><strong>Ventana principal</strong>: Se preocupa de unir todos los elementos del juego.</li>
+<li><strong>Logica del juego</strong>: Motor del juego.</li>
+<li><strong>Piezas</strong>: Se definen las habilidades de cada pieza y como interactuan.</li>
+<li><strong>Tablero</strong>: Define las características de cuadro del tablero como también de su tamaño.
+Por supuesto que cada una de estos tipos contiene uno más objetos para el funcionamiento del juego.
+La combinación de estos elementos es lo que permite el funcionamiento del juego, en donde el único elemento externo al sistema es el o los jugadores humanos que deseen jugar. En caso de haber un solo jugador humano, esta disponible la modalidad de jugar contra el computador ya que se implemento una unidad de IA en el juego.
+Por como se define el juego hay distintas formas de "usarlo" dependiendo de la cantidad de jugadores.</li>
+</ul>
+<h3 id="a-continuaci-n-se-presentan-los-casos-usuales-de-2-jugadores-">A continuación se presentan los casos usuales de 2 jugadores:</h3>
+<ul>
+<li><strong>Desafiar IA</strong>  <ul>
+<li><strong>Propósito</strong>: Vencer la inteligencia artificial del juego.  </li>
+<li><strong>Actores</strong>: Jugador humano y jugador IA.  </li>
+<li><strong>Pre-Condiciones</strong>: Ejecutar el juego.  </li>
+<li><strong>Evento</strong>: Nuevo juego con 2 jugadores, uno jugador humano.  </li>
+<li><strong>Pos-Condiciones</strong>: Finaliza el juego.  </li>
+<li><strong>Tipo</strong>: Manual, un turno por jugador.  </li>
+</ul>
+</li>
+<li><strong>Desafiar otro jugador</strong>  <ul>
+<li><strong>Propósito</strong>: Vencer a otra jugador humano.  </li>
+<li><strong>Actores</strong>: Dos jugadores humanos.  </li>
+<li><strong>Pre-Condiciones</strong>: Ejecutar el juego.  </li>
+<li><strong>Evento</strong>: Nuevo juego con 2 jugadores humanos.  </li>
+<li><strong>Pos-Condiciones</strong>: Finaliza el juego.  </li>
+<li><strong>Tipo</strong>: Manual, un turno por jugador.  </li>
+</ul>
+</li>
+<li><strong>Oberservar juego</strong>  <ul>
+<li><strong>Propósito</strong>: Recreativo, conocer la mecánica del juego.  </li>
+<li><strong>Actores</strong>: Dos jugadores IA.  </li>
+<li><strong>Pre-Condiciones</strong>: Ejecutar el juego.  </li>
+<li><strong>Evento</strong>: Nuevo juego con 2 jugadores IA.  </li>
+<li><strong>Pos-Condiciones</strong>: Finaliza el juego.  </li>
+<li><strong>Tipo</strong>: Automático, un turno por jugador.  </li>
+</ul>
+</li>
+</ul>
+<p>Los tres modos tienen su atractivo para ser empleados. El primero en caso de uno encontrarse solo y querer comprobar las habilades de uno con el computador, el segundo en caso de querer desafiar algun amigo y el tercero simplemente con el fin de distraerse y ver como se lleva acabo un "partido".</p>
+<h2 id="arquitectura">Arquitectura</h2>
+<h3 id="a-continuaci-n-se-presentan-distintos-gr-ficos-uml-que-presentan-la-interacci-n-enter-las-distintas-clases-que-componen-el-juego-de-manera-que-se-entienda-su-estructura-e-implementaci-n-">A continuación se presentan distintos gráficos UML que presentan la interacción enter las distintas clases que componen el juego de manera que se entienda su estructura e implementación.</h3>
+<ul>
+<li><p><strong>UML General</strong><br><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png" alt="alt text"></p>
+</li>
+<li><p><strong>UML General 2</strong><br><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.png" alt="alt text"></p>
+</li>
+<li><p><strong>UML Relaciones Celdas</strong><br><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png" alt="alt text"></p>
+</li>
+<li><p><strong>UML Relaciones entre piezas</strong><br><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png" alt="alt text"></p>
+</li>
+</ul>
+<h3 id="a-continuaci-n-se-presentan-distintos-uml-de-secuencia-para-enteder-el-funcionamiento-del-juego-">A continuación se presentan distintos UML de secuencia para enteder el funcionamiento del juego.</h3>
+<p>(insertar imagenes) </p>
+<h2 id="dificultades">Dificultades</h2>
+<p>Durante el desarrollo del proyecto se presentaron algunas dificultades, a continuación se listan algunas de ellas:</p>
+<ul>
+<li><strong>Desarrollo de una IA</strong></li>
+<li><strong>Dibujar las distintas piezas</strong>: Era necesario definir poligonos no previamente establecidos.</li>
+<li><strong>Motor del juego</strong>: Lograr un motor que ejecutara de manera correcta el juego evitando "bugs".</li>
+</ul>
+<h2 id="pruebas-de-uso">Pruebas de uso</h2>
+<p>A continuación se presentan los 3 casos de uso planteados en el análisis anterior:</p>
+<ul>
+<li><p><strong>Desafiar IA</strong>: 
+  <img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_IA.PNG" alt="alt text"></p>
+</li>
+<li><p><strong>Desafiar otro jugador</strong>:
+  <img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_player.PNG" alt="alt text"></p>
+</li>
+<li><p><strong>Oberservar juego</strong>:
+  <img src="enlace" alt="alt text"></p>
+</li>
+</ul>
+<h2 id="otros">Otros</h2>
+<ul>
+<li>Enlace a directorio del proyecto: (insertar enlace directorio en html)  </li>
+<li>Enlace a proyecto en GitHub:
+<a href="https://github.com/Lisergishnu/GeoMago">GeoMago</a>.</li>
+</ul>

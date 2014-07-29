@@ -46,10 +46,22 @@ Arquitectura
 ------------
 ### A continuación se presentan distintos gráficos UML que presentan la interacción enter las distintas clases que componen el juego de manera que se entienda su estructura e implementación.
 
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png)  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png)  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png)  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.PNG)  
+- **UML General**  
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png)
+
+- **UML General 2**  
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.png)
+
+- **UML Relaciones Celdas**  
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png)
+
+- **UML Relaciones entre piezas**  
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png)
+
+
+### A continuación se presentan distintos UML de secuencia para enteder el funcionamiento del juego.
+
+(insertar imagenes) 
 
 Dificultades
 ------------
@@ -63,12 +75,15 @@ Pruebas de uso
 A continuación se presentan los 3 casos de uso planteados en el análisis anterior:
 - **Desafiar IA**: 
 	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_IA.PNG)
+	
 - **Desafiar otro jugador**:
 	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_player.PNG)
+	
 - **Oberservar juego**:
 	![alt text](enlace)
 	
 Otros
 ------------
-Enlace a proyecto en GitHub:
+- Enlace a directorio del proyecto: (insertar enlace directorio en html)  
+- Enlace a proyecto en GitHub:
 [GeoMago](https://github.com/Lisergishnu/GeoMago).
