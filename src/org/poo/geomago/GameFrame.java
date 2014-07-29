@@ -316,7 +316,6 @@ public class GameFrame extends JFrame {
 					c.open(pieceMoveSoundStream);
 					c.setFramePosition(0);
 					c.start();
-					while(c.isRunning());
 					c.flush();
 					c.close();
 				} catch (Exception e) {
