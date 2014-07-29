@@ -2,6 +2,7 @@ package org.poo.geomago;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -104,7 +105,7 @@ public class NewGameDialog extends JDialog {
 			panel.add(lblNewLabel, gbc_lblNewLabel);
 		}
 		{
-			mHumanSpinnerModel = new SpinnerNumberModel(1, 1, (Comparable) mNPlayersSpinner.getValue(), 1);
+			mHumanSpinnerModel = new SpinnerNumberModel(1, 0, (Comparable) mNPlayersSpinner.getValue(), 1);
 			mHumanPlayersSpinner = new JSpinner(mHumanSpinnerModel);
 			GridBagConstraints gbc_spinner = new GridBagConstraints();
 			gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
@@ -135,15 +136,21 @@ public class NewGameDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				NewPlayersDialog n = new NewPlayersDialog("Nombres jugadores humanos",getDesiredNumberOfHumanPlayers(),
-						gameFrame);
-				setVisible(false);
-				n.setVisible(true);
-				if (n.getRetunValue() == JOptionPane.OK_OPTION) {
-					gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), getDesiredNumberOfPlayers(),
-							n.getPlayerNames());
+				if (getDesiredNumberOfHumanPlayers() != 0) {
+					NewPlayersDialog n = new NewPlayersDialog("Nombres jugadores humanos",getDesiredNumberOfHumanPlayers(),
+							gameFrame);
+					setVisible(false);
+					n.setVisible(true);
+					if (n.getRetunValue() == JOptionPane.OK_OPTION) {
+						gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), getDesiredNumberOfPlayers(),
+								n.getPlayerNames());
+					} else {
+						setVisible(true);
+					}
 				} else {
-					setVisible(true);
+					setVisible(false);
+					gameFrame.newBoard(getDesiredTableroWidth(), getDesiredTableroHeight(), getDesiredNumberOfPlayers(),
+							new ArrayList<String>());
 				}
 			}
 		});
