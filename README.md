@@ -13,11 +13,12 @@
     1. Gráficos de clases
 	2. Gráficos de secuencia
 4. Dificultades
-5. Prueba de uso
-6. Instrucciones de uso
+5. Bugs conocidos
+6. Prueba de uso
+7. Instrucciones de uso
     1. Compilación y ejecución
 	2. Comenzar un nuevo juego
-7. Otros
+8. Otros
 
 Introducción
 ------------
@@ -122,7 +123,7 @@ Durante el desarrollo del proyecto se presentaron algunas dificultades, a contin
 Bugs conocidos
 --------------
 - Actualmente el JAR generado por el Makefile no reproduce sonido. Si se importa el proyecto en Eclipse y se construye ahi se pueden escuchar los movimientos de las piezas.
-
+- Existe un bug que permite controlar la AI con el mouse. Es muy difícil de reproducir por lo que creemos que se eliminó después de arreglar otro bug asociado a la reproducción de sonido.
 
 Pruebas de uso
 ------------
@@ -142,8 +143,12 @@ Instrucciones de uso
 
 - Para compilar:
 
+		$ make
+
+	o alternativamente,
+
 		$ make jar
-	
+
 - Para limpiar el directorio:
 
 		$ make clean
