@@ -16,5 +16,8 @@ jar:
 clean:
 	rm -rf bin/
 	rm -rf $(NAME).jar
+	rm -rf docs/
 run:
 	java -jar $(NAME).jar
+doc:
+	javadoc -d docs/ -sourcepath src/ -encoding utf8 -subpackages org

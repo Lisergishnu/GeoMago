@@ -138,9 +138,9 @@ Instrucciones de uso
 
 		$ make run
 	
-- Para crear documentación del código:
+- Para crear documentación del código (Parte en inglés, parte en español):
 
-		$make doc
+		$ make doc
 	
 #### Una vez ejecutado el juego hay que realizar los siguientes pasos para iniciar una partida.
 
