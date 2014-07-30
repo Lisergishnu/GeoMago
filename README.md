@@ -94,21 +94,21 @@ Arquitectura
 A continuación se presentan distintos gráficos UML que muestran la interacción entre las distintas clases que componen el juego de manera que se entienda su estructura e implementación.
 
 - **UML General**  
-![alt text](img/General.png)
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/General.png)
 
 - **UML General 2**  
-![alt text](img/prueba.png)
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/prueba.png)
 
 - **UML Relaciones Celdas**  
-![alt text](img/RelacionesCeldas.png)
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/RelacionesCeldas.png)
 
 - **UML Relaciones entre piezas**  
-![alt text](img/RelacionesPiezas.png)
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/RelacionesPiezas.png)
 
 
 A continuación se presenta el diagrama de secuencia que usa la AI para cambiar de turno:
 
-![alt text](img/cambioTurnoAI.png)
+![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/cambioTurnoAI.png)
 
 
 Dificultades
@@ -128,13 +128,13 @@ Pruebas de uso
 ------------
 A continuación se presentan los 3 casos de uso planteados en el análisis anterior:
 - **Desafiar IA**: 
-	![alt text](img/player_vs_IA.PNG)
+	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/player_vs_IA.PNG)
 	
 - **Desafiar otro jugador**:
-	![alt text](img/player_vs_player.PNG)
+	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/player_vs_player.PNG)
 	
 - **Observar juego**:
-	![alt text](img/AI_vs_AI.png)
+	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/html/img/AI_vs_AI.png)
 
 Instrucciones de uso
 ------------
