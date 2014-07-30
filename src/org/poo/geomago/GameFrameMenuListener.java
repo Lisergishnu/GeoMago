@@ -14,6 +14,12 @@ public class GameFrameMenuListener implements ActionListener {
 
 	private GameFrame gameFrame;
 
+	private int okcancel(Component parent, String theMessage) {
+		int result = JOptionPane.showConfirmDialog(parent, theMessage,
+				"Confirmar", JOptionPane.OK_CANCEL_OPTION);
+		return result;
+	}
+
 	/**
 	 * Constructor
 	 * @param gameBoard	
@@ -47,12 +53,5 @@ public class GameFrameMenuListener implements ActionListener {
 			AboutDialog about = new AboutDialog("Acerca", 300, 200, 10, gameFrame);
 			about.setVisible(true);
 		}
-	}
-
-
-	private int okcancel(Component parent, String theMessage) {
-		int result = JOptionPane.showConfirmDialog(parent, theMessage,
-				"Confirmar", JOptionPane.OK_CANCEL_OPTION);
-		return result;
 	}
 }

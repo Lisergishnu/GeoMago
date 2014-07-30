@@ -21,32 +21,6 @@ public class NewGameDialog extends JDialog {
 	private JSpinner mHumanPlayersSpinner;
 	private SpinnerNumberModel mHumanSpinnerModel;
 
-	/**
-	 * Creates a New Game modal dialog.
-	 * Has a BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
-	 * @param title JDialog title
-	 * @param w JDialog width
-	 * @param h JDialog height
-	 * @param border Borders for Panels
-	 * @see JDialog
-	 */
-	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
-		super(gameFrame);
-		this.gameFrame = gameFrame;
-		setTitle(title);
-		setSize(w,h);
-		setLocationRelativeTo(gameFrame);
-		setModal(true);
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		b = border;
-		add(getNumberPlayersPanel());
-		add(getNumberHumanPlayersPanel());
-		add(Box.createVerticalGlue());
-		add(getTableroSizePanel());
-		add(Box.createVerticalGlue());
-		add(getReturnPanel());
-	}
-
 	private JPanel getNumberPlayersPanel() {
 		JPanel panel = new JPanel();
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -218,6 +192,32 @@ public class NewGameDialog extends JDialog {
 			panel.add(mHeightSpinner, gbc_spinner);
 		}
 		return panel;
+	}
+
+	/**
+	 * Creates a New Game modal dialog.
+	 * Has a BoxLayout, has Player number input, Board Size input, OK Button and Cancel Button.
+	 * @param title JDialog title
+	 * @param w JDialog width
+	 * @param h JDialog height
+	 * @param border Borders for Panels
+	 * @see JDialog
+	 */
+	public NewGameDialog(String title, int w, int h, int border, GameFrame gameFrame) {
+		super(gameFrame);
+		this.gameFrame = gameFrame;
+		setTitle(title);
+		setSize(w,h);
+		setLocationRelativeTo(gameFrame);
+		setModal(true);
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		b = border;
+		add(getNumberPlayersPanel());
+		add(getNumberHumanPlayersPanel());
+		add(Box.createVerticalGlue());
+		add(getTableroSizePanel());
+		add(Box.createVerticalGlue());
+		add(getReturnPanel());
 	}
 
 	public int getDesiredTableroWidth() {

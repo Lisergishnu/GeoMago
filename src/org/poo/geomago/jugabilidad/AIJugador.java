@@ -16,22 +16,6 @@ import org.poo.geomago.celda.Celda;
 public class AIJugador extends Jugador {
 
 	private int mDifficulty;
-	public AIJugador(GameLogic logic) {
-		super("AI Player ", logic);
-		mName += Integer.toString(mID);
-		//Dificulty expresses as the number of iterations per piece.
-		mDifficulty = 2;
-	}
-	
-	@Override
-	public void executeTurn() {
-		logic.getGameFrame().getNextTurnButton().setEnabled(false);
-		processTurn();
-		//Emulate the end of Turn
-		logic.getGameFrame().getNextTurnButton().setEnabled(true);
-		logic.getGameFrame().getNextTurnButton().doClick();
-	}
-	
 	private void processTurn() {
 		System.out.println("Procesando turno AI...");
 		for (Pieza p : mPiezaList) {
@@ -109,6 +93,22 @@ public class AIJugador extends Jugador {
 			}
 			logic.redraw();
 		}
+	}
+
+	public AIJugador(GameLogic logic) {
+		super("AI Player ", logic);
+		mName += Integer.toString(mID);
+		//Dificulty expresses as the number of iterations per piece.
+		mDifficulty = 2;
+	}
+	
+	@Override
+	public void executeTurn() {
+		logic.getGameFrame().getNextTurnButton().setEnabled(false);
+		processTurn();
+		//Emulate the end of Turn
+		logic.getGameFrame().getNextTurnButton().setEnabled(true);
+		logic.getGameFrame().getNextTurnButton().doClick();
 	}
 	
 	@Override

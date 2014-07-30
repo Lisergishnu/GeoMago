@@ -44,36 +44,9 @@ public class GameFrame extends JFrame {
 		vSeparation = hSeparation;
 	}
 	
-	/**
-	 * Main GameFrame
-	 * @param title frame title
-	 * @param w	board width
-	 * @param h board height
-	 * @param p number of players
-	 */
-	public GameFrame(String title, int w, int h, int p){
-		super(title);
-		createGUIPanels();
-		loadSoundClips();
-		initWindow();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(true);
-		//initGameBoard(w, h, p);
-	}
-	
 	private void loadSoundClips() {
 		//Esto no carga los archivos per se, solo los ubica
 		pieceMoveSound = new File("assets/pieceMove.wav");
-	}
-
-	/**
-	 * Default Constructor
-	 */
-	public GameFrame() {
-		this("Geomago", 15, 15, 2);
 	}
 
 	/**
@@ -112,37 +85,6 @@ public class GameFrame extends JFrame {
 		remainingPiezasPanel.validate();
 	}
 	
-	/**
-	 * Updates the text label with the count of remaining pieces in the board for the player specified.
-	 * @param player player whose label will be refreshed
-	 */
-	public void refreshPieceRecount(Jugador player) {
-		int playerIndex = player.getID();
-		playersPieceList.get(playerIndex).setText(Integer.toString(player.getPieceCount()));
-	}
-	
-	/**
-	 * Set the player specified from the parameter with his name striked out.
-	 * @param playerIndex index from the player to be marked
-	 */
-	@SuppressWarnings("unchecked")
-	public void setPlayerNameAsRemoved(int playerIndex) {
-		JLabel l = (JLabel) remainingPiezasPanel.getComponent((playerIndex-1)*2);
-		Font font = l.getFont();
-		@SuppressWarnings("rawtypes")
-		Map attrib = font.getAttributes();
-		attrib.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-		l.setFont(font.deriveFont(attrib));
-		repaint();
-	}
-
-	public void setPiezaMovements(int current, int max) {
-		if (current == max && current == 0)
-			focusedPiezaMovements.setText("- / -");
-		else
-			focusedPiezaMovements.setText(current + " / " + max);
-	}
-
 	/**
 	 * Inits GameFrame With BorderLayout as Layout, and assigns the JPanels
 	 */
@@ -215,19 +157,17 @@ public class GameFrame extends JFrame {
 	}
 
 	/**
-	 * Create a new gameBoard
-	 * @param w
-	 * @param h
-	 * @param p
+	 * Cleans the GUI from the previous game and deletes the reference to the logic from that game
 	 */
-	public void newBoard(int w, int h, int p, ArrayList<String> names){
-		initGameBoard(w, h, p, names);
-		centerPanel.setViewportView(tablero); //at this point, tablero has changed
-		centerPanel.revalidate();
-		repaint();
-		(new Thread(gameBoard)).start();
+	private void clean() {
+		remainingPiezasPanel.removeAll();
+		setPiezaMovements(0, 0);
+		turnNumberLabel.setText(null);
+		turnPlayerLabel.setText(null);
+		gameBoard.cleanUp();
+		gameBoard = null;
 	}
-	
+
 	/**
 	 * Creates menu bar for main game Frame
 	 * @param gListener
@@ -254,6 +194,78 @@ public class GameFrame extends JFrame {
 		menuBar.add(menu);
 		
 		return menuBar;
+	}
+
+	/**
+	 * Main GameFrame
+	 * @param title frame title
+	 * @param w	board width
+	 * @param h board height
+	 * @param p number of players
+	 */
+	public GameFrame(String title, int w, int h, int p){
+		super(title);
+		createGUIPanels();
+		loadSoundClips();
+		initWindow();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(true);
+		//initGameBoard(w, h, p);
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public GameFrame() {
+		this("Geomago", 15, 15, 2);
+	}
+
+	/**
+	 * Updates the text label with the count of remaining pieces in the board for the player specified.
+	 * @param player player whose label will be refreshed
+	 */
+	public void refreshPieceRecount(Jugador player) {
+		int playerIndex = player.getID();
+		playersPieceList.get(playerIndex).setText(Integer.toString(player.getPieceCount()));
+	}
+
+	/**
+	 * Set the player specified from the parameter with his name striked out.
+	 * @param playerIndex index from the player to be marked
+	 */
+	@SuppressWarnings("unchecked")
+	public void setPlayerNameAsRemoved(int playerIndex) {
+		JLabel l = (JLabel) remainingPiezasPanel.getComponent((playerIndex-1)*2);
+		Font font = l.getFont();
+		@SuppressWarnings("rawtypes")
+		Map attrib = font.getAttributes();
+		attrib.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+		l.setFont(font.deriveFont(attrib));
+		repaint();
+	}
+
+	public void setPiezaMovements(int current, int max) {
+		if (current == max && current == 0)
+			focusedPiezaMovements.setText("- / -");
+		else
+			focusedPiezaMovements.setText(current + " / " + max);
+	}
+
+	/**
+	 * Create a new gameBoard
+	 * @param w
+	 * @param h
+	 * @param p
+	 */
+	public void newBoard(int w, int h, int p, ArrayList<String> names){
+		initGameBoard(w, h, p, names);
+		centerPanel.setViewportView(tablero); //at this point, tablero has changed
+		centerPanel.revalidate();
+		repaint();
+		(new Thread(gameBoard)).start();
 	}
 
 	public GameLogic getCurrentGame() {
@@ -289,18 +301,6 @@ public class GameFrame extends JFrame {
 			clean();
 		}
 	}
-	/**
-	 * Cleans the GUI from the previous game and deletes the reference to the logic from that game
-	 */
-	private void clean() {
-		remainingPiezasPanel.removeAll();
-		setPiezaMovements(0, 0);
-		turnNumberLabel.setText(null);
-		turnPlayerLabel.setText(null);
-		gameBoard.cleanUp();
-		gameBoard = null;
-	}
-
 	public void setTurnNumber(int turn) {
 		turnNumberLabel.setText(turnNumberCaption + Integer.toString(turn));
 	}

@@ -22,6 +22,23 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 	private GameLogic gameLogic;
 	
 	/**
+	 * Paints all CeldaViews in CeldaContainer
+	 * @see CeldaView
+	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		for (CeldaView celdaView : list) {
+			celdaView.paintComponent(g2);
+		}
+		for (Jugador player : gameLogic.getPlayersList()) {
+			for (Pieza p : player.getPiezas()) {
+				p.draw(g2);
+			}
+		}
+	}
+
+	/**
 	 * Default constructor, creates a list of Celdas.
 	 * @param parent Initialized GameLogic
 	 */
@@ -46,23 +63,6 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 		list.add(c);
 	}
 	
-	/**
-	 * Paints all CeldaViews in CeldaContainer
-	 * @see CeldaView
-	 */
-	@Override
-	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		for (CeldaView celdaView : list) {
-			celdaView.paintComponent(g2);
-		}
-		for (Jugador player : gameLogic.getPlayersList()) {
-			for (Pieza p : player.getPiezas()) {
-				p.draw(g2);
-			}
-		}
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		int clickX = (int) (arg0.getX() / CeldaView.CELDA_WIDTH);

@@ -32,6 +32,71 @@ public class GameLogic implements Runnable{
 	private Jugador playerInFocus;
 
 	/**
+	 * Does the initialization of pieces on a corner of the map for some player
+	 * @param jugadorTest Initialized Jugador
+	 */
+	private void preparePlayer(Jugador j) {
+		int id = j.getID();
+		piezasParaJugador = new ArrayList<Pieza>();
+		//Agregar los 2 pentagonos
+		//Agregar los 3 triangulos
+		//Agregar los 4 circulos
+		switch (id) {
+		case 1:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][0]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][0]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][0]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][3]));
+			break;
+		case 2:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][0]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][0]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][0]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][3]));
+			break;
+		case 3:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][heightCells - 1]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][heightCells - 1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][heightCells - 1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][heightCells - 2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][heightCells - 4]));
+			break;
+		case 4:
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][heightCells - 1]));
+			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][heightCells - 1]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][heightCells - 2]));
+			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][heightCells - 1]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][heightCells - 2]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][heightCells - 3]));
+			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][heightCells - 4]));
+			break;
+		default:
+			break;
+		}
+		//Por consitencia hacer que todas las celdas de las piezas sean disponibles
+		for (Pieza pieza : piezasParaJugador) {
+			pieza.getParentCell().setState(CeldaState.NORMAL);
+		}
+		j.setPiezas(piezasParaJugador);		
+	}
+
+	/**
 	 * Creates a Board with horizontal cells, vertical cells, players number.
 	 * Inits the turn counter and player turn.
 	 * Creates a board with number of cells according to parameters and sets them on/off
@@ -123,70 +188,6 @@ public class GameLogic implements Runnable{
 		//TODO: Hacer que en la GUI se vea cual es el jugador actual
 	}
 
-	/**
-	 * Does the initialization of pieces on a corner of the map for some player
-	 * @param jugadorTest Initialized Jugador
-	 */
-	private void preparePlayer(Jugador j) {
-		int id = j.getID();
-		piezasParaJugador = new ArrayList<Pieza>();
-		//Agregar los 2 pentagonos
-		//Agregar los 3 triangulos
-		//Agregar los 4 circulos
-		switch (id) {
-		case 1:
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][0]));
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][0]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][0]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][1]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][3]));
-			break;
-		case 2:
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][0]));
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][0]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][0]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][1]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][3]));
-			break;
-		case 3:
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[1][heightCells - 1]));
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[0][heightCells - 2]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[2][heightCells - 1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[1][heightCells - 2]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[0][heightCells - 3]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[3][heightCells - 1]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[2][heightCells - 2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[1][heightCells - 3]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[0][heightCells - 4]));
-			break;
-		case 4:
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 2][heightCells - 1]));
-			piezasParaJugador.add(new PentagonoPieza(j, tableroState[widthCells - 1][heightCells - 2]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 3][heightCells - 1]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 2][heightCells - 2]));
-			piezasParaJugador.add(new TrianguloPieza(j, tableroState[widthCells - 1][heightCells - 3]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 4][heightCells - 1]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 3][heightCells - 2]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 2][heightCells - 3]));
-			piezasParaJugador.add(new CirculoPieza(j, tableroState[widthCells - 1][heightCells - 4]));
-			break;
-		default:
-			break;
-		}
-		//Por consitencia hacer que todas las celdas de las piezas sean disponibles
-		for (Pieza pieza : piezasParaJugador) {
-			pieza.getParentCell().setState(CeldaState.NORMAL);
-		}
-		j.setPiezas(piezasParaJugador);		
-	}
 	/**
 	 * 
 	 * @return number of horizontal cells

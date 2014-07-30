@@ -15,6 +15,15 @@ public class TableroView extends JPanel {
 	private GameLogic parent;
 
 	/**
+	 * Creates a new CeldaContainer with the number of cells
+	 * of gameBoard
+	 */
+	private void createGrid() {
+		celdaContainer = new CeldaContainer(parent);
+		celdaContainer.setPreferredSize(new Dimension((int) (parent.getWidthCells()*CeldaView.CELDA_WIDTH), (int)(parent.getHeightCells()*CeldaView.CELDA_HEIGHT)));
+	}
+
+	/**
 	 * Instantiates the Game Board Viewer and sets gameBoard as controller for
 	 * this class. Also initializes the CeldaContainer array and sets the Layout as GridLayout.
 	 * @param gameBoard controller GameBoard
@@ -25,15 +34,6 @@ public class TableroView extends JPanel {
 		createGrid();
 		celdaContainer.setLayout(new GridLayout(gameBoard.getWidthCells(), gameBoard.getHeightCells() ));		
 		add(celdaContainer);
-	}
-	
-	/**
-	 * Creates a new CeldaContainer with the number of cells
-	 * of gameBoard
-	 */
-	private void createGrid() {
-		celdaContainer = new CeldaContainer(parent);
-		celdaContainer.setPreferredSize(new Dimension((int) (parent.getWidthCells()*CeldaView.CELDA_WIDTH), (int)(parent.getHeightCells()*CeldaView.CELDA_HEIGHT)));
 	}
 	
 	

@@ -24,26 +24,13 @@ public class CeldaView {
 	private Celda mCell;
 
 	/**
-	 * Creates the CeldaView for Celda cell of size CELDA_WIDTH, CELDA_HEIGHT
-	 * @see Celda
-	 * @param cell cell for wich to create View
-	 */
-	public CeldaView(Celda cell) {
-		setX(cell.getX());
-		setY(cell.getY());
-		mCell = cell;
-		shape = new Rectangle2D.Double(0,0,CELDA_WIDTH,CELDA_HEIGHT);
-		stroke = new BasicStroke(2f);
-	}
-	
-	/**
 	 * Paints the current CeldaView according to related cell State
 	 * @param g Graphics2D painter
 	 * @see Celda, CeldaState
 	 */
 	protected void paintComponent(Graphics2D g) {
- 		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
- 		switch (mCell.getState()) {
+		shape.setFrame(getX()*CELDA_WIDTH, getY()*CELDA_HEIGHT, CELDA_WIDTH, CELDA_HEIGHT);
+		switch (mCell.getState()) {
 		case NORMAL:
 			g.setColor(CELDA_COLOR_ENABLED);
 			break;
@@ -54,10 +41,23 @@ public class CeldaView {
 			g.setColor(CELDA_COLOR_ENABLED);
 			break;
 		}
- 		g.fill(shape);
- 		g.setColor(CELDA_STROKE);
- 		g.setStroke(stroke);
- 		g.draw(shape);
+		g.fill(shape);
+		g.setColor(CELDA_STROKE);
+		g.setStroke(stroke);
+		g.draw(shape);
+	}
+
+	/**
+	 * Creates the CeldaView for Celda cell of size CELDA_WIDTH, CELDA_HEIGHT
+	 * @see Celda
+	 * @param cell cell for wich to create View
+	 */
+	public CeldaView(Celda cell) {
+		setX(cell.getX());
+		setY(cell.getY());
+		mCell = cell;
+		shape = new Rectangle2D.Double(0,0,CELDA_WIDTH,CELDA_HEIGHT);
+		stroke = new BasicStroke(2f);
 	}
 	
 	/**
