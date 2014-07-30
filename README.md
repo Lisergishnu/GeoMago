@@ -119,6 +119,10 @@ Durante el desarrollo del proyecto se presentaron algunas dificultades, a contin
 - **Evitar bloqueos de GUI**: Mediante hilos se logró evitar instancias donde la GUI queda bloqueada por una operación en ejecución. Esto nos resultó más difícil de lo que pensabamos.
 - **Reproducir sonidos más de una vez**: La API básica de Java complica el uso de un clip de audio tomado desde un buffer al no permitir *rebobinarlo* y reproducirlo sin pedir un *AudioInputStream* nuevo.
 
+Bugs conocidos
+--------------
+- Actualmente el JAR generado por el Makefile no reproduce sonido. Si se importa el proyecto en Eclipse y se construye ahi se pueden escuchar los movimientos de las piezas.
+
 
 Pruebas de uso
 ------------
