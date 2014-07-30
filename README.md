@@ -116,7 +116,9 @@ Dificultades
 Durante el desarrollo del proyecto se presentaron algunas dificultades, a continuación se listan algunas de ellas:
 - **Desarrollo de una IA**: Además de la planificación de turno (comportamiento), estaba el problema de como hacer que ésta no generara un *stack overflow* al interactuar con otras AI (ver diagrama).
 - **Dibujar las distintas piezas**: Era necesario definir polígonos no previamente establecidos.
-- **Motor del juego**: Lograr un motor que ejecutara de manera correcta el juego evitando "bugs".
+- **Evitar bloqueos de GUI**: Mediante hilos se logró evitar instancias donde la GUI queda bloqueada por una operación en ejecución. Esto nos resultó más difícil de lo que pensabamos.
+- **Reproducir sonidos más de una vez**: La API básica de Java complica el uso de un clip de audio tomado desde un buffer al no permitir *rebobinarlo* y reproducirlo sin pedir un *AudioInputStream* nuevo.
+
 
 Pruebas de uso
 ------------

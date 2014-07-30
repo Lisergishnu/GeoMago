@@ -958,7 +958,9 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 <li>
 <strong>Dibujar las distintas piezas</strong>: Era necesario definir polígonos no previamente establecidos.</li>
 <li>
-<strong>Motor del juego</strong>: Lograr un motor que ejecutara de manera correcta el juego evitando "bugs".</li>
+<strong>Evitar bloqueos de GUI</strong>: Mediante hilos se logró evitar instancias donde la GUI queda bloqueada por una operación en ejecución. Esto nos resultó más difícil de lo que pensabamos.</li>
+<li>
+<strong>Reproducir sonidos más de una vez</strong>: La API básica de Java complica el uso de un clip de audio tomado desde un buffer al no permitir <em>rebobinarlo</em> y reproducirlo sin pedir un <em>AudioInputStream</em> nuevo.</li>
 </ul><h2>
 <a name="user-content-pruebas-de-uso" class="anchor" href="#pruebas-de-uso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pruebas de uso</h2>
 
@@ -1016,6 +1018,8 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 <a name="user-content-otros" class="anchor" href="#otros" aria-hidden="true"><span class="octicon octicon-link"></span></a>Otros</h2>
 
 <ul>
+<li>Enlace a directorio del proyecto: (insertar enlace directorio en html)<br>
+</li>
 <li>Enlace a proyecto en GitHub:
 <a href="https://github.com/Lisergishnu/GeoMago">GeoMago</a>.</li>
 </ul></body></html>
