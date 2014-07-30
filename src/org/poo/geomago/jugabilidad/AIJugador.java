@@ -17,7 +17,6 @@ public class AIJugador extends Jugador {
 
 	private int mDifficulty;
 	private void processTurn() {
-		System.out.println("Procesando turno AI...");
 		for (Pieza p : mPiezaList) {
 			//Check if the last movement didnt end the game
 			if (!logic.isGameRunning()) {

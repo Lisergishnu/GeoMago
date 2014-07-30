@@ -1,0 +1,30 @@
+title Cambiar de turno en AI
+
+GUI->EndTurnAction:actionPerformed()
+EndTurnAction->GameLogic:(Mediante run() de Runnable) endTurn()
+note over EndTurnAction,GameLogic
+EndTurnAction implementa Runnable
+así al hacer run() no se bloquea la GUI
+end note
+GameLogic->GameLogic:switchPlayer()
+GameLogic->AIJugador:executeTurn()
+note right of AIJugador
+El botón de cambio 
+de turno se deshabilita
+end note
+AIJugador->AIJugador:processTurn()
+note right of AIJugador
+El botón de cambio 
+de turno se habilita
+end note
+
+AIJugador->EndTurnAction:actionPerformed()
+note over AIJugador,EndTurnAction
+Esta operación es realizada
+emulando el click del mouse
+iniciando un nuevo hilo
+end note
+
+note right of AIJugador
+Aqui termina el stack
+en el hilo creado

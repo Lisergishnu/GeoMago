@@ -52,6 +52,7 @@ Análisis
 - **Lógica del juego**: Motor del juego.
 - **Piezas**: Se definen las habilidades de cada pieza y como interactúan.
 - **Tablero**: Define las características de cuadro del tablero como también de su tamaño.
+
 Por supuesto que cada una de estos tipos contiene uno más objetos para el funcionamiento del juego.
 La combinación de estos elementos es lo que permite el funcionamiento del juego, en donde el único elemento externo al sistema es el o los jugadores humanos que deseen jugar. En caso de haber un solo jugador humano, esta disponible la modalidad de jugar contra el computador ya que se implemento una unidad de IA en el juego.
 Por como se define el juego hay distintas formas de "usarlo" dependiendo de la cantidad de jugadores.
@@ -84,29 +85,36 @@ Los tres modos tienen su atractivo para ser empleados. El primero en caso de uno
 
 Arquitectura
 ------------
-### A continuación se presentan distintos gráficos UML que presentan la interacción enter las distintas clases que componen el juego de manera que se entienda su estructura e implementación.
+ 
+###La arquitectura de la aplicación se basa en tres principios fundamentales: 
+- Uso de Modelo - Vista - Controlador como base del diseño del programa.
+- Trabajo Multi-hilo para evitar que procesos bloqueen la GUI.
+- Esquema de herencia para las piezas y los jugadores.
+
+A continuación se presentan distintos gráficos UML que muestran la interacción entre las distintas clases que componen el juego de manera que se entienda su estructura e implementación.
 
 - **UML General**  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png)
+![alt text](img/General.png)
 
 - **UML General 2**  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.png)
+![alt text](img/prueba.png)
 
 - **UML Relaciones Celdas**  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png)
+![alt text](img/RelacionesCeldas.png)
 
 - **UML Relaciones entre piezas**  
-![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png)
+![alt text](img/RelacionesPiezas.png)
 
 
-### A continuación se presentan distintos UML de secuencia para entender el funcionamiento del juego.
+A continuación se presenta el diagrama de secuencia que usa la AI para cambiar de turno:
 
-(insertar imagenes) 
+![alt text](img/cambioTurnoAI.png)
+
 
 Dificultades
 ------------
 Durante el desarrollo del proyecto se presentaron algunas dificultades, a continuación se listan algunas de ellas:
-- **Desarrollo de una IA**
+- **Desarrollo de una IA**: Además de la planificación de turno (comportamiento), estaba el problema de como hacer que ésta no generara un *stack overflow* al interactuar con otras AI (ver diagrama).
 - **Dibujar las distintas piezas**: Era necesario definir polígonos no previamente establecidos.
 - **Motor del juego**: Lograr un motor que ejecutara de manera correcta el juego evitando "bugs".
 
@@ -114,13 +122,13 @@ Pruebas de uso
 ------------
 A continuación se presentan los 3 casos de uso planteados en el análisis anterior:
 - **Desafiar IA**: 
-	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_IA.PNG)
+	![alt text](img/player_vs_IA.PNG)
 	
 - **Desafiar otro jugador**:
-	![alt text](https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_player.PNG)
+	![alt text](img/player_vs_player.PNG)
 	
 - **Observar juego**:
-	![alt text](enlace)
+	![alt text](img/AI_vs_AI.png)
 
 Instrucciones de uso
 ------------

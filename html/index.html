@@ -852,11 +852,12 @@ body .task-list{
 <li>
 <strong>Piezas</strong>: Se definen las habilidades de cada pieza y como interactúan.</li>
 <li>
-<strong>Tablero</strong>: Define las características de cuadro del tablero como también de su tamaño.
-Por supuesto que cada una de estos tipos contiene uno más objetos para el funcionamiento del juego.
+<strong>Tablero</strong>: Define las características de cuadro del tablero como también de su tamaño.</li>
+</ul><p>Por supuesto que cada una de estos tipos contiene uno más objetos para el funcionamiento del juego.
 La combinación de estos elementos es lo que permite el funcionamiento del juego, en donde el único elemento externo al sistema es el o los jugadores humanos que deseen jugar. En caso de haber un solo jugador humano, esta disponible la modalidad de jugar contra el computador ya que se implemento una unidad de IA en el juego.
-Por como se define el juego hay distintas formas de "usarlo" dependiendo de la cantidad de jugadores.</li>
-</ul><h3>
+Por como se define el juego hay distintas formas de "usarlo" dependiendo de la cantidad de jugadores.</p>
+
+<h3>
 <a name="user-content-a-continuaci%C3%B3n-se-presentan-los-casos-usuales-de-2-jugadores" class="anchor" href="#a-continuaci%C3%B3n-se-presentan-los-casos-usuales-de-2-jugadores" aria-hidden="true"><span class="octicon octicon-link"></span></a>A continuación se presentan los casos usuales de 2 jugadores:</h3>
 
 <ul>
@@ -929,17 +930,22 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 <a name="user-content-arquitectura" class="anchor" href="#arquitectura" aria-hidden="true"><span class="octicon octicon-link"></span></a>Arquitectura</h2>
 
 <h3>
-<a name="user-content-a-continuaci%C3%B3n-se-presentan-distintos-gr%C3%A1ficos-uml-que-presentan-la-interacci%C3%B3n-enter-las-distintas-clases-que-componen-el-juego-de-manera-que-se-entienda-su-estructura-e-implementaci%C3%B3n" class="anchor" href="#a-continuaci%C3%B3n-se-presentan-distintos-gr%C3%A1ficos-uml-que-presentan-la-interacci%C3%B3n-enter-las-distintas-clases-que-componen-el-juego-de-manera-que-se-entienda-su-estructura-e-implementaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>A continuación se presentan distintos gráficos UML que presentan la interacción enter las distintas clases que componen el juego de manera que se entienda su estructura e implementación.</h3>
+<a name="user-content-la-arquitectura-de-la-aplicaci%C3%B3n-se-basa-en-tres-principios-fundamentales" class="anchor" href="#la-arquitectura-de-la-aplicaci%C3%B3n-se-basa-en-tres-principios-fundamentales" aria-hidden="true"><span class="octicon octicon-link"></span></a>La arquitectura de la aplicación se basa en tres principios fundamentales:</h3>
 
 <ul>
-<li><p><strong>UML General</strong><br><a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/General.png" alt="alt text" style="max-width:100%;"></a></p></li>
-<li><p><strong>UML General 2</strong><br><a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.png" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/prueba.png" alt="alt text" style="max-width:100%;"></a></p></li>
-<li><p><strong>UML Relaciones Celdas</strong><br><a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesCeldas.png" alt="alt text" style="max-width:100%;"></a></p></li>
-<li><p><strong>UML Relaciones entre piezas</strong><br><a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/etc/UML/RelacionesPiezas.png" alt="alt text" style="max-width:100%;"></a></p></li>
-</ul><h3>
-<a name="user-content-a-continuaci%C3%B3n-se-presentan-distintos-uml-de-secuencia-para-entender-el-funcionamiento-del-juego" class="anchor" href="#a-continuaci%C3%B3n-se-presentan-distintos-uml-de-secuencia-para-entender-el-funcionamiento-del-juego" aria-hidden="true"><span class="octicon octicon-link"></span></a>A continuación se presentan distintos UML de secuencia para entender el funcionamiento del juego.</h3>
+<li>Uso de Modelo - Vista - Controlador como base del diseño del programa.</li>
+<li>Trabajo Multi-hilo para evitar que procesos bloqueen la GUI.</li>
+<li>Esquema de herencia para las piezas y los jugadores.</li>
+</ul><p>A continuación se presentan distintos gráficos UML que muestran la interacción entre las distintas clases que componen el juego de manera que se entienda su estructura e implementación.</p>
 
-<p>(insertar imagenes) </p>
+<ul>
+<li><p><strong>UML General</strong><br><a href="img/General.png" target="_blank"><img src="img/General.png" alt="alt text" style="max-width:100%;"></a></p></li>
+<li><p><strong>UML General 2</strong><br><a href="img/prueba.png" target="_blank"><img src="img/prueba.png" alt="alt text" style="max-width:100%;"></a></p></li>
+<li><p><strong>UML Relaciones Celdas</strong><br><a href="img/RelacionesCeldas.png" target="_blank"><img src="img/RelacionesCeldas.png" alt="alt text" style="max-width:100%;"></a></p></li>
+<li><p><strong>UML Relaciones entre piezas</strong><br><a href="img/RelacionesPiezas.png" target="_blank"><img src="img/RelacionesPiezas.png" alt="alt text" style="max-width:100%;"></a></p></li>
+</ul><p>A continuación se presenta el diagrama de secuencia que usa la AI para cambiar de turno:</p>
+
+<p><a href="img/cambioTurnoAI.png" target="_blank"><img src="img/cambioTurnoAI.png" alt="alt text" style="max-width:100%;"></a></p>
 
 <h2>
 <a name="user-content-dificultades" class="anchor" href="#dificultades" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dificultades</h2>
@@ -947,7 +953,8 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 <p>Durante el desarrollo del proyecto se presentaron algunas dificultades, a continuación se listan algunas de ellas:</p>
 
 <ul>
-<li><strong>Desarrollo de una IA</strong></li>
+<li>
+<strong>Desarrollo de una IA</strong>: Además de la planificación de turno (comportamiento), estaba el problema de como hacer que ésta no generara un <em>stack overflow</em> al interactuar con otras AI (ver diagrama).</li>
 <li>
 <strong>Dibujar las distintas piezas</strong>: Era necesario definir polígonos no previamente establecidos.</li>
 <li>
@@ -959,11 +966,11 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 
 <ul>
 <li><p><strong>Desafiar IA</strong>: 
-<a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_IA.PNG" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_IA.PNG" alt="alt text" style="max-width:100%;"></a></p></li>
+<a href="img/player_vs_IA.PNG" target="_blank"><img src="img/player_vs_IA.PNG" alt="alt text" style="max-width:100%;"></a></p></li>
 <li><p><strong>Desafiar otro jugador</strong>:
-<a href="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_player.PNG" target="_blank"><img src="https://raw.githubusercontent.com/Lisergishnu/GeoMago/master/capturas/player_vs_player.PNG" alt="alt text" style="max-width:100%;"></a></p></li>
+<a href="img/player_vs_player.PNG" target="_blank"><img src="img/player_vs_player.PNG" alt="alt text" style="max-width:100%;"></a></p></li>
 <li><p><strong>Observar juego</strong>:
-<a href="enlace" target="_blank"><img src="enlace" alt="alt text" style="max-width:100%;"></a></p></li>
+<a href="img/AI_vs_AI.png" target="_blank"><img src="img/AI_vs_AI.png" alt="alt text" style="max-width:100%;"></a></p></li>
 </ul><h2>
 <a name="user-content-instrucciones-de-uso" class="anchor" href="#instrucciones-de-uso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instrucciones de uso</h2>
 
@@ -990,9 +997,9 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 </code></pre>
 </li>
 <li>
-<p>Para crear documentación del código:</p>
+<p>Para crear documentación del código (Parte en inglés, parte en español):</p>
 
-<pre><code>$make doc
+<pre><code>$ make doc
 </code></pre>
 </li>
 </ul><h4>
@@ -1009,8 +1016,6 @@ Por como se define el juego hay distintas formas de "usarlo" dependiendo de la c
 <a name="user-content-otros" class="anchor" href="#otros" aria-hidden="true"><span class="octicon octicon-link"></span></a>Otros</h2>
 
 <ul>
-<li>Enlace a directorio del proyecto: (insertar enlace directorio en html)<br>
-</li>
 <li>Enlace a proyecto en GitHub:
 <a href="https://github.com/Lisergishnu/GeoMago">GeoMago</a>.</li>
 </ul></body></html>

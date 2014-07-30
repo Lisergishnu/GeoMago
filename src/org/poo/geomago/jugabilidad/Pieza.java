@@ -76,7 +76,6 @@ public abstract class Pieza {
 
 	public void remove() {
 		actualPos.setCurrentPieza(null);
-		System.out.println("Pieza.remove()");
 	}
 
 	public void gainMovement() {
