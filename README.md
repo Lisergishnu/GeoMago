@@ -167,6 +167,5 @@ Instrucciones de uso
 	
 Otros
 ------------
-- Enlace a directorio del proyecto: (insertar enlace directorio en html)  
 - Enlace a proyecto en GitHub:
 [GeoMago](https://github.com/Lisergishnu/GeoMago).
