@@ -125,9 +125,9 @@ public abstract class Pieza {
 	 */
 	public void mouseRelease(Celda destino) {
 		if (move(destino)) {
-			System.out.println("Se puede mover");
+			//System.out.println("Se puede mover");
 		} else {
-			System.out.println("No se puede mover");
+			//System.out.println("No se puede mover");
 		}
 		isBeingDragged = false;
 	}

@@ -67,7 +67,6 @@ public class CeldaContainer extends JPanel implements MouseMotionListener, Mouse
 	public void mouseClicked(MouseEvent arg0) {
 		int clickX = (int) (arg0.getX() / CeldaView.CELDA_WIDTH);
 		int clickY = (int) (arg0.getY() / CeldaView.CELDA_HEIGHT);
-		System.out.println("Mouse Click: (" + clickX+ "," + clickY + ")");	
 	}
 
 	@Override

@@ -11,7 +11,7 @@ jar:
 	mkdir -p bin/
 	$(SRCMAKE)
 	$(JC) -encoding utf8 -d bin @sources.txt
-	jar cfe $(NAME).jar org.poo.geomago.GeoMago -C bin/ .
+	jar cfe $(NAME).jar org.poo.geomago.GeoMago -C assets/ . -C bin/ .
 	rm sources.txt
 clean:
 	rm -rf bin/

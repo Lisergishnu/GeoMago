@@ -322,7 +322,7 @@ public class GameLogic implements Runnable{
 		if (isGameRunning) {
 			switchPlayer();
 		} else {
-			System.out.println("Juego Terminado. Ganador: " + playersList.get(0).getName());
+			//System.out.println("Juego Terminado. Ganador: " + playersList.get(0).getName());
 			gameFrame.setEnabledNextTurnButton(false);
 			gameFrame.showGameOverDialog(playersList.get(0).getName());
 		}
